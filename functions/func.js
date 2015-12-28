@@ -616,7 +616,6 @@ function drawMap(x, y){
         for (i = x - 28; i <= x + 28; i++){
             for (j = y - 28; j <= y + 28; j++){
             $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + map[i][j].tile + ".png')");
-            //$(".mapTile.pos" + pos).text(i + '|' + j);
             pos++;
             }
         }

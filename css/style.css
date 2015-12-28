@@ -1760,6 +1760,7 @@ body{
 .mapTilesWrap {
     width: 620px;
     height: 620px;
+    transition: all 0.5s;
 }
 
 .mapTile {
@@ -1897,4 +1898,14 @@ body{
     width: 620px;
     height: 620px;
     overflow: hidden;
+}
+
+
+
+.zoomed {
+    transform: scale(2);
+    -ms-transform: scale(2);
+    -webkit-transform: scale(2);
+    -o-transform: scale(2);
+    -moz-transform: scale(2);
 }

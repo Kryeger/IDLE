@@ -81,6 +81,8 @@
     
     var lastMapPosX, lastMapPosY;
     
+    var mapOpen = 0; //checks if the map is open
+    
     //FUNCTIONS
     
     function getRandomInt(min, max) {
@@ -625,7 +627,11 @@ function drawMap(x, y){
     lastMapPosX = x;
     lastMapPosY = y;
 }
-    
+
+
+
+
+
     //JQUERY
 
    $(document).ready(function(){
@@ -916,14 +922,17 @@ function drawMap(x, y){
        $(".mapToggle").click(function(){
           $(".mapov").fadeIn(100);
            $(".mapWindow").toggleClass("tgld");
+           mapOpen = 1;
        });
        $(".mapClose").click(function(){
           $(".mapov").fadeOut(100);
            $(".mapWindow").toggleClass("tgld");
+           mapOpen = 0;
        });
        $(".mapov").click(function(){
           $(".mapov").fadeOut(100);
            $(".mapWindow").toggleClass("tgld");
+           mapOpen = 0;
        });
        
         genMap(); drawMap(40, 40);
@@ -940,6 +949,48 @@ function drawMap(x, y){
        $(".mpr").click(function(){
           if(lastMapPosY + 1 < 384){drawMap(lastMapPosX, lastMapPosY + 1);}
        });
+       $(".mzIn").click(function(){
+           $(".mapTilesWrap").addClass("zoomed");
+       });
+       $(".mzOut").click(function(){
+           $(".mapTilesWrap").removeClass("zoomed");
+       });
        
+       document.onkeydown = function(e) {   //move with the arrow-keys
+        if(mapOpen == 1){
+    switch (e.keyCode) {
+        case 37:
+            event.preventDefault();
+            $(".mpl").trigger("click");
+            return false;
+        case 38:
+            event.preventDefault();
+            $(".mpu").trigger("click");
+            return false;
+        case 39:
+            event.preventDefault();
+            $(".mpr").trigger("click");
+            return false;
+        case 40:
+            event.preventDefault();
+            $(".mpd").trigger("click");
+            return false;
+        case 109:
+            event.preventDefault();
+            $(".mzOut").trigger("click");
+            return false;
+        case 107:
+            event.preventDefault();
+            $(".mzIn").trigger("click");
+            return false;
+    }
+        }
+        
+           
+};
+            // KeyCode Check //
+           //document.onkeydown = function(e){
+           //    console.log(e.keyCode);
+           //}
    });
 })(window, window.jQuery);

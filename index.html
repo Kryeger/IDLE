@@ -1,0 +1,279 @@
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>IDLE v0.1.0</title>
+        <meta name="description" content=" © LinkedOut 2015 ">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.5.0/math.min.js"></script>
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+        <script type="text/javascript" src="functions/func.js"></script>
+        <script type="text/javascript" src="functions/createChar.js"></script>
+        
+        
+    </head>
+    <body id="bodyc">
+        
+        <!--<div class='nameov'></div><div class='nameBox'><div class='nameboxtitle'> Hero Name </div><div class='nameboxcontainer'><div class='nameboxdet'>Please enter your new hero's name below. Hit <b>Done</b> when you're ready or <b>Back</b> if you've changed your mind.</div><form class='nameForm' name='addName'><input class='nameName' type='text' name='hname' placeholder='Type here your hero's name'><input class='nameSubmit' type='submit' value='Done'></form><div class='nameBack'> Back </div></div></div>-->
+            <div id="chtlg" class="changetrigger"><i class="fa fa-arrow-circle-left"></i></div>
+                <div class="changes">
+                    <center><span class="chlogtitle"> Changelog </span></center>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.1.0</span><br>
+                    <span class="chtext"> // Hero system redone</span> <br>
+                    <span class="chtext"> // Equipment works properly now</span> <br>
+                    <span class="chtext"> // Better inventory mechanics</span> <br>
+                    <span class="chtext"> + New Pics</span> <br>
+                    <span class="chtext"> + New Item in shop: Add New Hero</span> <br>
+                    <span class="chtext"> - removed Autoclicka' , PlusOne upgrade</span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.9</span><br>
+                    <span class="chtext"> + added non-functional Weapon Stats window </span> <br>
+                    <span class="chtext"> // the Hero System is now functional </span> <br>
+                    <span class="chtext"> // the Equipment / Inventory / WeaponStats windows are now shown together </span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.8</span><br>
+                    <span class="chtext"> // updated the Character Creator </span> <br>
+                    <span class="chtext"> + added Equipment </span> <br>
+                    <span class="chtext"> + added non-functional basic hero system </span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.7a</span><br>
+                    <span class="chtext">+ added Character Creator system (work in progress); </span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.7</span><br>
+                    <span class="chtext">+ added Character Creator window; </span> <br>
+                    <span class="chtext">+ working inventory item system </span> <br>
+                    <span class="chtext">// changed effects for inventory, market; </span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.6b</span><br>
+                    <span class="chtext">+ added inventory window </span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.6a</span><br>
+                    <span class="chtext">// changed changelog look </span> <br>
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.6</span><br>
+                    <span class="chtext">+ added level/exp system </span> <br>
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.5b </span><br>
+        <span class="chtext">+ dynamic pricing</span> <br>
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.5a</span><br>
+        <span class="chtext">//fixed selection on doubleclicking buy button</span> <br> 
+        <span class="chtext">//changed selection </span><br>
+        <span class="chtext">//fixed scrollbar bug on changelog </span><br>
+        <span class="chtext">//fixed buy button for second upgrade </span><br>
+                    
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.5</span><br>
+                    
+        <span class="chtext">+ working c/s/g system </span><br>
+        <span class="chtext">+ inventory button (non functional) </span><br>
+                    
+                    <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.4a</span><br>
+
+        <span class="chtext">+ changelog on mainscreen</span><br>
+
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.4 </span><br>
+
+        <span class="chtext">+ item: "Plus One"</span><br>
+        <span class="chtext">+ item: "Click each 2 seconds"</span><br>
+
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.3</span><br>
+
+        <span class="chtext">+ "Shop" window (non functional)</span><br>
+        <span class="chtext">+ copyrights to LinkedOut</span><br>
+
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp; 0.0.2 </span><br>
+
+        <span class="chtext">+ "Shop" button (non functional)</span><br>
+        <span class="chtext">+ version to main page</span><br>
+
+                <span class="changeno"> <i class="fa fa-info-circle"></i>&nbsp;0.0.1 </span><br>
+
+        <span class="chtext">+ main button</span><br>
+        <span class="chtext">+ click counter</span><br>
+        <span class="chtext">+ basic window</span><br>
+            </div>
+            
+            
+            
+        <div class="info">
+            
+            <div class="d1"> IDLE BETA v0.1.0 </div><div class="d2"> © LinkedOut 2015 </div>
+        </div>
+
+        <center><button id="butt" class="button"><i class="fa fa-thumbs-up"></i></button></center>
+        
+        <div class="leftmenu">
+            <p>
+                 <img src="imgs/gold_coin.png" /> <strong class="goldCoin"> 0 </strong>
+            </p>
+            <p>
+                 <img src="imgs/wood.png" /> <strong class="woodNum"> 0 </strong>
+            </p>
+            <p>
+                 <img src="imgs/iron.png" /> <strong class="ironNum"> 0 </strong>
+            </p>
+            <p>
+                 <img src="imgs/steel.png" /> <strong class="steelNum"> 0 </strong>
+            </p>
+            <p>
+                 <img src="imgs/jewel.png" /> <strong class="jewelNum"> 0 </strong>
+            </p>
+            <br>
+            <div class="lvlnum"> <span class="currlvl"> Level <font class="level"> 1 </font></span></div><br>
+            <div class="expbg"><span class="expnum"><font class="expperc"> 0 </font>/<font class="nextLevel"> 0 </font></span> <div class="exp" style="width: 0%;"> &nbsp; </div> </div><br>
+            <div class="shopinv"><div class="shop"> Shop </div> <div class="invnot"><div class="inventory"> Inventory </div><div class="notify">1234</div></div></div> <br>
+            <div class="craftToggle"> Crafting </div>
+            <div class="mapToggle"> Map </div>
+            <div class="charCreateToggle"> Character Creator </div>  
+           <!-- <div class="eqToggle"> Equipment </div>  -->
+            
+            
+            
+          
+        </div>
+        <div class="equipmentov" style="display:none;"></div>
+        <div class="eiov" style="display:none;"><div class="equipment"><div class="eqTitle"> Equipment </div><div class="eqp"> <center><div class="eqlh leftH"> lefTH </div><div class="eqrh rightH"> rightH</div> <div class="eq face"> Face </div> <div class="eq chest"> Chest </div> <div class="eq legging"> Legging </div> <div class="eq boots"> Boots </div> 
+                </center>
+               </div> 
+            </div>
+        
+        <div class="invWindow">
+            <div class="invtitle"> Inventory <!--<i id="plusi" class="fa fa-plus"></i><i id="minusi" class="fa fa-minus"></i>--><i id="invNextPage" class="fa fa-arrow-circle-right"></i><i id="invPrevPage" class="fa fa-arrow-circle-left"></i> <!-- <font> <i id="closei" class="fa fa-times"></i> </font> --></div>
+            <div class="invItemWrap">
+                
+               <!-- <div class="invItem pos0">s</div><div class="invItem pos1">s</div><div class="invItem pos2">s</div><div class="invItem pos3">s</div><div class="invItem pos4">s</div><div class="invItem pos5">s</div><div class="invItem pos6">s</div><div class="invItem pos7">s</div><div class="invItem pos8">s</div><div class="invItem pos9">s</div><div class="invItem pos10">s</div><div class="invItem pos11">s</div><div class="invItem pos12">s</div><div class="invItem pos13">s</div><div class="invItem pos14">s</div><div class="invItem pos15">s</div><div class="invItem pos16">s</div><div class="invItem pos17">s</div><div class="invItem pos18">s</div><div class="invItem pos19">s</div><div class="invItem pos20">s</div><div class="invItem pos21">s</div><div class="invItem pos22">s</div><div class="invItem pos23">s</div><div class="invItem pos24">s</div><div class="invItem pos25">s</div><div class="invItem pos26">s</div><div class="invItem pos27">s</div><div class="invItem pos28">s</div><div class="invItem pos29">s</div><div class="invItem pos30">s</div><div class="invItem pos31">s</div><div class="invItem pos32">s</div><div class="invItem pos33">s</div><div class="invItem pos34">s</div><div class="invItem pos35">s</div>-->
+                
+            </div>
+            <div class="pagination"> <div class="curpag"> 1 </div>&nbsp;/&nbsp;<div class="allpag"> x</div></div>
+        </div>
+        <div class="weaponstats"><div class="wsTitle"> Weapon Stats </div> 
+            <div class="wsEqov"><div class="wsEq" style="display: none;">EQUIP</div><div class="wsEqhands" style="display: none;"><div class="wsEqL"> Equip Left Hand</div><div class="wsEqR"> Equip Right Hand</div></div></div>
+                
+            </div>
+            </div>
+            
+        <div class="rightmenu">
+            <div class="clicks">
+         <p><i class="fa fa-thumbs-o-up"></i> Ai apăsat de <strong class="clickz"> 0 </strong> ori!</p>
+        </div>
+            
+            <div class="herospace">
+                <div class="heroes">
+                    <div class="herorank"> Main Hero </div>
+                    <div class="mainheroline"><span class="mheroname"> Hero Name </span> <span class="mherolevel"> Lvl <strong class="mherolvl"> 0 </strong></span></div>
+                    <div class="otherheroes"> Other Heroes </div><div class="otherherospace">
+                    <!-- <div class="heroline"><span class="heroname"> Hero Name </span> <span class="herolevel"> Lvl <strong class="herolvl"> 0 </strong></span></div> -->
+                    
+                    
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+        
+        
+        
+        <div class="marketov" style="display:none;"></div>
+         <div class="market"> <h1 class="markettitle"> MARKET <font> <i id="closem" class="fa fa-times"></i> </font></h1>
+            <div class="marketcontent">
+                <p> Buy A Hero <span class="desc"> +1 Hero </span> <font> 
+              <img src="imgs/gold_coin.png" /> <span class="up1PriceGold"> 0 </span>
+             <strong id="buyu1"> </strong></font> </p>
+             <p> Buy A Miner <span class="desc"> +1 Miner </span>  <font><img src="imgs/gold_coin.png" /> <span class="up2PriceGold"> 5 </span> <strong id="buyu2"> </strong></font> </p>   
+             
+             </div>
+        </div>
+        
+        
+        
+        
+        <div class="charCreateOv" style="display:none;"></div>
+            <div class="charCreate">
+                <div class="charCreateTitle"> Character Creator <font> <i id="closecc" class="fa fa-times"></i> </font></div>
+                    <div class="charRoom">
+                        <div class="bodylayout">
+                            <div class="cheyes eyes_1">
+                                <div class="chnose nose_1">
+                                    <div class="chmouth mouth_1">
+                                        <div class="chhair hair_1">
+                                            <div class="chbeard beard_1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="charOption cHair"><span> Hair </span> <font class="changer"> <font class="charPrev prevhair"><i class="fa fa-arrow-left"></i></font><font class="charNext nexthair"><i class="fa fa-arrow-right"></i></font></font></div>
+                <div class="charOption cEyes"><span> Eyes </span><font class="changer"> <font class="charPrev preveye"><i class="fa fa-arrow-left"></i></font><font class="charNext nexteye"><i class="fa fa-arrow-right"></i></font></font></div>
+                <div class="charOption cNose"><span> Nose </span><font class="changer"> <font class="charPrev prevnose"><i class="fa fa-arrow-left"></i></font><font class="charNext nextnose"><i class="fa fa-arrow-right"></i></font></font></div>
+                <div class="charOption cMouth"><span> Mouth </span><font class="changer"> <font class="charPrev prevmouth"><i class="fa fa-arrow-left"></i></font><font class="charNext nextmouth"><i class="fa fa-arrow-right"></i></font></font></div>
+                <div class="charOption cBeard"><span> Beard </span><font class="changer"> <font class="charPrev prevbeard"><i class="fa fa-arrow-left"></i></font><font class="charNext nextbeard"><i class="fa fa-arrow-right"></i></font></font></div><div class = "item_id"></div>
+  
+            </div>
+        
+        <!-- Craft | Start -->
+        
+        <div class="craftov" style="display:none;"></div><div class="craftWindow"><div class="craftTitle"> Crafting <div class="craftClose"><i class="fa fa-times"></i></div></div><div class="craftContainer"><div class="craftRes"> <p class="res"> Resources </p>
+        <div class="ress">
+        <p><i class="fa fa-circle gc"></i><strong class="goldCoin"> 0 </strong></p>
+        <p><i class="fa fa-circle wc"></i><strong class="woodNum"> 0 </strong></p>
+        <p><i class="fa fa-circle ic"></i><strong class="ironNum"> 0 </strong></p>
+        <p><i class="fa fa-circle sc"></i><strong class="steelNum"> 0 </strong></p>
+        <p><i class="fa fa-circle jc"></i><strong class="jewelNum"> 0 </strong></p>
+        </div>
+        </div>
+        <div class="craftInt">
+            <div class="craftTypeDesc">Select the type of the item that you want to craft.</div>
+            <center>
+            <div id = "Sword" class="type sword_1"></div><div id = "Bow" class="type bow_1"></div><div id = "Spear" class="type spear_1"></div><div id = "Axe" class="type axe_1"></div><div id = "Armor" class="type armor_1"></div><div id = "Pants" class="type pants_1"></div><div id = "Boots" class="type boots_1"></div><div id = "Helmet" class="type helmet_1"></div>
+            </center>
+        
+        <div class="craftQualDesc">Select the quality of the item. (Note: This will only become available once you have selected a type)</div>
+        <div class="craftQual">
+            <div id = "Cheap" class="cQ cheap"> Cheap </div><div id = "Normal" class="cQ normal"> Normal </div><div id = "Expensive" class="cQ expensive"> Expensive </div>
+        </div>
+            <div class="craftBottom">
+                <div class="craftPreview"></div>
+                <div class="craftPS">
+                    <div class="craftPrice">
+                        <div class="craftPriceTitle"> Price </div>
+                        <div class="price">
+                            <div><i class="fa fa-circle gc"></i><strong class="goldCrafPrice"> 0 </strong></div>
+                            <div><i class="fa fa-circle wc"></i><strong class="woodCrafPrice"> 0 </strong></div>
+                            <div><i class="fa fa-circle ic"></i><strong class="ironCrafPrice"> 0 </strong></div>
+                            <div><i class="fa fa-circle sc"></i><strong class="steelCrafPrice"> 0 </strong></div>
+                            <div><i class="fa fa-circle jc"></i><strong class="jewelCrafPrice"> 0 </strong></div>
+                        </div>
+         </div>
+                    <div class="craftSubmit"> Craft </div>
+                </div>
+            </div>
+            </div>
+        </div></div>
+        
+        <!-- Craft | End -->
+        
+        <!-- Map | Start -->
+        
+        <div class="mapov" style="display:none;"></div>
+        <div class="mapWindow">
+            <div class="mapTitle"> MAP  <div class="mapClose"></div></div>
+            <div class="mapContainer">
+                <div class="mapTilesWrap">
+                    <!--<div class="mapTile pos1">s</div><div class="mapTile pos2">s</div><div class="mapTile pos3">s</div><div class="mapTile pos4">s</div><div class="mapTile pos5">s</div><div class="mapTile pos6">s</div><div class="mapTile pos7">s</div><div class="mapTile pos8">s</div><div class="mapTile pos9">s</div><div class="mapTile pos10">s</div><div class="mapTile pos11">s</div><div class="mapTile pos12">s</div><div class="mapTile pos13">s</div><div class="mapTile pos14">s</div><div class="mapTile pos15">s</div><div class="mapTile pos16">s</div><div class="mapTile pos17">s</div><div class="mapTile pos18">s</div><div class="mapTile pos19">s</div><div class="mapTile pos20">s</div><div class="mapTile pos21">s</div><div class="mapTile pos22">s</div><div class="mapTile pos23">s</div><div class="mapTile pos24">s</div><div class="mapTile pos25">s</div><div class="mapTile pos26">s</div><div class="mapTile pos27">s</div><div class="mapTile pos28">s</div><div class="mapTile pos29">s</div><div class="mapTile pos30">s</div><div class="mapTile pos31">s</div><div class="mapTile pos32">s</div><div class="mapTile pos33">s</div><div class="mapTile pos34">s</div><div class="mapTile pos35">s</div><div class="mapTile pos36">s</div><div class="mapTile pos37">s</div><div class="mapTile pos38">s</div><div class="mapTile pos39">s</div><div class="mapTile pos40">s</div><div class="mapTile pos41">s</div><div class="mapTile pos42">s</div><div class="mapTile pos43">s</div><div class="mapTile pos44">s</div><div class="mapTile pos45">s</div><div class="mapTile pos46">s</div><div class="mapTile pos47">s</div><div class="mapTile pos48">s</div><div class="mapTile pos49">s</div>-->
+                
+                </div>
+            <div class="mapControlsWrapper">
+                <div class="mapControls">
+                    <div class="mapC mpu"><i class="fa fa-arrow-up"></i></div>
+                    <div class="mapC mpr"><i class="fa fa-arrow-right"></i></div>
+                    <div class="mapC mpd"><i class="fa fa-arrow-down"></i></div>
+                    <div class="mapC mpl"><i class="fa fa-arrow-left"></i></div>
+                </div>    
+            </div>
+            </div>
+            
+        </div>
+        
+        <!-- Map | END -->
+        
+
+    </body>
+</html>

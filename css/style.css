@@ -1,0 +1,1864 @@
+::-webkit-scrollbar { width: 4px; height: 4px;}
+::-webkit-scrollbar-button {  background-color: rgba(0,0,0,0); }
+::-webkit-scrollbar-track {  background-color: rgba(0,0,0,0);}
+::-webkit-scrollbar-track-piece { background-color: rgba(0,0,0,0);}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #eed217; border-radius: 0px;}
+::-webkit-scrollbar-corner { background-color: rgba(0,0,0,0);}}
+::-webkit-resizer { background-color: rgba(0,0,0,0);}
+
+body{
+    font-family: 'Oswald', sans-serif;
+    background: #1a1a1a;
+    transition: all 0.5s;
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    color:white;
+    font-size: 40px;
+    background:#414141;
+    border:0px;
+    width: 70px;
+    height: 70px;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.button:hover{
+    background:#5c5c5c;
+    
+}
+.button:active{
+    box-shadow: 0px 0px 0px 10px white;
+}
+.button:focus{
+    outline:none;
+}
+.clicks{
+    text-align:right;
+}
+.clicks strong{
+    color: red;
+    font-size: 20px;
+}
+.damn{
+    display: none;
+    color: red;
+    font-size: 30px;
+    margin:0;
+    margin-top: -20px;
+    text-align:right;
+}
+.leftmenu{
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    color: white;
+    font-size: 15px;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+.leftmenu p{
+    display: inline-block;
+    margin-right: 5px;
+}
+.coinz, .copperCoin, .silverCoin, .goldCoin{
+    font-size: 20px;
+    color: #eed217;
+}
+.copperCoin, .up1PriceCopper{
+    color: #dd7c1f;
+}
+
+.silverCoin, .up1PriceSilver{
+    color: #cccccc;
+}
+.goldCoin, .up1PriceGold{
+    color: #eed217;
+}
+.info{
+    pointer-events:none;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+    font-size: 10px;
+    color:white;
+}
+.info div{
+    text-align: right;
+    padding:0;
+    margin:0;
+}
+.info .d1{
+    font-size: 13px;
+}
+.info .d2{
+    font-size: 9px;
+    opacity: 0.5;
+}
+.leftmenu p i{
+    font-size: 20px;
+    color: #eed217;
+}
+.clicks p i{
+    color: red;
+    font-size: 20px;
+}
+.shop{
+    float:left;
+    margin-top:-10px;
+    pointer-events: auto;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 5px 10px;
+    margin-right: 5px;
+    text-align: center;
+    background: #eed217;
+    transition: all 0.5s;
+}
+.shop:hover{
+    background: #ffe956;
+}
+.marketov{
+    cursor: pointer;
+    position: absolute;
+    z-index:9998;
+    top:0;bottom:0;left:0;right:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19,19,19,0.7);
+    text-align: center;
+    transition: all 0.5s;
+}
+.marketov.vis{
+    display:block;
+    transition: all 0.5s;
+}
+.market{
+    position: fixed;
+    z-index: 9999;
+    top: 100%;
+    left: calc(50% - 250px);
+    background: #303030;
+    color: white;
+    width: 500px;
+    max-height: 500px;
+    border-bottom: 3px solid #eed217;
+    transition: all 0.2s ease-in-out;
+}
+.market.mtgld{
+    top: calc(50% - 250px);
+}
+.markettitle{
+    background: #eed217;
+    color: #1a1a1a;
+    vertical-align: middle;
+    text-align: left;
+    margin-top: 0px;
+    margin-bottom:0px;
+    font-size: 20px;
+    padding: 10px 7px;
+    line-height: 30px;
+    cursor: default;
+}
+.markettitle font{
+    float:right;
+    font-size: 20px;
+    line-height: 30px;
+    cursor:pointer;
+}
+.marketcontent{
+    text-align: left;
+    padding: 20px 20px;
+    overflow-y: scroll;
+}
+.marketcontent p{
+    margin:0;
+    cursor:default;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    background: rgba(0,0,0,0.3);
+}
+.marketcontent p .desc{
+    color: #595959;
+    font-size: 13px;
+    margin-left: 5px;
+}
+.marketcontent p font{
+    float: right;
+    color: #eed217;
+}
+.marketcontent p strong{
+    padding: 3px 10px;
+    color: #1a1a1a;
+    background: #eed217;
+    margin: 0px 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.marketcontent p strong:hover{
+    background: #ffe84c;
+}
+.items{
+    margin:0;
+    color: white;
+    font-size: 15px;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+.items .itemslist{
+    padding: 0;
+    margin: 0;
+    color: #6a6a6a;
+    font-size: 13px;
+}
+.items .itemslist strong{
+    font-size: 15px;
+    color: #ffe84c;
+}
+.changelogov{
+    position: absolute;
+    right: 5px;
+    bottom: 50px;
+}
+.changes{
+    position: fixed;
+    z-index: 9999;
+    max-height: 500px;
+    padding: 20px;
+    width: 200px;
+    background: #262626;
+    right: -300px;
+    bottom: 50px;
+    overflow-y: scroll;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    transition: all 0.5s;
+}
+.changes.tgld{
+    right:0px;
+}
+.changeno{
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    background: #eed217;
+    padding: 7px;
+    margin-bottom: 5px;
+    width: calc(100% - 14px);
+    cursor: pointer;
+}
+.shopinv{
+    display:inline-block;
+}
+.inventory{
+    float:left;
+    position: relative;
+    margin-top:-10px;
+    pointer-events: auto;
+    cursor: pointer;
+    color: #1a1a1a;
+    padding: 5px 10px;
+    text-align: center;
+    background: #826aea;
+    transition: all 0.5s;
+}
+.inventory:hover{
+    background: #9a83fb;
+}
+#buyu1, #buyu2, .herospace {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+.marketcontent img{
+    pointer-events:none;
+}
+::selection {
+  background: #ffde00;color: #1a1a1a;
+}
+::-moz-selection {
+  background: #ffde00;color: #1a1a1a;
+}
+.changes::-webkit-scrollbar-thumb { height: 0px; background-color: rgba(0,0,0,0); border-radius: 0px;}
+.changes::-webkit-scrollbar { width: 0px; height: 0px;}
+
+.expbg{
+    width: 144px;
+    background: #474747;
+}
+.expbg .expnum{
+    z-index: 3;
+    font-size: 12px;
+    line-height: 22px;
+    margin-left: 10px;
+    text-shadow: 1px 1px 0px black;
+    position: absolute;
+}
+.expbg .exp{
+    z-index: 2;
+    background: #1f7fdd;
+    transition: all 0.5s;
+}
+
+.lvlnum{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.level {
+    color: red;
+}
+
+.currlvl {
+    font-size: 20px;
+}
+.lvlup{
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 60px;
+    background: red;
+}
+.changes .chlogtitle {
+    display: inline-block;
+    background: #eed217;
+    padding: 15px auto;
+    margin-bottom: 10px;
+    font-size: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+.chtext {
+    display: inline-block;
+    background: rgba(0,0,0,0.5);
+    padding: 7px;
+    width: calc(100% - 14px);
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: white;
+}
+
+.changetrigger {
+    cursor: pointer;
+    position: fixed;
+    right: 5px;
+    bottom: 50px;
+    font-size: 25px;
+    color: #eed217;
+    transition: all 0.5s;
+}
+.changetrigger.tgld{
+    right: 250px;
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+.invWindow {
+    z-index: 9999;
+    padding:0;
+    position: relative;
+    background: #303030;
+    margin-right: 3px;
+    width: 500px;
+    height: 550px;
+    transform:translateY(200px);
+    border-bottom: 3px solid #826aea;
+    transition: all 0.4s;
+}
+.invWindow.invtgld{
+    transform:translateY(0px);
+}
+
+.invItem{
+    pointer-events:none;
+    cursor:pointer;
+    color:white;
+    display: inline-table;
+    margin: 0px;
+    padding: 0px;
+    font-size: 11px;
+    text-align: center;
+    background:#222222;
+    width:80px;
+    white-space:pre-wrap;
+    height:80px;
+     overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+    transition: all 0.2s;
+}
+
+
+.invItem:hover{
+    box-shadow:inset 0px -81px 0px rgba(130,106,234,0.6);
+}
+
+.invItemWrap {
+    margin:0px;
+    padding: 10px;
+}
+
+.invWindowOv{
+    align-items: center;
+    display: flex;
+    padding:0;
+    position: absolute;
+    overflow:hidden;
+    margin:0;
+    top:0;bottom:0;left:0;right:0;
+    width: 100%;
+    height: 100%;
+}
+.charCreateOv{
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+    cursor: pointer;
+}
+
+.invtitle {
+    cursor:default;
+    color: #1a1a1a;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+    padding-left: 8px;
+    background: #826aea;
+    display: inline-block;
+    width: calc(100% - 8px);
+}
+/*.invtitle .fa-plus, .invtitle .fa-arrow-circle-left, .invtitle .fa-arrow-circle-right, .invtitle .fa-minus{ 
+   float:left;
+ } */
+.invtitle i{
+    cursor:pointer;
+    float:right;
+    line-height: 50px;
+    padding-right: 8px;
+}
+.rarRed{
+    background:red;
+}
+.ontop{
+    position: fixed;
+    z-index:999999999;
+}
+.charCreateToggle {
+    pointer-events: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #0182ff;
+    color: #1a1a1a;
+    text-align: center;
+    width: 144px;
+    padding: 5px 0px;
+    cursor:pointer;
+    transition: all 0.5s;
+}
+.charCreateToggle:hover{
+    background: #43a3ff;
+}
+
+.charCreate {
+    z-index: 9999;
+    margin:0;
+    padding:0;
+    position: fixed;
+    background: #3b3b3b;
+    width: 500px;
+    height: 550px;
+    top: 100%;
+    left: calc(50% - 250px);
+    border-bottom: 3px solid #0182ff;
+    transition: all 0.5s;
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+    
+}
+
+.charCreateTitle {
+    cursor:default;
+    color: #1a1a1a;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+    padding-left: 8px;
+    background: #0182ff;
+    display: inline-block;
+    width: calc(100% - 8px);
+}
+
+.charCreateTitle font{
+    float:right;
+    font-size: 20px;
+    line-height: 30px;
+    cursor:pointer;
+}
+.charCreateTitle i{
+    cursor:pointer;
+    float:right;
+    line-height: 50px;
+    padding-right: 8px;
+
+}
+
+.charRoom {
+    background: url("../imgs/charcreate/charroombg.png") no-repeat;
+    background-size: cover;
+    text-align:center;
+    height: 250px;
+    width: 100%;
+}
+
+.charOption {
+    height: 45px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 45px;
+    width: calc(100% - 10px);
+    background: #272727;
+    color: white;
+    transition: all 0.5s;
+}
+.charOption:hover{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+
+/* HANDS ITEMS - START */
+
+.item_sword_1, .eqrh.class_swordTemp1, .eqlh.class_swordTemp1, .type.sword_1{
+    background: url("../imgs/item/weapon/item_sword_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_sword_2, .eqrh.class_swordTemp2, .eqlh.class_swordTemp2, .type.sword_2{
+    background: url("../imgs/item/weapon/item_sword_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_axe_1, .eqrh.class_axeTemp1, .eqlh.class_axeTemp1, .type.axe_1{
+    background: url("../imgs/item/weapon/item_axe_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_axe_2, .eqrh.class_axeTemp2, .eqlh.class_axeTemp2, .type.axe_2{
+    background: url("../imgs/item/weapon/item_axe_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_bow_1, .eqrh.class_bowTemp1, .eqlh.class_bowTemp1, .type.bow_1{
+    background: url("../imgs/item/weapon/item_bow_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_bow_2, .eqrh.class_bowTemp2, .eqlh.class_bowTemp2, .type.bow_2{
+    background: url("../imgs/item/weapon/item_bow_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_spear_1, .eqrh.class_spearTemp1, .eqlh.class_spearTemp1, .type.spear_1{
+    background: url("../imgs/item/weapon/item_spear_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_spear_2, .eqrh.class_spearTemp2, .eqlh.class_spearTemp2, .type.spear_2{
+    background: url("../imgs/item/weapon/item_spear_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+
+/* HANDS ITEMS - END */
+
+/* OTHER BODY ITEMS - START */
+
+.item_armor_1, .type.armor_1{
+    background: url("../imgs/item/armor/item_armor_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_armor_2, .type.armor_2{
+    background: url("../imgs/item/armor/item_armor_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_helmet_1, .type.helmet_1{
+    background: url("../imgs/item/armor/item_helmet_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_helmet_2, .type.helmet_2{
+    background: url("../imgs/item/armor/item_helmet_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_pants_1, .type.pants_1{
+    background: url("../imgs/item/armor/item_pants_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_pants_2, .type.pants_2{
+    background: url("../imgs/item/armor/item_pants_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_boots_1, .type.boots_1{
+    background: url("../imgs/item/armor/item_boots_1.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+.item_boots_2, .type.boots_2{
+    background: url("../imgs/item/armor/item_boots_2.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+
+/* OTHER BODY ITEMS - END */
+
+/* NO ITEM */
+
+.item_noitem{
+    background: url("../imgs/item/item_noitem.png") no-repeat;
+    background-size: 80px 80px;
+    pointer-events: auto;
+}
+
+.charOption span {
+    margin-left: 15px;
+    color: #888888;
+    cursor: default;
+    text-shadow: 1px 1px 2px black;
+}
+
+.changer {
+    float: right;
+    color: #888888;
+    margin-right: 15px;
+    padding: 0px 10px;
+    padding-top: 13px;
+}
+
+.charPrev {
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.charPrev:hover{
+    text-shadow: 2px 2px 4px black;
+}
+
+.charNext {
+    margin-left: 15px;
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.charNext:hover{
+    text-shadow: 2px 2px 4px black;
+}
+.charCreate.charctgld{
+    top: calc(50% - 300px);
+}
+.bodylayout {
+    z-index: 1;
+    width: 300px;
+    height: 250px;
+    left: calc(50% - 150px);
+    position: absolute;
+    background: url('../imgs/charcreate/character/body_layout.png') no-repeat;
+    background-size: 300px 250px;
+}
+
+.bodylayoutov {
+    position: absolute;
+    left:50px;
+}
+
+.cheyes {
+    z-index: 2;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    
+}
+
+.chnose {
+    z-index: 2;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    
+}
+
+.chmouth {
+    z-index: 2;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    
+}
+.cheyes.eyes_1{
+    background: url("../imgs/charcreate/character/eyes_1.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_2{
+    background: url("../imgs/charcreate/character/eyes_2.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_3{
+    background: url("../imgs/charcreate/character/eyes_3.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_4{
+    background: url("../imgs/charcreate/character/eyes_4.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_5{
+    background: url("../imgs/charcreate/character/eyes_5.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_6{
+    background: url("../imgs/charcreate/character/eyes_6.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_7{
+    background: url("../imgs/charcreate/character/eyes_7.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_8{
+    background: url("../imgs/charcreate/character/eyes_8.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_9{
+    background: url("../imgs/charcreate/character/eyes_9.png") no-repeat;
+    background-size: 300px 250px;
+}
+.cheyes.eyes_10{
+    background: url("../imgs/charcreate/character/eyes_10.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chnose.nose_1{
+    background: url("../imgs/charcreate/character/nose_1.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chnose.nose_2{
+    background: url("../imgs/charcreate/character/nose_2.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chnose.nose_3{
+    background: url("../imgs/charcreate/character/nose_3.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chnose.nose_4{
+    background: url("../imgs/charcreate/character/nose_4.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chmouth.mouth_1{
+    background: url("../imgs/charcreate/character/mouth_1.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chmouth.mouth_2{
+    background: url("../imgs/charcreate/character/mouth_2.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chmouth.mouth_3{
+    background: url("../imgs/charcreate/character/mouth_3.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chmouth.mouth_4{
+    background: url("../imgs/charcreate/character/mouth_4.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard.beard_2{
+    background: url("../imgs/charcreate/character/beard_2.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard.beard_3{
+    background: url("../imgs/charcreate/character/beard_3.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard.beard_4{
+    background: url("../imgs/charcreate/character/beard_4.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard.beard_5{
+    background: url("../imgs/charcreate/character/beard_5.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard {
+    z-index: 3;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+}
+
+.chhair {
+    z-index: 2;
+    width: 300px;
+    height: 250px;
+    position: absolute;
+}
+.chhair.hair_2{
+    background: url("../imgs/charcreate/character/hair_2.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_3{
+    background: url("../imgs/charcreate/character/hair_3.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_4{
+    background: url("../imgs/charcreate/character/hair_4.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_5{
+    background: url("../imgs/charcreate/character/hair_5.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_6{
+    background: url("../imgs/charcreate/character/hair_6.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_7{
+    background: url("../imgs/charcreate/character/hair_7.png") no-repeat;
+    background-size: 300px 250px;
+}
+.equipment {
+    z-index: 9999;
+    font-size: 13px;
+    white-space: pre-wrap;
+    left: -500px;
+    margin-right: 3px;
+    display: inline block;
+    width: 300px;
+    height: 550px;
+    color: white;
+    position: relative;
+    background: #303030;
+    border-bottom: 3px solid #0182ff;
+    
+    transition: all 0.3s;
+}
+.equipment.tgld{
+    left: 0px;
+}
+
+.eq {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-top: 5px;
+    cursor:pointer;
+}
+
+.eqclearfix {
+     width: 30px;
+    height: 30px;
+}
+
+.eqlh {
+    display: inline-block;
+    position: absolute;
+    margin-top: 125px;
+    margin-left: -50px;
+    left: 60px;
+    height: 80px;
+    width: 80px;
+    cursor:pointer;
+}
+
+.eqrh {
+    display: inline-block;
+    position: absolute;
+    margin-top: 125px;
+    margin-right: -50px;
+    right: 60px;
+    height: 80px;
+    width: 80px;
+
+    cursor:pointer;
+}
+
+.rightmenu {
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: white;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.herospace {
+    padding:0px;
+    display:block;
+    background: #303030;
+    width: 200px;
+    height: 400px;
+    border-bottom: 2px solid #eed217;
+}
+
+.clickz {
+    
+}
+
+.herorank {
+    width: 100%;
+    cursor:pointer;
+    display:block;
+    padding: 5px 0px;
+    text-align:center;
+    background:#494949;
+    border-bottom: 2px solid #eed217;
+    margin-bottom: 5px;
+}
+
+.heroes {
+    position: absolute;
+    width: 100%;
+}
+
+.mainheroline {
+    padding: 5px;
+    cursor:pointer;
+    background: rgba(0,0,0,0.2);
+    transition: all 0.5s;
+}
+.mainheroline:hover{
+    background: rgba(0,0,0,0.5);
+}
+
+.mherolevel {
+    float:right;
+    padding-right: 5px;
+}
+
+.otherheroes {
+    width: 100%;
+    display:block;
+    cursor:pointer;
+    padding: 5px 0px;
+    text-align:center;
+    background:#494949;
+    border-bottom: 2px solid #eed217;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.heroline {
+    cursor:pointer;
+    padding: 5px;
+    background: rgba(0,0,0,0.2);
+    margin-bottom: 2px;
+    transition: all 0.5s;
+}
+.heroline:hover{
+    background: rgba(0,0,0,0.5);
+}
+
+.herolevel {
+    float:right;
+    padding-right: 5px;
+}
+
+.otherherospace {
+    height: 280px;
+    overflow-y:scroll;
+}
+
+.equipmentov {
+    cursor:pointer;
+    z-index: 9;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    margin-left: 0px;
+    background: rgba(19,19,19,0.7);
+}
+
+.eqTitle {
+    font-weight: bold;
+    cursor: default;
+    position: relative;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #0182ff;
+    font-size: 20px;
+    color: #1a1a1a;
+}
+
+.eqToggle {
+    pointer-events: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #0182ff;
+    color: #1a1a1a;
+    text-align: center;
+    width: 144px;
+    padding: 5px 0px;
+    cursor:pointer;
+    transition: all 0.5s;
+}
+.eqToggle:hover{
+    background: #43a3ff;
+}
+
+.heroline.selected {
+    position: relative;
+}
+.heroline.selected:before {
+    content:"SELECTED";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #eed217;
+    line-height: 32px;
+    display: inline-block;
+    text-align: center;
+    pointer-events:none;
+    background: rgba(22,22,22,0.8);
+}
+ .charCreateOv {
+    
+    padding:0;
+    margin:0;
+    position: absolute;
+    z-index: 999;
+    top:0;bottom:0;left:0;right:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19,19,19,0.7);
+}
+.eiov {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+
+.weaponstats {
+    z-index: 9999;
+    font-size: 13px;
+    white-space: pre-wrap;
+    right: -500px;
+    margin-right: 3px;
+    display: inline block;
+    width: 300px;
+    height: 550px;
+    color: white;
+    position: relative;
+    background: #303030;
+    border-bottom: 3px solid #e58748;
+    
+    transition: all 0.3s;
+}
+.weaponstats.tgld{
+    right: 0px;
+}
+
+.wsTitle {
+    font-weight: bold;
+    cursor: default;
+    position: relative;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #e58748;
+    font-size: 20px;
+    color: #1a1a1a;
+}
+.notify {
+    display: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    position: absolute;
+    color: white;
+    width: 25px;
+    height: 25px;
+    word-break: break-all;
+    overflow: hidden;
+    line-height: 25px;
+    text-align: center;
+    text-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+    font-size: 10px;
+    border-radius: 50%;
+    background: red;
+    cursor: pointer;
+    top: -15px;
+    right: -15px;
+    transition: all 0.5s;
+}
+.notify.visible{
+    display: block;
+}
+
+.invnot {
+    display: inline-block;
+    position: relative;
+}
+
+.highlight {
+    position: relative;
+}
+.highlight:before{
+    content: '';
+    position: absolute;
+    z-index: 999;
+    top: 0;left:0;bottom:0;right:0;
+    background: rgba(255,0,0,0.4);
+}
+
+.pagination {
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    position: absolute;
+    color: white;
+    width: 100px;
+    cursor: pointer;
+    text-shadow: 0px 2px 0px rgba(0,0,0,0.5);
+    left: calc(50% - 50px);
+    border-radius: 5px;
+    text-align: center;
+    background: #826aea;
+    bottom: -20px;
+}
+
+.curpag {
+    display: inline-block;
+}
+
+.allpag {
+    display: inline-block;
+}
+
+.wsEq {
+    padding: 10px 0px;
+    width: calc( 100% - 50px);
+    text-align: center;
+    margin: 0 auto;
+    background: #e58748;
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+.wsEqhands {
+    padding: 10px 0px;
+    width: calc( 100% - 50px);
+    text-align: center;
+    margin: 0 auto;
+    
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+.wsEqR {
+    padding: 10px 0px;
+    display: inline-block;
+    width: calc(50% - 5px);
+    background: #e58748;
+}
+
+.wsEqL {
+    padding: 10px 0px;
+    display: inline-block;
+    width: calc(50% - 5px);
+    background: #e58748;
+    margin-right: 10px;
+}
+
+.wsEqov {
+    display: block;
+}
+
+.inuse {
+    pointer-events: none;
+    background: black;
+    display:none;
+}
+.invItem, .eqlh, .eqrh, .eq{
+    text-shadow: 0px 0px 4px black;
+}
+.nameov {
+    z-index: 99999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(19,19,19,0.7);
+}
+
+.nameBox {
+    z-index: 99999999;
+    position: absolute;
+    background: #303030;
+    width: 600px;
+    left: calc(50% - 300px);
+    top: 10%;
+}
+
+.nameboxtitle {
+    width: 100%;
+    height: 50px;
+    background: #6fc078;
+    color: #1a1a1a;
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.nameboxcontainer {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.nameboxdet {
+    font-family: 'Open Sans', sans-serif;
+    color: #b1b1b1;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.nameboxdet b{
+    
+    color: #6ddc79;
+    
+}
+
+.nameForm {
+    
+    width: 100%;
+    display: flex;
+}
+
+.nameName {
+    font-family: 'Oswald', sans-serif;
+    flex: 1;
+    height: 35px;
+    color: white;
+    padding: 10px;
+    background: #717171;
+    border: 1px solid #6fc078;
+}
+.nameName:focus{
+    outline: none;
+}
+
+.nameSubmit {
+    font-family: 'Oswald', sans-serif;
+    width: 100px;
+    font-size: 15px;
+    background: #6fc078;
+    color: #1a1a1a;
+    cursor: pointer;
+    border: 0px;
+    transition: all 0.5s;
+}
+.nameSubmit:hover{
+    background: #86e190;
+}
+
+.nameBack {
+    margin: 20px 0px;
+    display: block;
+    width: 100px;
+    background: #6fc078;
+    color: #1a1a1a;
+    cursor: pointer;
+    border: 0px;
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+    transition: all 0.5s;
+}
+.nameBack:hover{
+    background: #86e190;
+}
+
+.woodNum {
+    font-size: 20px;
+    color: #bb7e41;
+}
+
+.ironNum {
+    font-size: 20px;
+    color: #adaaaa;
+}
+
+.steelNum {
+    font-size: 20px;
+    color: #c4c4c4;
+}
+
+.jewelNum {
+    font-size: 20px;
+    color: #c5191d;
+}
+
+.craftov {
+    z-index: 99999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(19,19,19,0.7);
+}
+
+.craftWindow {
+    z-index: 99999;
+    left: 50%;
+    top: -100%;
+    opacity: 0;
+    width: 700px;
+    transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%,0%);
+    -webkit-transform: translate(-50%,0%);
+    -o-transform: translate(-50%,0%);
+    -moz-transform: translate(-50%,0%);
+    position: absolute;
+    background: #303030;
+    transition: all 0.2s ease-in-out;
+}
+.craftWindow.tgld{
+    top: 20%;
+    opacity: 1;
+}
+
+.craftTitle {
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    text-transform: uppercase;
+    padding-left: 10px;
+    background: #1a1a1a;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #64c797;
+}
+
+.craftClose {
+    float: right;
+    display: block;
+    height: 20px;
+    width: 20px;
+    margin-top: 15px;
+    margin-right: 15px;
+    line-height: 20px;
+    color: #1a1a1a;
+    text-align: center;
+    background: #64c797;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+.craftClose:hover{
+    background: #70e3ac;
+    background: #ba161c;
+}
+
+.craftRes {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    height: 40px;
+    padding: 0px 10px;
+    line-height: 30px;
+    background: #232323;
+    color: white;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.craftRes .goldCoin, .craftRes .woodNum, .craftRes .ironNum, .craftRes .steelNum, .craftRes .jewelNum{
+    font-size: 15px;
+    color: white;
+}
+.craftRes p{
+    display: inline-block;
+    margin: 0;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.ress {
+    float: right;
+    line-height: 40px;
+    vertical-align: middle;
+}
+.ress p{
+    margin-right: 10px;
+}
+.ress p i{
+    margin-right: 5px;
+}
+.ress p i{
+    font-size: 10px;
+    line-height: 15px;
+    vertical-align: middle;
+}
+
+.craftContainer {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.res {
+    color: white;
+    padding: 0px 10px;
+    cursor: default;
+}
+
+.gc {
+    color: #eed217;
+}
+
+.wc {
+    color: #bb7e41;
+}
+
+.sc {
+    color: #c4c4c4;
+}
+
+.ic {
+    color: #adaaaa;
+}
+
+.jc {
+    color: #c5191d;
+}
+
+.type {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.type:after{
+    content:'';
+    background: url("../imgs/CraftSelect.png") no-repeat;
+    background-size: 100px 100px;
+    background-position: center;
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    transition: all 0.2s;
+}
+.type:hover:after{
+    background-size: 80px 80px;
+    background-position: center;
+}
+
+.craftInt {
+    width: 100%;
+    padding: 10px 0px;
+    background: #232323;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+
+
+.craftQual {
+    display: flex;
+    background: #232323;
+    padding: 10px;
+    padding-top: 0px;
+}
+.craft div{
+    flex: 1;
+}
+
+.cQ.on {
+    flex: 3;
+    text-align: center;
+    padding: 10px 0px;
+    background: #4e4e4e;
+    color: white;
+    cursor: pointer;
+    pointer-events: auto;
+    opacity: 1;
+    margin-right: 2px;
+    transition: all 0.5s;
+}
+.cQ.on:hover{
+    box-shadow: inset 0px -4px 0px #64c798;
+}
+.cq:last-child{
+    margin-right: 0px;
+}
+
+.cQNormal {
+    flex: 3;
+}
+
+.cQExpensive {
+    flex: 3;
+}
+
+.cQ {
+    flex: 3;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 10px 0px;
+    background: #4e4e4e;
+    pointer-events: none;
+    margin-right: 2px;
+    opacity: 0.4;
+    transition: all 0.5s;
+}
+
+.craftTypeDesc {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    padding-bottom: 5px;
+    color: #727272;
+}
+
+.craftQualDesc {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 13px;
+    padding-bottom: 5px;
+    color: #727272;
+}
+
+.craftBottom {
+    display: flex;
+    padding: 0px 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.craftPrice {
+    font-family: 'Open Sans', sans-serif;
+    flex: 2;
+    font-size: 14px;
+    background: #1a1a1a;
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 40px;
+}
+.craftPrice div{
+    display: inline-block;
+}
+.craftPrice p{
+    display: inline-block;
+    margin-right: 10px;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+.craftPreview {
+    background: url("../imgs/item/item_noitem.png") no-repeat;
+    background-size: 80px 80px;
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    position: relative;
+}
+.craftPreview:after{
+    content: "Preview";
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    padding: 5px 0px;
+    width: 100%;
+    height: auto;
+    left: 0;
+    bottom: 0;
+        font-size: 11px;
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,0.2);
+}
+
+.craftSubmit {
+    flex: 3;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    background: #64c798;
+    transition: all 0.5s;
+}
+.craftSubmit:hover{
+    background: #76e3af;
+}
+
+.craftPS {
+    flex: 1;
+}
+
+.craftToggle {
+    pointer-events: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #64c798;
+    color: #1a1a1a;
+    text-align: center;
+    width: 144px;
+    padding: 5px 0px;
+    cursor:pointer;
+    transition: all 0.5s;
+}
+.craftToggle:hover{
+    background: #71e1ac;
+}
+.invItemSelect{position:relative;}
+.invItemSelect:after{
+    content:'';
+    display: block;
+    background: url("../imgs/invSelect2.png") no-repeat;
+    background-size: 80px 80px;
+    background-position: center;
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    transition: all 0.2s;
+}
+.invItemSelect:hover:after{
+    background-size: 80px 80px;
+    background-position: center;
+
+}
+.typeSelect{
+    position: relative;
+}
+.typeSelect:after{
+    content:'';
+    background: url("../imgs/CraftSelect.png") no-repeat;
+    background-size: 80px 80px;
+    background-position: center;
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    transition: all 0.2s;
+}
+
+.cqsel {
+    box-shadow: inset 0px -4px 0px #64c798;
+}
+
+.craftPriceTitle {
+    float: left;
+    padding: 0px 10px;
+    padding-right: 30px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.price {
+    float: right;
+    padding-right: 10px;
+}
+
+.mapov {
+    z-index: 99999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(19,19,19,0.7);
+}
+
+.mapWindow {
+    z-index: 99999;
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+    //height: 90%;
+    //width: 90%;
+    transform: translate(-50%, 100%);
+    -ms-transform: translate(-50%,100%);
+    -webkit-transform: translate(-50%,100%);
+    -o-transform: translate(-50%,100%);
+    -moz-transform: translate(-50%,100%);
+    position: fixed;
+    background: #303030;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+    transition: all 0.2s ease-in-out;
+}
+.mapWindow.tgld{
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+}
+
+.mapTitle {
+    font-family: 'Open Sans', sans-serif;
+    background: #1a1a1a;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 5px;
+    color: white;
+    cursor: default;
+    border-bottom: 2px solid #e7c422;
+    position: relative;
+}
+
+.mapClose {
+    height: 10px;
+    width: 10px;
+    background: #e7c422;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transition: all 0.5s;
+}
+.mapClose:hover{
+    background: #d2141b;
+}
+
+.mapContainer {
+    background: rgba(0,0,0,0.2);
+    display: block;
+    position: relative;
+    width: auto;
+}
+
+.mapTilesWrap {
+    padding: 10px;
+    width: 560px;
+    height: 560px;
+}
+
+.mapTile {
+    height: 20px;
+    width: 20px;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    background: url("../imgs/item/item_noitem.png");
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+}
+
+.mapToggle {
+    pointer-events: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #e7c422;
+    color: #1a1a1a;
+    text-align: center;
+    width: 144px;
+    padding: 5px 0px;
+    cursor:pointer;
+    transition: all 0.5s;
+}
+
+.mapControlsWrapper {
+    position: absolute;
+    bottom: 0px;
+    right: -75px;
+    height: 75px;
+    width: 75px;
+}
+
+.mapControls {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mapC {
+    position: absolute;
+    display: block;
+    width: 25px;
+    font-size: 12px;
+    height: 25px;
+    background: #e7c422;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.mapC:hover{
+    background: #ffdb37;
+}
+.mapC i{
+    line-height: 25px;
+}
+
+.mpu {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+}
+
+.mpd {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+}
+
+.mpr {
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+
+.mpl {
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}

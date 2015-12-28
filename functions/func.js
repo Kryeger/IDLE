@@ -74,14 +74,15 @@
         //VARIABLES//MAP
     
     var map = new Array();
-    for (var i = 0; i < 400; i++) {
-        map[i] = new Array(400);
+    for (var i = 0; i < 513; i++) {
+        map[i] = new Array(513);
     }
     var mapTiles = ['grass', 'mountain'];
     
     var lastMapPosX, lastMapPosY;
     
     var mapOpen = 0; //checks if the map is open
+    var factor = getRandomInt(1,5);
     
     //FUNCTIONS
     
@@ -552,73 +553,55 @@ function constructMapWindow(size){
 }
     
 function genTile(x, y){
-    map[x][y] = {
-        tile : "grass"
-    };
+    map[x][y] = 0;
 }
     
 function genMap(){
     constructMapWindow(961);
     
-    for(i = 0; i < 400; i++){
-        for(j = 0; j < 400; j++){
+    for(i = 0; i < 513; i++){
+        for(j = 0; j < 513; j++){
         genTile(i, j);
         }
     }
     
-    addMountainsToMap();
-    addRiversToMap();
+    addContinentsToMap();
 }
     
-function mapAround(x, y){
-    var around = [];
-}
+function diamond(x1, y1, x2, y2, x3, y3, x4, y4, factor_, steps){
     
-function addMountainsToMap(){
-    for(i = 1; i <= 140; i++){
-        var randomPosX = getRandomInt(0,399);
-        var randomPosY = getRandomInt(0,399);
-        var intensity = getRandomInt(1, 40);
-        while(intensity > 0){
-            for(j = randomPosX; j < randomPosX + intensity; j ++){
-                for(k = randomPosY; k < randomPosY + intensity; k++){
-                    if(j >= 0 && j < 100 && k >= 0 && k < 100) {map[j][k].tile = "mountain";}
-                    intensity --;
-                }
-            }
-        }
-    }
-}
+    if(steps <= 0){return};
     
-function addRiversToMap(){
-    for(i = 1; i <= 20; i++){
-        var length = 0;
-        var startPosX = getRandomInt(0,399);
-        var startPosY = getRandomInt(0,399);
-        
-        var endPosX = getRandomInt(0, 399);
-        var endPosY = getRandomInt(0, 399);
-        
-        var currentX = startPosX;
-        var currentY = startPosY;
-        
-        while (currentX !== endPosX && currentY !== endPosY){
-            map[currentX][currentY].tile = "river";
-            if(currentX < endPosX){if(maybe()){currentX ++;}} else {if(maybe()){currentX --;}}
-            if(currentY < endPosY){if(maybe()){currentY ++;}} else {if(maybe()){currentY --;}}
-            length ++;
-            if(length >= 30){var forceCont = 1; continue;}
-        }
-        if(forceCont){continue; forceCont = 0;}
-    }
+    map[Math.floor((x1 + x2 + x3 + x4)/4)][Math.floor((y1 + y2 + y3 + y4)/4)] += factor_;
+    
+    factor /= (Math.random()+1);
+    
+    steps --;
+    
+    diamond((x1+x2)/2, (y1 + y2)/2, (x2 + x3)/2, (y2 + y3)/2, (x3+x4)/2, (y3 + y4)/2, (x4 + x1)/2, (y4 + y1)/2, factor_, steps);
 }
+
+function addContinentsToMap(){
+    map[1][1] = 4;
+    map[1][400] = 4;
+    map[400][1] = 4;
+    map[400][400] = 4;
+    
+    diamond(1, 1, 1, 400, 400, 1, 400, 400, 2, 10);
+}    
+    
     
 function drawMap(x, y){
     var pos = 1;
     while(pos <= 961){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
-            $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + map[i][j].tile + ".png')");
+                switch(map[i][j]){
+                    case 0:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "sea"+ ".png')"); break;
+                    case 1:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "river"+ ".png')"); break;
+                    case 2:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "grass"+ ".png')"); break;
+                    case 3:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "mountain"+ ".png')"); break;
+                }
             pos++;
             }
         }
@@ -635,6 +618,11 @@ function drawMap(x, y){
     //JQUERY
 
    $(document).ready(function(){
+       
+       // KeyCode Check //
+           //document.onkeydown = function(e){
+           //    console.log(e.keyCode);
+           //}
 
         //JQUERY//MAIN
        
@@ -988,9 +976,5 @@ function drawMap(x, y){
         
            
 };
-            // KeyCode Check //
-           //document.onkeydown = function(e){
-           //    console.log(e.keyCode);
-           //}
    });
 })(window, window.jQuery);

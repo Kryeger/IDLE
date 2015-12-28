@@ -256,6 +256,7 @@ function equip(item){
         equipLeft = 0;
         equipRight = 0;
         $(".wsEqhands").fadeOut(100);
+        $(".wsEq").fadeOut(100);
 
         refreshEq();
         refreshInv();

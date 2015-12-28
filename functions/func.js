@@ -555,7 +555,7 @@ function genTile(x, y){
 }
     
 function genMap(){
-    constructMapWindow(784);
+    constructMapWindow(961);
     
     for(i = 0; i < 400; i++){
         for(j = 0; j < 400; j++){

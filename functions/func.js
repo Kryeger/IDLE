@@ -612,9 +612,9 @@ function addRiversToMap(){
     
 function drawMap(x, y){
     var pos = 1;
-    while(pos <= 784){
-        for (i = x - 28; i <= x + 28; i++){
-            for (j = y - 28; j <= y + 28; j++){
+    while(pos <= 961){
+        for (i = x - 15; i <= x + 15; i++){
+            for (j = y - 15; j <= y + 15; j++){
             $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + map[i][j].tile + ".png')");
             pos++;
             }
@@ -928,16 +928,16 @@ function drawMap(x, y){
         genMap(); drawMap(40, 40);
        
        $(".mpu").click(function(){
-           if(lastMapPosX - 1 >= 14){drawMap(lastMapPosX - 1, lastMapPosY);}
+           if(lastMapPosX - 1 >= 16){drawMap(lastMapPosX - 1, lastMapPosY);}
        });
        $(".mpd").click(function(){
-           if(lastMapPosX + 1 < 770){drawMap(lastMapPosX + 1, lastMapPosY);}
+           if(lastMapPosX + 1 < 384){drawMap(lastMapPosX + 1, lastMapPosY);}
        });
        $(".mpl").click(function(){
-           if(lastMapPosY - 1 >= 14){drawMap(lastMapPosX, lastMapPosY - 1);}
+           if(lastMapPosY - 1 >= 16){drawMap(lastMapPosX, lastMapPosY - 1);}
        });
        $(".mpr").click(function(){
-          if(lastMapPosY + 1 < 770){drawMap(lastMapPosX, lastMapPosY + 1);}
+          if(lastMapPosY + 1 < 384){drawMap(lastMapPosX, lastMapPosY + 1);}
        });
        
    });

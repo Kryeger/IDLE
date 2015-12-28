@@ -573,8 +573,8 @@ function mapAround(x, y){
     
 function addMountainsToMap(){
     for(i = 1; i <= 140; i++){
-        var randomPosX = getRandomInt(0,99);
-        var randomPosY = getRandomInt(0,99);
+        var randomPosX = getRandomInt(0,399);
+        var randomPosY = getRandomInt(0,399);
         var intensity = getRandomInt(1, 40);
         while(intensity > 0){
             for(j = randomPosX; j < randomPosX + intensity; j ++){
@@ -590,11 +590,11 @@ function addMountainsToMap(){
 function addRiversToMap(){
     for(i = 1; i <= 20; i++){
         var length = 0;
-        var startPosX = getRandomInt(0,99);
-        var startPosY = getRandomInt(0,99);
+        var startPosX = getRandomInt(0,399);
+        var startPosY = getRandomInt(0,399);
         
-        var endPosX = getRandomInt(0, 99);
-        var endPosY = getRandomInt(0, 99);
+        var endPosX = getRandomInt(0, 399);
+        var endPosY = getRandomInt(0, 399);
         
         var currentX = startPosX;
         var currentY = startPosY;

@@ -552,7 +552,7 @@ function constructMapWindow(size){
     }
 }
     
-function genTile(x, y){
+function initTile(x, y){
     map[x][y] = 0;
 }
     
@@ -561,33 +561,36 @@ function genMap(){
     
     for(i = 0; i < 513; i++){
         for(j = 0; j < 513; j++){
-        genTile(i, j);
+            initTile(i, j);
         }
     }
     
     addContinentsToMap();
 }
     
-function diamond(x1, y1, x2, y2, x3, y3, x4, y4, factor_, steps){
+function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, random_){
+    if(root <= 1){return;}
+
+    var midPointX = Math.floor((x1 + x2 + x3 + x4) / 4);
+    var midPointY = Math.floor((y1 + y2 + y3 + y4) / 4);
     
-    if(steps <= 0){return};
+    map[midPointX][midPointY] += random_;
     
-    map[Math.floor((x1 + x2 + x3 + x4)/4)][Math.floor((y1 + y2 + y3 + y4)/4)] += factor_;
-    
-    factor /= (Math.random()+1);
-    
-    steps --;
-    
-    diamond((x1+x2)/2, (y1 + y2)/2, (x2 + x3)/2, (y2 + y3)/2, (x3+x4)/2, (y3 + y4)/2, (x4 + x1)/2, (y4 + y1)/2, factor_, steps);
+    random_ /= 1.1; random_ = Math.floor(random_);
+
+    disq(x1, y1, (x1 + x2)/2, (y1 + y2)/2, midPointX, midPointY, (x1 + x4)/2, (y1 + y4)/2, root/2, random_);
+    disq((x1 + x2)/2, (y1 + y2)/2, x2, y2, (x2 + x3)/2, (y2 + y3)/2, midPointX, midPointY, root/2, random_);
+    disq(midPointX, midPointY, (x2 + x3)/2, (y2 + y3)/2, x3, y3, (x3 + x4)/2, (y3 + y4)/2, root/2, random_);
+    disq((x1 + x4)/2, (y1 + y4)/2, midPointX, midPointY, (x3 + x4)/2, (y3 + y4)/2, x4, y4, root/2, random_);
 }
 
 function addContinentsToMap(){
-    map[1][1] = 4;
-    map[1][400] = 4;
-    map[400][1] = 4;
-    map[400][400] = 4;
+    map[1][1] = 1000;
+    map[1][512] = 1000;
+    map[512][1] = 1000;
+    map[512][512] = 1000;
     
-    diamond(1, 1, 1, 400, 400, 1, 400, 400, 2, 10);
+    disq(1, 1, 1, 512, 512, 512, 512, 1, 512, getRandomInt(800-1000));
 }    
     
     
@@ -596,11 +599,15 @@ function drawMap(x, y){
     while(pos <= 961){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
-                switch(map[i][j]){
-                    case 0:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "sea"+ ".png')"); break;
-                    case 1:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "river"+ ".png')"); break;
-                    case 2:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "grass"+ ".png')"); break;
-                    case 3:$(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "mountain"+ ".png')"); break;
+                console.log(map[i][j]);
+                if(map[i][j] >= 0 && map[i][j] <= 250){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "sea"+ ".png')");
+                }else if(map[i][j] > 250 && map[i][j] <= 500){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "river"+ ".png')");
+                }else if(map[i][j] > 500 && map[i][j] <= 750){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "grass"+ ".png')");
+                }else if(map[i][j] > 750 && map[i][j] <= 1000){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "mountain"+ ".png')");
                 }
             pos++;
             }
@@ -923,7 +930,7 @@ function drawMap(x, y){
            mapOpen = 0;
        });
        
-        genMap(); drawMap(40, 40);
+        genMap(); drawMap(16, 16);
        
        $(".mpu").click(function(){
            if(lastMapPosX - 1 >= 16){drawMap(lastMapPosX - 1, lastMapPosY);}

@@ -51,6 +51,8 @@
     var hero = new Array ();
     
     var selectedHero;
+    
+    var heroNames = [];
         
         //VARIABLES//CRAFTING
     
@@ -73,9 +75,9 @@
     
         //VARIABLES//MAP
     
-    var map = new Array();
+    var map = [];
     for (var i = 0; i < 513; i++) {
-        map[i] = new Array(513);
+        map[i] = [];
     }
     var mapTiles = ['grass', 'mountain'];
     
@@ -264,7 +266,7 @@ function equip(item){
         refreshEq();
         refreshInv();
         drawInvPage(selectedPage);
-    }else{alert("The your current hero's level is too small to equip this item!");}
+    }else{alert("Your current hero's level is too small to equip this item!");}
 }
     
 function equipMan(x){
@@ -375,6 +377,8 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
         expPerClick : 1
     };
     heroCount ++;
+    
+    heroNames[heroCount] = name_
     
     $('.otherherospace').append("<div class='heroline heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "' > " + hero[heroCount - 1].name + "</span> <span class='herolevel'> Lvl <strong class='herolvl heroId" + (heroCount - 1) + "'>" + hero[heroCount - 1].level + "</strong></span></div>"); 
 }
@@ -552,45 +556,56 @@ function constructMapWindow(size){
     }
 }
     
-function initTile(x, y){
-    map[x][y] = 0;
-}
-    
 function genMap(){
     constructMapWindow(961);
     
     for(i = 0; i < 513; i++){
         for(j = 0; j < 513; j++){
-            initTile(i, j);
+            map[i][j] = {
+                h : 0
+            };
         }
     }
     
     addContinentsToMap();
 }
     
-function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, random_){
-    if(root <= 1){return;}
+function diamondSquare(x1, y1, x2, y2, range, level) {
+    if (level < 1) return;
 
-    var midPointX = Math.floor((x1 + x2 + x3 + x4) / 4);
-    var midPointY = Math.floor((y1 + y2 + y3 + y4) / 4);
-    
-    map[midPointX][midPointY] += random_;
-    
-    random_ /= 1.1; random_ = Math.floor(random_);
+    // diamonds
+    for (i = x1 + level; i < x2; i += level)
+        for (j = y1 + level; j < y2; j += level) {
+            var a = map[i - level][j - level].h;
+            var b = map[i][j - level].h;
+            var c = map[i - level][j]   .h;
+            var d = map[i][j].h;
+            var e = map[Math.floor(i - level / 2)][Math.floor(j - level / 2)].h = (a + b + c + d) / 4 + Math.random() * range;
+        }
 
-    disq(x1, y1, (x1 + x2)/2, (y1 + y2)/2, midPointX, midPointY, (x1 + x4)/2, (y1 + y4)/2, root/2, random_);
-    disq((x1 + x2)/2, (y1 + y2)/2, x2, y2, (x2 + x3)/2, (y2 + y3)/2, midPointX, midPointY, root/2, random_);
-    disq(midPointX, midPointY, (x2 + x3)/2, (y2 + y3)/2, x3, y3, (x3 + x4)/2, (y3 + y4)/2, root/2, random_);
-    disq((x1 + x4)/2, (y1 + y4)/2, midPointX, midPointY, (x3 + x4)/2, (y3 + y4)/2, x4, y4, root/2, random_);
+    // squares
+    for (i = x1 + 2 * level; i < x2; i += level)
+        for (j = y1 + 2 * level; j < y2; j += level) {
+            var a = map[i - level][j - level].h;
+            var b = map[i][j - level].h;
+            var c = map[i - level][j].h;
+            var d = map[i][j].h;
+            var e = map[Math.floor(i - level / 2)][Math.floor(j - level / 2)].h;
+
+            var f = map[i - level][Math.floor(j - level / 2)].h = (a + c + e + map[Math.floor(i - 3 * level / 2)][Math.floor(j - level / 2)].h) / 4 + Math.random * range;
+            var g = map[Math.floor(i - level / 2)][j - level].h = (a + b + e + map[Math.floor(i - level / 2)][Math.floor(j - 3 * level / 2)].h) / 4 + Math.random() * range;
+        }
+
+    diamondSquare(x1, y1, x2, y2, range / 2, level / 2);
 }
 
 function addContinentsToMap(){
-    map[1][1] = 1000;
-    map[1][512] = 1000;
-    map[512][1] = 1000;
-    map[512][512] = 1000;
+    map[1][1].h = 1000;
+    map[1][512].h = 1000;
+    map[512][1].h = 1000;
+    map[512][512].h = 1000;
     
-    disq(1, 1, 1, 512, 512, 512, 512, 1, 512, getRandomInt(800-1000));
+    diamondSquare(1, 1, 512, 512, 1000, 9);
 }    
     
     
@@ -599,14 +614,14 @@ function drawMap(x, y){
     while(pos <= 961){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
-                console.log(map[i][j]);
-                if(map[i][j] >= 0 && map[i][j] <= 250){
+                console.log(map[i][j].h);
+                if(map[i][j].h >= 0 && map[i][j].h <= 250){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "sea"+ ".png')");
-                }else if(map[i][j] > 250 && map[i][j] <= 500){
+                }else if(map[i][j].h > 250 && map[i][j].h <= 500){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "river"+ ".png')");
-                }else if(map[i][j] > 500 && map[i][j] <= 750){
+                }else if(map[i][j].h > 500 && map[i][j].h <= 750){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "grass"+ ".png')");
-                }else if(map[i][j] > 750 && map[i][j] <= 1000){
+                }else if(map[i][j].h > 750 && map[i][j].h <= 1000){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "mountain"+ ".png')");
                 }
             pos++;
@@ -706,9 +721,23 @@ function drawMap(x, y){
             });
                 //$(document).on("click", ".nameSubmit", function(){
             $(".nameSubmit").click(function(){
-                    var newHeroName = $('.nameName').val();
+                    var newHeroName;// = "  ";
+                    newHeroName = $('.nameName').val();
                     console.log(newHeroName);
-                    if(newHeroName !== null || newHeroName !== ''){
+                    //if($('.nameName').val().charAt(1) !== " "){
+                    
+                    var alreadyUsed = 1;
+                
+                    for(var i = 1; i <= heroCount; i++){
+                        newHeroName = $('.nameName').val();
+                        if (heroNames[i-1].toUpperCase() == newHeroName.toUpperCase()){
+                            alreadyUsed = 0;
+                        }
+                    }
+                
+                    if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
+                    
+                        //alert("Invalid Name");
                         addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], newHeroName, 1, 1, 1, 1, 1, 0);
             
                         gold -= up1Price;

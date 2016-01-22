@@ -188,6 +188,13 @@ function refreshEq(){
     $(".eqp").append('<center><div id = "eqidlh" class="eqlh leftH item_' + hero[selectedHero].lefthandItem.image + '"> ' + hero[selectedHero].lefthandItem.name + "\n" + hero[selectedHero].lefthandItem.expItem + " | " + hero[selectedHero].lefthandItem.goldItem + ' </div><div id = "eqidrh" class="eqrh rightH item_' + hero[selectedHero].righthandItem.image + '"> ' + hero[selectedHero].righthandItem.name + "\n" + hero[selectedHero].righthandItem.expItem + " | " + hero[selectedHero].righthandItem.goldItem + '</div> <div id = "eqidface" class="eq face item_' + hero[selectedHero].headItem.image + '"> ' + hero[selectedHero].headItem.name + "\n" + hero[selectedHero].headItem.expItem + " | " + hero[selectedHero].headItem.goldItem + ' </div> <div id = "eqidchest" class="eq chest item_' + hero[selectedHero].chestItem.image + '"> ' + hero[selectedHero].chestItem.name + "\n" + hero[selectedHero].chestItem.expItem + " | " + hero[selectedHero].chestItem.goldItem + ' </div> <div id = "eqidleg" class="eq legging item_' + hero[selectedHero].legsItem.image + '"> ' + hero[selectedHero].legsItem.name + "\n" + hero[selectedHero].legsItem.expItem + " | " + hero[selectedHero].legsItem.goldItem + ' </div> <div id = "eqidboot" class="eq boots item_' + hero[selectedHero].bootItem.image + '"> ' + hero[selectedHero].bootItem.name + "\n" + hero[selectedHero].bootItem.expItem + " | " + hero[selectedHero].bootItem.goldItem + ' </div></center>');
 }
     
+function refreshStats(){
+    $("#itemStatsName").text("");
+    $("#itemStatsGold").text("");
+    $("#itemStatsExp").text("");
+    $("#itemStatsLevel").text("");
+}
+    
 function equip(item){
     if(inventory[item].requiredLevel <= hero[selectedHero].level){
         if(inventory[item].slot == 1){
@@ -203,7 +210,7 @@ function equip(item){
                     if(inventory[0].name == "NOITEM"){
                         inventory.splice(item, 1);
                         invCount --;
-                    }
+                    }refreshStats();
                     break;
             case 1: Object.assign(inventory[0], hero[selectedHero].lefthandItem);
                     Object.assign(hero[selectedHero].lefthandItem, inventory[item]);
@@ -213,7 +220,7 @@ function equip(item){
                     if(inventory[0].name == "NOITEM"){
                         inventory.splice(item, 1);
                         invCount --;
-                    }
+                    }refreshStats();
                     break;
             case 2: Object.assign(inventory[0], hero[selectedHero].righthandItem); //lowercase 'h' for some reason
                     Object.assign(hero[selectedHero].righthandItem, inventory[item]);
@@ -223,7 +230,7 @@ function equip(item){
                     if(inventory[0].name == "NOITEM"){
                         inventory.splice(item, 1);
                         invCount --;
-                    }
+                    }refreshStats();
                     break;
             case 3: Object.assign(inventory[0], hero[selectedHero].chestItem);
                     Object.assign(hero[selectedHero].chestItem, inventory[item]);
@@ -233,7 +240,7 @@ function equip(item){
                     if(inventory[0].name == "NOITEM"){
                         inventory.splice(item, 1);
                         invCount --;
-                    }
+                    }refreshStats();
                     break;
             case 4: Object.assign(inventory[0], hero[selectedHero].legsItem);
                     Object.assign(hero[selectedHero].legsItem, inventory[item]);
@@ -243,7 +250,7 @@ function equip(item){
                     if(inventory[0].name == "NOITEM"){
                         inventory.splice(item, 1);
                         invCount --;
-                    }
+                    }refreshStats();
                     break;
             case 5: Object.assign(inventory[0], hero[selectedHero].bootItem);
                     Object.assign(hero[selectedHero].bootItem, inventory[item]);
@@ -253,7 +260,7 @@ function equip(item){
                     if(inventory[0].name == "NOITEM"){
                         inventory.splice(item, 1);
                         invCount --;
-                    }
+                    }refreshStats();
                     break;
             default: console.log("unhandled equip() case"); break;
         }
@@ -270,6 +277,12 @@ function equip(item){
 }
     
 function equipMan(x){
+    
+    $("#itemStatsName").text(inventory[selectedItem].name);
+    $("#itemStatsGold").text(inventory[selectedItem].goldItem);
+    $("#itemStatsExp").text(inventory[selectedItem].expItem);
+    $("#itemStatsLevel").text(inventory[selectedItem].requiredLevel);
+    
     if(inventory[selectedItem].slot == 1 || inventory[selectedItem].slot == 2){
                 $(".wsEqov").empty();
                 $(".wsEqov").append('<div class="wsEqhands" style="display: none;"><div class="wsEqL"> Equip Left Hand</div><div class="wsEqR"> Equip Right Hand</div></div>');
@@ -277,12 +290,14 @@ function equipMan(x){
                 $(".wsEqL").click(function(){
                     equipLeft = 1;
                     equip(selectedItem);
+                    refreshStats();
                     refreshInv();
                     drawInvPage(selectedPage);
                 });
                 $(".wsEqR").click(function(){
                     equipRight = 1;
                     equip(selectedItem);
+                    refreshStats();
                     refreshInv();
                     drawInvPage(selectedPage);
                 });
@@ -294,6 +309,7 @@ function equipMan(x){
                 $(".wsEq").click(function(){
                     equip(selectedItem);
                     refreshInv();
+                    refreshStats();
                     drawInvPage(selectedPage);
                 });
             }
@@ -301,7 +317,7 @@ function equipMan(x){
     
         //FUNCTIONS//HEROSYS
 
-function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, name_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, active_){
+function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, active_){
     hero[heroCount] = 
         {
         headItem : {
@@ -358,6 +374,14 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
             goldItem : bootItem_.goldItem,
             slot : bootItem_.slot
         },
+        face : {
+            hair : hair_,
+            eyes : eyes_,
+            nose : nose_,
+            mouth : mouth_,
+            beard : beard_
+        },
+        
         active : active_,
         level : level_,
         //active
@@ -739,7 +763,7 @@ function drawMap(x, y){
                     if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
                     
                         //alert("Invalid Name");
-                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], newHeroName, 1, 1, 1, 1, 1, 0);
+                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 1, 1, 1, 1, 1, newHeroName, 1, 1, 1, 1, 1, 0);
             
                         gold -= up1Price;
                         $(".goldCoin").text(gold);
@@ -901,7 +925,7 @@ function drawMap(x, y){
        
         //JQUERY//HEROSYS
     
-    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], "XENA", 1, 1, 1, 1, 1, 1);
+    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 1, 1, 1, 1, 1, "XENA", 1, 1, 1, 1, 1, 1);
     
     $(".eqp").empty();
         selectHero(0);

@@ -376,9 +376,10 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
         exp : 1, // current exp, resets each level
         expPerClick : 1
     };
-    heroCount ++;
     
-    heroNames[heroCount] = name_
+    heroNames[heroCount] = name_;
+    
+    heroCount ++;
     
     $('.otherherospace').append("<div class='heroline heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "' > " + hero[heroCount - 1].name + "</span> <span class='herolevel'> Lvl <strong class='herolvl heroId" + (heroCount - 1) + "'>" + hero[heroCount - 1].level + "</strong></span></div>"); 
 }
@@ -712,12 +713,12 @@ function drawMap(x, y){
     $("#buyu1").click(function(){
         if(gold >= up1Price){
             $("body").append("<div class='nameov'></div><div class='nameBox'><div class='nameboxtitle'> Hero Name </div><div class='nameboxcontainer'><div class='nameboxdet'>Please enter your new hero's name below. Hit <b>Done</b> when you're ready.</div><form class='nameForm' name='addName'><input class='nameName' type='text' placeholder='Type here your hero's name'><input class='nameSubmit' type='button' value='Done'></form></div></div>");
-            $(window).keydown(function(event){
-                if(event.keyCode == 13) {
-                event.preventDefault();
-                $(".nameSubmit").trigger("click");
-                return false;
-            }
+                $(window).keydown(function(event){
+                    if(event.keyCode == 13) {
+                    event.preventDefault();
+                    $(".nameSubmit").trigger("click");
+                    return false;
+                }
             });
                 //$(document).on("click", ".nameSubmit", function(){
             $(".nameSubmit").click(function(){
@@ -730,7 +731,7 @@ function drawMap(x, y){
                 
                     for(var i = 1; i <= heroCount; i++){
                         newHeroName = $('.nameName').val();
-                        if (heroNames[i-1].toUpperCase() == newHeroName.toUpperCase()){
+                        if (heroNames[i - 1].toUpperCase() == newHeroName.toUpperCase()){
                             alreadyUsed = 0;
                         }
                     }

@@ -407,6 +407,14 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
     
     $('.otherherospace').append("<div class='heroline heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "' > " + hero[heroCount - 1].name + "</span> <span class='herolevel'> Lvl <strong class='herolvl heroId" + (heroCount - 1) + "'>" + hero[heroCount - 1].level + "</strong></span></div>"); 
 }
+    
+function refreshFace(hero__){
+    $("handle").toggleClass(hero[hero__].face.hair);
+    $("handle").toggleClass(hero[hero__].face.eyes);
+    $("handle").toggleClass(hero[hero__].face.nose);
+    $("handle").toggleClass(hero[hero__].face.mouth);
+    $("handle").toggleClass(hero[hero__].face.beard);
+}    
 
 function selectHero(hero_){
     $(".eqp").empty;
@@ -425,6 +433,7 @@ function selectHero(hero_){
     $(".nextLevel").text(hero[hero_].nextLevel);
     $(".exp").width(hero[hero_].expPer+'%');
     //set bonuses to active bonuses
+    //refreshFace(hero_;
 }
     
         //FUNCTIONS//CRAFTING
@@ -657,10 +666,6 @@ function drawMap(x, y){
     lastMapPosX = x;
     lastMapPosY = y;
 }
-
-
-
-
 
     //JQUERY
 

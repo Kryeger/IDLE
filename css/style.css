@@ -2126,13 +2126,14 @@ body{
     position: relative;
     display: block;
     padding: 5px;
-    background: rgba(0,0,0,0.3);
     box-sizing: border-box;
     margin-bottom: 2px;
-    font-size: 11px;
+    font-size: 12px;
     overflow: hidden;
     cursor: default;
     transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    text-align: center;
 }
 .player-info-line:hover{
     box-shadow: inset -2px 0px 0px #eed217;

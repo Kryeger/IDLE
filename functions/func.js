@@ -274,6 +274,7 @@ function equip(item){
         refreshInv();
         drawInvPage(selectedPage);
     }else{alert("Your current hero's level is too small to equip this item!");}
+    refreshPlayerInfo(selectedHero);
 }
     
 function equipMan(x){
@@ -421,7 +422,14 @@ function refreshFace(hero__){
     $(".ch_pp_nose").toggleClass("nose_pp_" + hero[hero__].face.nose);
     $(".ch_pp_mouth").toggleClass("mouth_pp_" + hero[hero__].face.mouth);
     $(".ch_pp_beard").toggleClass("beard_pp_" + hero[hero__].face.beard);
-}    
+}   
+function refreshPlayerInfo(hero_){
+    $("#player_info_name").text(hero[hero_].name);
+    $("#player_info_level").text(hero[hero_].level);
+    $("#player_info_growth").text(hero[hero_].growthFactor.toFixed(3));
+    $("#player_info_attack_gold").text(hero[selectedHero].expPerClick + Math.floor(hero[selectedHero].expBonus) + hero[selectedHero].headItem.expItem + hero[selectedHero].lefthandItem.expItem + hero[selectedHero].righthandItem.expItem + hero[selectedHero].chestItem.expItem + hero[selectedHero].legsItem.expItem + hero[selectedHero].bootItem.expItem + " | " + Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem));
+    refreshFace(hero_);
+}
 
 function selectHero(hero_){
     $(".eqp").empty;
@@ -440,7 +448,7 @@ function selectHero(hero_){
     $(".nextLevel").text(hero[hero_].nextLevel);
     $(".exp").width(hero[hero_].expPer+'%');
     //set bonuses to active bonuses
-    refreshFace(hero_);
+    refreshPlayerInfo(hero_);
 }
     
         //FUNCTIONS//CRAFTING
@@ -712,6 +720,7 @@ function drawMap(x, y){
             $(".herolvl.heroId" + selectedHero).text(hero[selectedHero].level);
             $(".mherolvl").text(hero[selectedHero].level);
         }
+        refreshPlayerInfo(selectedHero);
         //needs update
 
         //ITEM CHANCES

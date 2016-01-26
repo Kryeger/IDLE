@@ -410,6 +410,12 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
     
 function refreshFace(hero__){
     console.log(hero__);
+    $(".ch_pp_hair").attr("class","ch_pp_hair");
+    $(".ch_pp_eyes").attr("class","ch_pp_eyes");
+    $(".ch_pp_nose").attr("class","ch_pp_nose");
+    $(".ch_pp_mouth").attr("class","ch_pp_mouth");
+    $(".ch_pp_beard").attr("class","ch_pp_beard");
+    
     $(".ch_pp_hair").toggleClass("hair_pp_" + hero[hero__].face.hair);
     $(".ch_pp_eyes").toggleClass("eyes_pp_" + hero[hero__].face.eyes);
     $(".ch_pp_nose").toggleClass("nose_pp_" + hero[hero__].face.nose);
@@ -840,7 +846,7 @@ function drawMap(x, y){
     });
        
             //JQUERY//MAIN//WINDOWS
-       $(".mainheroline").hover(
+       $(".mainheroline-wrap").hover(
             function(){
                 $(this).children(".infoWindow").fadeIn(100);
         }, function(){
@@ -849,12 +855,12 @@ function drawMap(x, y){
        );
     
        
-       $(".infoWindow").mouseenter(function(){
-           $(this).fadeIn(100);
-       });
-       $(".infoWindow").mouseleave(function(){
-           $(this).fadeOut(400);
-       });
+       //$(".infoWindow").mouseenter(function(){
+       //    $(this).fadeIn(100);
+       //});
+       //$(".infoWindow").mouseleave(function(){
+       //    $(this).fadeOut(400);
+       //});
         
     $(".inventory").click(function(){
         unseenItems = 0;

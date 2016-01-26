@@ -1950,10 +1950,16 @@ body{
     position: absolute;
     top: -20px;
     left: -160px;
+    display: block;
     background: #292929;
     width: 150px;
-    height: 200px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    pointer-events: auto;
     transition: all 0.5s;
+}
+.infoWindow:hover{
+    box-shadow: 0px 2px 13px rgba(0,0,0,0.5);
 }
 .infoWindow:after{
     content:"";
@@ -1963,19 +1969,23 @@ body{
     border-color: transparent transparent transparent #292929;
     position: absolute;
     right: -17px;
-    pointer-events: none;
     top: 25px;
 }
 
 .playerPhoto {
     position: relative;
-    margin: 5px auto;
+    margin: 7px auto;
     width: 100px;
     height: 100px;
+    cursor: pointer;
     border-radius: 50%;
     background: url("../imgs/charcreate/charroombg.png") no-repeat;
     box-shadow: 0px 0px 2px black;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.playerPhoto:hover{
+    box-shadow: 0px 0px 0px 2px #eed217;
 }
 
 .player-photo {
@@ -1989,6 +1999,7 @@ body{
 .player-photo-wrap {
     margin: 0 auto;
     width: 100px;
+    overflow: hidden;
     margin-top: -10px;
     transform: scale(1.1);
 }
@@ -2103,4 +2114,32 @@ body{
 .ch_pp_hair.hair_pp_7{
     background: url("../imgs/charcreate/character/hair_7.png") no-repeat;
     background-size: 120px 100px;
+}
+.player-info-wrap {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    width: 90%;
+    margin: 4px auto;
+}
+
+.player-info-line {
+    position: relative;
+    display: block;
+    padding: 5px;
+    background: rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    margin-bottom: 2px;
+    font-size: 11px;
+    overflow: hidden;
+    cursor: default;
+    transition: all 0.3s ease-in-out;
+}
+.player-info-line:hover{
+    box-shadow: inset -2px 0px 0px #eed217;
+}
+
+
+
+.mainheroline-wrap {
+    position: relative;
 }

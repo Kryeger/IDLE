@@ -406,7 +406,7 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
     
     heroCount ++;
     
-    $('.otherherospace').append("<div class='heroline heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "' > " + hero[heroCount - 1].name + "</span> <span class='herolevel'> Lvl <strong class='herolvl heroId" + (heroCount - 1) + "'>" + hero[heroCount - 1].level + "</strong></span></div>"); 
+    $('.otherherospace').append("<div class='heroline heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + (heroCount - 1) + "' > " + hero[heroCount - 1].name + "</span> <span class='herolevel'> <strong class='herolvl heroId" + (heroCount - 1) + "'>" + hero[heroCount - 1].level + "</strong></span></div>"); 
 }
     
 function refreshFace(hero__){

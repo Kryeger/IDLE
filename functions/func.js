@@ -409,11 +409,12 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 }
     
 function refreshFace(hero__){
-    $("handle").toggleClass(hero[hero__].face.hair);
-    $("handle").toggleClass(hero[hero__].face.eyes);
-    $("handle").toggleClass(hero[hero__].face.nose);
-    $("handle").toggleClass(hero[hero__].face.mouth);
-    $("handle").toggleClass(hero[hero__].face.beard);
+    console.log(hero__);
+    $(".ch_pp_hair").toggleClass("hair_pp_" + hero[hero__].face.hair);
+    $(".ch_pp_eyes").toggleClass("eyes_pp_" + hero[hero__].face.eyes);
+    $(".ch_pp_nose").toggleClass("nose_pp_" + hero[hero__].face.nose);
+    $(".ch_pp_mouth").toggleClass("mouth_pp_" + hero[hero__].face.mouth);
+    $(".ch_pp_beard").toggleClass("beard_pp_" + hero[hero__].face.beard);
 }    
 
 function selectHero(hero_){
@@ -433,7 +434,7 @@ function selectHero(hero_){
     $(".nextLevel").text(hero[hero_].nextLevel);
     $(".exp").width(hero[hero_].expPer+'%');
     //set bonuses to active bonuses
-    //refreshFace(hero_;
+    refreshFace(hero_);
 }
     
         //FUNCTIONS//CRAFTING
@@ -464,11 +465,11 @@ function findRes(){
     chance_ = [1, 2, 3, 4];
     chance__ = chance_[Math.floor(Math.random() * chance_.length)];
     switch(chance__){
-        case 1:iron += Math.floor((Math.random() + 1) * (iron_));break;
-        case 2:steel += Math.floor((Math.random() + 1) * (steel_));break;
-        case 3:jewels += Math.floor((Math.random() + 1) * (jewels_));break;
-        case 4:wood += Math.floor((Math.random() + 1) * (wood_));break;
-        default:console.log("unhandled chance case"); break;
+        case 1: iron += Math.floor((Math.random() + 1) * (iron_));break;
+        case 2: steel += Math.floor((Math.random() + 1) * (steel_));break;
+        case 3: jewels += Math.floor((Math.random() + 1) * (jewels_));break;
+        case 4: wood += Math.floor((Math.random() + 1) * (wood_));break;
+        default: console.log("unhandled chance case"); break;
     }
 }
 
@@ -768,7 +769,7 @@ function drawMap(x, y){
                     if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
                     
                         //alert("Invalid Name");
-                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 1, 1, 1, 1, 1, newHeroName, 1, 1, 1, 1, 1, 0);
+                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 3, 3, 2, 2, 2, newHeroName, 1, 1, 1, 1, 1, 0);
             
                         gold -= up1Price;
                         $(".goldCoin").text(gold);
@@ -839,6 +840,21 @@ function drawMap(x, y){
     });
        
             //JQUERY//MAIN//WINDOWS
+       $(".mainheroline").hover(
+            function(){
+                $(this).children(".infoWindow").fadeIn(100);
+        }, function(){
+                $(this).children(".infoWindow").fadeOut(400);
+        }
+       );
+    
+       
+       $(".infoWindow").mouseenter(function(){
+           $(this).fadeIn(100);
+       });
+       $(".infoWindow").mouseleave(function(){
+           $(this).fadeOut(400);
+       });
         
     $(".inventory").click(function(){
         unseenItems = 0;
@@ -930,7 +946,7 @@ function drawMap(x, y){
        
         //JQUERY//HEROSYS
     
-    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 1, 1, 1, 1, 1, "XENA", 1, 1, 1, 1, 1, 1);
+    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 3, 1, 2, 2, 2, "XENA", 1, 1, 1, 1, 1, 1);
     
     $(".eqp").empty();
         selectHero(0);

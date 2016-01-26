@@ -1,9 +1,15 @@
-var chHair= 1;
-var chEyes= 1;
-var chNose= 1;
-var chMouth= 1;
-var chBeard= 1;
+var chHair = 1; chHairCount = 7;// 7 types
+var chEyes = 1; chEyesCount = 10;//10 types
+var chNose = 1; chNoseCount = 4;//4 types
+var chMouth = 1; chMouthCount = 4;//4 types
+var chBeard = 1; chBeardCount = 5;//5 types
 
+chHairArr = [1, 2, 3, 4, 5, 6, 7];
+chEyesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+chNoseArr = [1, 2, 3, 4];
+chMouthArr = [1, 2, 3, 4];
+chBeardArr = [1, 2, 3, 4, 5];
+ 
 $(document).ready(function(){
     
     //eyes menu

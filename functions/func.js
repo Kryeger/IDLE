@@ -784,7 +784,7 @@ function drawMap(x, y){
                     if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
                     
                         //alert("Invalid Name");
-                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 3, 3, 2, 2, 2, newHeroName, 1, 1, 1, 1, 1, 0);
+                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, 1, 1, 1, 1, 1, 0);
             
                         gold -= up1Price;
                         $(".goldCoin").text(gold);
@@ -961,7 +961,7 @@ function drawMap(x, y){
        
         //JQUERY//HEROSYS
     
-    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 3, 1, 2, 2, 2, "XENA", 1, 1, 1, 1, 1, 1);
+    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", 1, 1, 1, 1, 1, 1);
     
     $(".eqp").empty();
         selectHero(0);

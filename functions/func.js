@@ -1,5 +1,7 @@
 (function (window, $) { //FUNC Ver. 3
     
+    "use strict";
+    
     //VARIABLES
     
         //VARIABLES//MAIN
@@ -8,11 +10,13 @@
     
     var clickCount = 0;
     var upgrade1 = 0; //count of up1 
-    var upgrade2 = 0; 
+    var upgrade2 = 0;
 
-    var up1Price= 5;
+    var up1Price = 5;
     var up1PriceFactor = 1;
-    var up2Price= 10;
+    var up2Price = 5;
+    
+    var i, j, k, x;
     
     //var intervalID = window.setInterval(myCallback, 2000);
     
@@ -24,7 +28,7 @@
     
     var invCount = 0; //items in inv atm
 
-    var inventory = new Array();
+    var inventory = [];
     
     var itemNameGen = ['Broken', 'Old', 'Tattered', 'Cheap', 'New', 'Well Made', 'Rare', 'Legendary']; //use index to decide quality
     var types = ['Sword', 'Axe', 'Spear', 'Bow', 'Helmet', 'Boots', 'Pants', 'Armor'];
@@ -46,9 +50,9 @@
     
     var heroCount = 0; //first hero id = 0
     
-    var line = new Array ();
+    var line = [];
 
-    var hero = new Array ();
+    var hero = [];
     
     var selectedHero;
     
@@ -61,8 +65,8 @@
     var jewels = 0;
     var wood = 0;
     
-    var miner = new Array();
-    minerCount = 0;
+    var miner = [];
+    var minerCount = 0;
     
     var craftType;
     var craftQuality;
@@ -76,7 +80,7 @@
         //VARIABLES//MAP
     
     var map = [];
-    for (var i = 0; i < 513; i++) {
+    for (i = 0; i < 513; i ++) {
         map[i] = [];
     }
     var mapTiles = ['grass', 'mountain'];
@@ -84,15 +88,17 @@
     var lastMapPosX, lastMapPosY;
     
     var mapOpen = 0; //checks if the map is open
-    var factor = getRandomInt(1,5);
     
     //FUNCTIONS
     
-    function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-    function maybe(){
-        var x = getRandomInt(0,1);
+function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    var factor = getRandomInt(1, 5);
+    
+function maybe() {
+        var x = getRandomInt(0, 1);
         return x;
     }
     
@@ -106,6 +112,22 @@
     
         //FUNCTIONS//MAIN
 
+function refreshPrices(){
+    if(gold >= up2Price){
+            $("#buyu1").text("Buy");
+         }
+        else{
+            $("#buyu1").text("No Funds");
+         }
+    
+    if(gold >= up2Price){
+            $("#buyu2").text("Buy");
+         }
+        else{
+            $("#buyu2").text("No Funds");
+         }
+}    
+    
         //FUNCTIONS//INVENTORY
     
 function drawItem(i, pos){ //i - itemID; pos - positions
@@ -119,8 +141,8 @@ function drawEmpty(pos){
 
 function drawInvPage(x){
     $(".curpag").text(x + 1);
-    firstPos = x * 36;
-    lastPos = ((x + 1) * 36); //last pos of the x page
+    var firstPos = x * 36;
+    var lastPos = ((x + 1) * 36); //last pos of the x page
     for(i = firstPos ; i < lastPos; i++){
          drawItem(i + 2, i - (x * 36));
         for (j = (i - ((x * 36) - 1)) + 1; j < lastPos; j++){
@@ -159,7 +181,7 @@ function addRandomItemToInv(rarity_){
     
     item_slot = selectType(TYPE);
     
-    addItemToInv(ADDTYPE + ' ' + TYPE, "", TYPE + "_1", Math.floor(((itemNameGen.indexOf(ADDTYPE)+1)* (Math.random()+1) * (hero[selectedHero].level + hero[selectedHero].expBonus))/2), Math.floor(((itemNameGen.indexOf(ADDTYPE)+1)* (Math.random()+1) * (hero[selectedHero].level + hero[selectedHero].goldBonus))/3), item_slot, hero[selectedHero].level);
+    addItemToInv(ADDTYPE + ' ' + TYPE, "", TYPE + "_1", Math.floor(((itemNameGen.indexOf(ADDTYPE) + 1) * (Math.random() + 1) * (hero[selectedHero].level + hero[selectedHero].expBonus))/2), Math.floor(((itemNameGen.indexOf(ADDTYPE) + 1) * (Math.random()+1) * (hero[selectedHero].level + hero[selectedHero].goldBonus))/3), item_slot, hero[selectedHero].level);
 }  
     
 function addItemToInv(name_, type_, image_, expItem_, goldItem_, slot_, requiredLevel_){
@@ -410,7 +432,6 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 }
     
 function refreshFace(hero__){
-    console.log(hero__);
     $(".ch_pp_hair").attr("class","ch_pp_hair");
     $(".ch_pp_eyes").attr("class","ch_pp_eyes");
     $(".ch_pp_nose").attr("class","ch_pp_nose");
@@ -476,8 +497,8 @@ function findRes(){
         wood_ += miner[0].wood;
     }
     
-    chance_ = [1, 2, 3, 4];
-    chance__ = chance_[Math.floor(Math.random() * chance_.length)];
+    var chance_ = [1, 2, 3, 4];
+    var chance__ = chance_[Math.floor(Math.random() * chance_.length)];
     switch(chance__){
         case 1: iron += Math.floor((Math.random() + 1) * (iron_));break;
         case 2: steel += Math.floor((Math.random() + 1) * (steel_));break;
@@ -725,7 +746,7 @@ function drawMap(x, y){
 
         //ITEM CHANCES
 
-        chance = Math.floor((Math.random() * 100) + 1);
+        var chance = Math.floor((Math.random() * 100) + 1);
 
         if(chance < hero[selectedHero].chanceABonus / 2){
             addRandomItemToInv(hero[selectedHero].rarity);
@@ -799,24 +820,20 @@ function drawMap(x, y){
                     }
                     $(".nameov").remove();
                     $(".namebox").remove();
+                    
+                    refreshPrices();
                 });
         }
-        if(gold >= up1Price){
-            $("#buyu1").text("Buy");
-         }else{
-            $("#buyu1").text("No Funds");
-}
-        
-
+        refreshPrices();
     });
-       
+    
     $("#buyu2").click(function(){
         addMiner();
         
         if(gold >= up2Price){
             $("#buyu2").text("Buy");
          }
-        if(gold < up2Price){
+        else{
             $("#buyu2").text("No Funds");
          }
         if(gold >= up2Price){
@@ -824,7 +841,8 @@ function drawMap(x, y){
             $(".goldCoin").text(gold);
             up2Price = Math.floor(up2Price * 1.6);
             $(".up2PriceGold").text(up2Price);
-            //$(".autoClick").html('<i class="fa fa-check"></i>');
+            
+            refreshPrices();
         }
     });
        

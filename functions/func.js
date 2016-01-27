@@ -309,6 +309,7 @@ function equipMan(x){
     if(inventory[selectedItem].slot == 1 || inventory[selectedItem].slot == 2){
                 $(".wsEqov").empty();
                 $(".wsEqov").append('<div class="wsEqhands" style="display: none;"><div class="wsEqL"> Equip Left Hand</div><div class="wsEqR"> Equip Right Hand</div></div>');
+				//<div class="wsEq" id = "wsSell" style="display: none;">SELL</div> << NU MERE WTF
                 $(".wsEqhands").fadeIn(100);
                 $(".wsEqL").click(function(){
                     equipLeft = 1;
@@ -324,18 +325,35 @@ function equipMan(x){
                     refreshInv();
                     drawInvPage(selectedPage);
                 });
+				$("#wsSell").click(function(){
+					sell(selectedItem);
+					refreshInv();
+					drawInvPage(selectedPage);
+				});
             }
             else{
                 $(".wsEqov").empty();
                 $(".wsEqov").append('<div class="wsEq" style="display: none;">EQUIP</div>');
+				$(".wsEqov").append('<div class="wsEq" id = "wsSell" style="display: none;">SELL</div>');
                 $(".wsEq").fadeIn(100); 
-                $(".wsEq").click(function(){
+				$("#wsSell").click(function(){
+					sell(selectedItem);
+					refreshInv();
+					drawInvPage(selectedPage);
+				});
+                $("#wsEq").click(function(){
                     equip(selectedItem);
                     refreshInv();
                     refreshStats();
                     drawInvPage(selectedPage);
                 });
             }
+}
+	
+function sell(item){
+	gold += inventory[item].goldItem * 10;
+	$("goldCoin").text(gold);
+	inventory.splice(item, 1);
 }
     
         //FUNCTIONS//HEROSYS

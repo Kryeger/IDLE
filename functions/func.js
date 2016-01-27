@@ -327,9 +327,13 @@ function equipMan(x){
                     drawInvPage(selectedPage);
                 });
 				$("#wsSell").click(function(){
+					console.log("hey");
 					sell(selectedItem);
 					refreshInv();
 					drawInvPage(selectedPage);
+					refreshStats();
+					$("goldCoin").text(gold);
+					console.log("hey");
 				});
             }
             else{
@@ -341,8 +345,10 @@ function equipMan(x){
 					sell(selectedItem);
 					refreshInv();
 					drawInvPage(selectedPage);
+					refreshStats();
+					$("goldCoin").text(gold);
 				});
-                $("#wsEq").click(function(){
+                $(".wsEq").click(function(){
                     equip(selectedItem);
                     refreshInv();
                     refreshStats();
@@ -355,6 +361,7 @@ function sell(item){
 	gold += inventory[item].goldItem * 10;
 	$("goldCoin").text(gold);
 	inventory.splice(item, 1);
+	invCount --;
 }
     
         //FUNCTIONS//HEROSYS

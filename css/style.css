@@ -2144,3 +2144,7 @@ body{
 .mainheroline-wrap {
     position: relative;
 }
+
+#wsSell{
+    margin-top: 5px;
+}

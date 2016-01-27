@@ -131,8 +131,8 @@ function refreshPrices(){
         //FUNCTIONS//INVENTORY
     
 function drawItem(i, pos){ //i - itemID; pos - positions
-    $(".invItem.".concat("pos", pos)).text((inventory[i].name).concat("\n", inventory[i].expItem + " | " + inventory[i].goldItem + "\n" + inventory[i].requiredLevel)).toggleClass("item_" + inventory[i].image);
-    $(".invItem.".concat("pos", pos)).attr("id", i);
+    $(".invItem.pos" + pos).text(inventory[i].name + "\n" + inventory[i].expItem + " | " + inventory[i].goldItem + "\n" + inventory[i].requiredLevel).toggleClass("item_" + inventory[i].image);
+    $(".invItem.pos" + pos).attr("id", i);
 }
 
 function drawEmpty(pos){

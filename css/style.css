@@ -1176,11 +1176,9 @@ body{
 }
 
 .wsEqhands {
-    padding: 10px 0px;
     width: calc( 100% - 50px);
     text-align: center;
     margin: 0 auto;
-    
     color: #1a1a1a;
     cursor: pointer;
 }
@@ -1188,16 +1186,16 @@ body{
 .wsEqR {
     padding: 10px 0px;
     display: inline-block;
-    width: calc(50% - 5px);
+    width: calc(50% - 2.5px);
     background: #e58748;
 }
 
 .wsEqL {
     padding: 10px 0px;
     display: inline-block;
-    width: calc(50% - 5px);
+    width: calc(50% - 2.5px);
     background: #e58748;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .wsEqov {

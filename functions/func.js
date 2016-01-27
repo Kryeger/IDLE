@@ -309,6 +309,7 @@ function equipMan(x){
     if(inventory[selectedItem].slot == 1 || inventory[selectedItem].slot == 2){
                 $(".wsEqov").empty();
                 $(".wsEqov").append('<div class="wsEqhands" style="display: none;"><div class="wsEqL"> Equip Left Hand</div><div class="wsEqR"> Equip Right Hand</div></div>');
+        $(".wsEqov").append('<div class="wsEq" id = "wsSell">SELL</div>');
 				//<div class="wsEq" id = "wsSell" style="display: none;">SELL</div> << NU MERE WTF
                 $(".wsEqhands").fadeIn(100);
                 $(".wsEqL").click(function(){

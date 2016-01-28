@@ -15,14 +15,14 @@ $(document).ready(function(){
     //eyes menu
     
     $('.nexteye').click(function(){
-       if( chEyes < 11 ){
+       if( chEyes < 12 ){
            chEyesCode="eyes_".concat(chEyes);
            $('.cheyes').toggleClass(chEyesCode);
            chEyes++;
            chEyesCode="eyes_".concat(chEyes);
            $('.cheyes').toggleClass(chEyesCode);
        }
-        if( chEyes == 11 ){
+        if( chEyes == 12 ){
            chEyesCode="eyes_".concat(chEyes);
            $('.cheyes').toggleClass(chEyesCode);
            chEyes=1;
@@ -40,7 +40,7 @@ $(document).ready(function(){
            $('.cheyes').toggleClass(chEyesCode);
        }
          if( chEyes == 1 ){
-             chEyes = 10;
+             chEyes = 11;
              $('.cheyes').toggleClass("eyes_1");
              chEyesCode="eyes_".concat(chEyes);
            $('.cheyes').toggleClass(chEyesCode);
@@ -157,14 +157,14 @@ $(document).ready(function(){
     //hair menu
     
     $('.nexthair').click(function(){
-       if( chHair < 8 ){
+       if( chHair < 10 ){
            chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);
            chHair++;
            chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);
        }
-        if( chHair == 8 ){
+        if( chHair == 10 ){
            chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);
            chHair=1;
@@ -182,7 +182,7 @@ $(document).ready(function(){
            $('.chhair').toggleClass(chHairCode);
        }
          if( chHair == 1 ){
-             chHair = 7;
+             chHair = 9;
              $('.chhair').toggleClass("hair_1");
              chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);

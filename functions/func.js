@@ -148,7 +148,7 @@ function drawInvPage(x){
     var firstPos = x * 36;
     var lastPos = ((x + 1) * 36); //last pos of the x page
     for(i = firstPos ; i < lastPos; i++){
-         drawItem(i + 2, i - (x * 36));
+        drawItem(i + 2, i - (x * 36));
         for (j = (i - ((x * 36) - 1)) + 1; j < lastPos; j++){
             drawEmpty(j);
         }
@@ -360,7 +360,7 @@ function equipMan(x){
 	
 function sell(item){
 	gold += inventory[item].goldItem * 10;
-	$("goldCoin").text(gold);
+	$("goldCoin").text(numberWithCommas(gold));
 	inventory.splice(item, 1);
 	invCount --;
 }
@@ -611,11 +611,11 @@ function craftRenderPrice(){
     craftSteelPrice = Math.floor(craftSteelPrice);
     craftJewelsPrice = Math.floor(craftJewelsPrice);
         
-    $(".goldCrafPrice").text(craftGoldPrice);
-    $(".woodCrafPrice").text(craftWoodPrice);   
-    $(".ironCrafPrice").text(craftIronPrice);   
-    $(".steelCrafPrice").text(craftSteelPrice);    
-    $(".jewelCrafPrice").text(craftJewelsPrice);
+    $(".goldCrafPrice").text(numberWithCommas(craftGoldPrice));
+    $(".woodCrafPrice").text(numberWithCommas(craftWoodPrice));   
+    $(".ironCrafPrice").text(numberWithCommas(craftIronPrice));   
+    $(".steelCrafPrice").text(numberWithCommas(craftSteelPrice));    
+    $(".jewelCrafPrice").text(numberWithCommas(craftJewelsPrice));
     
     }
 }
@@ -632,10 +632,10 @@ function craftItem(){
             jewels -= craftJewelsPrice;
             
             $(".goldCoin").text(numberWithCommas(gold));
-            $(".woodNum").text(wood);
-            $(".ironNum").text(iron);
-            $(".steelNum").text(steel);
-            $(".jewelNum").text(jewels);
+            $(".woodNum").text(numberWithCommas(wood));
+            $(".ironNum").text(numberWithCommas(iron));
+            $(".steelNum").text(numberWithCommas(steel));
+            $(".jewelNum").text(numberWithCommas(jewels));
         }else{craftFailed = 1;}
     }
     $(".goldCrafPrice").text(0);
@@ -705,21 +705,6 @@ function drawMap(x, y){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
                 if(map[i][j].h <= 25){
-<<<<<<< HEAD
-                    $(".mapTile.pos" + pos).css("background", "hsla(213,60%,55%,1)");
-                }else if(map[i][j].h > 25 && map[i][j].h <= 35){
-                    $(".mapTile.pos" + pos).css("background", "hsla(199,60%,75%,1)");
-                }else if(map[i][j].h > 35 && map[i][j].h <= 52){
-                    $(".mapTile.pos" + pos).css("background", "hsla(40,60%,75%,1)");
-                }else if(map[i][j].h > 52 && map[i][j].h <= 65){
-                    $(".mapTile.pos" + pos).css("background", "hsla(114,50%,40%,1)");
-                }else if(map[i][j].h > 65 && map[i][j].h <= 75){
-                    $(".mapTile.pos" + pos).css("background", "hsla(44, 79%, 34%,1)");
-                }else if(map[i][j].h > 75 && map[i][j].h <= 95){
-                    $(".mapTile.pos" + pos).css("background", "hsla(44, 83%, 18%,1)");
-                }else if(map[i][j].h > 95){
-                    $(".mapTile.pos" + pos).css("background", "hsla(44, 21%, 63%,1)");
-=======
                     $(".mapTile.pos" + pos).css("background", "hsl(213,60%,55%)"); // sea
                 }else if(map[i][j].h > 25 && map[i][j].h <= 35){
                     $(".mapTile.pos" + pos).css("background", "hsl(199,60%,75%)"); // river
@@ -733,7 +718,6 @@ function drawMap(x, y){
                     $(".mapTile.pos" + pos).css("background", "hsl(18, 7%, 37%)"); // mountain
                 }else if(map[i][j].h > 95){
                     $(".mapTile.pos" + pos).css("background", "hsl(213, 52%, 87%)"); // snow
->>>>>>> origin/master
                 }
 				//$(".mapTile.pos" + pos).text(map[i][j].h); //show height values
             pos++;
@@ -780,6 +764,7 @@ function drawMap(x, y){
             hero[selectedHero].level++;
             hero[selectedHero].expBonus += (hero[selectedHero].expBonus)/2;
             hero[selectedHero].points += 5; //TO DO: ADD LEVEL UP WINDOW
+			hero[selectedHero].chanceABonus *= (2/100 * hero[selectedHero].chanceABonus);
             $(".level").text(hero[selectedHero].level);
             $(".expperc").text(hero[selectedHero].exp);
             $(".herolvl.heroId" + selectedHero).text(hero[selectedHero].level);
@@ -799,13 +784,11 @@ function drawMap(x, y){
             $(".notify").text(unseenItems);
             chance = 0;
         }
-		
-		chance = Math.floor((Math.random() * 100) + 1);
         
-        $(".woodNum").text(wood);
-        $(".ironNum").text(iron);
-        $(".steelNum").text(steel);
-        $(".jewelNum").text(jewels);
+        $(".woodNum").text(numberWithCommas(wood));
+        $(".ironNum").text(numberWithCommas(iron));
+        $(".steelNum").text(numberWithCommas(steel));
+        $(".jewelNum").text(numberWithCommas(jewels));
     });
         
     $(".shop").click(function(){

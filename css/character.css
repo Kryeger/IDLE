@@ -112,6 +112,10 @@
     background: url("../imgs/charcreate/character/mouth_4.png") no-repeat;
     background-size: 300px 250px;
 }
+.chmouth.mouth_5{
+    background: url("../imgs/charcreate/character/mouth_5.png") no-repeat;
+    background-size: 300px 250px;
+}
 .chbeard.beard_2{
     background: url("../imgs/charcreate/character/beard_2.png") no-repeat;
     background-size: 300px 250px;
@@ -126,6 +130,14 @@
 }
 .chbeard.beard_5{
     background: url("../imgs/charcreate/character/beard_5.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard.beard_6{
+    background: url("../imgs/charcreate/character/beard_6.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chbeard.beard_7{
+    background: url("../imgs/charcreate/character/beard_7.png") no-repeat;
     background-size: 300px 250px;
 }
 .chbeard, .ch_pp_beard {
@@ -171,6 +183,14 @@
 }
 .chhair.hair_9{
     background: url("../imgs/charcreate/character/hair_9.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_10{
+    background: url("../imgs/charcreate/character/hair_10.png") no-repeat;
+    background-size: 300px 250px;
+}
+.chhair.hair_11{
+    background: url("../imgs/charcreate/character/hair_11.png") no-repeat;
     background-size: 300px 250px;
 }
 .ch_pp_eyes.eyes_pp_1{
@@ -249,6 +269,10 @@
     background: url("../imgs/charcreate/character/mouth_4.png") no-repeat;
     background-size: 120px 100px;
 }
+.ch_pp_mouth.mouth_pp_5{
+    background: url("../imgs/charcreate/character/mouth_5.png") no-repeat;
+    background-size: 120px 100px;
+}
 .ch_pp_beard.beard_pp_2{
     background: url("../imgs/charcreate/character/beard_2.png") no-repeat;
     background-size: 120px 100px;
@@ -263,6 +287,14 @@
 }
 .ch_pp_beard.beard_pp_5{
     background: url("../imgs/charcreate/character/beard_5.png") no-repeat;
+    background-size: 120px 100px;
+}
+.ch_pp_beard.beard_pp_6{
+    background: url("../imgs/charcreate/character/beard_6.png") no-repeat;
+    background-size: 120px 100px;
+}
+.ch_pp_beard.beard_pp_7{
+    background: url("../imgs/charcreate/character/beard_7.png") no-repeat;
     background-size: 120px 100px;
 }
 .ch_pp_hair.hair_pp_2{
@@ -295,5 +327,13 @@
 }
 .ch_pp_hair.hair_pp_9{
     background: url("../imgs/charcreate/character/hair_9.png") no-repeat;
+    background-size: 120px 100px;
+}
+.ch_pp_hair.hair_pp_10{
+    background: url("../imgs/charcreate/character/hair_10.png") no-repeat;
+    background-size: 120px 100px;
+}
+.ch_pp_hair.hair_pp_11{
+    background: url("../imgs/charcreate/character/hair_11.png") no-repeat;
     background-size: 120px 100px;
 }

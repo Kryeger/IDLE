@@ -1,14 +1,14 @@
-var chHair = 1; chHairCount = 7;// 7 types
-var chEyes = 1; chEyesCount = 10;//10 types
+var chHair = 1; chHairCount = 11;// 11 types
+var chEyes = 1; chEyesCount = 11;//11 types
 var chNose = 1; chNoseCount = 4;//4 types
-var chMouth = 1; chMouthCount = 4;//4 types
-var chBeard = 1; chBeardCount = 5;//5 types
+var chMouth = 1; chMouthCount = 5;//5 types
+var chBeard = 1; chBeardCount = 7;//7 types
 
-chHairArr = [1, 2, 3, 4, 5, 6, 7];
-chEyesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+chHairArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+chEyesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 chNoseArr = [1, 2, 3, 4];
-chMouthArr = [1, 2, 3, 4];
-chBeardArr = [1, 2, 3, 4, 5];
+chMouthArr = [1, 2, 3, 4, 5];
+chBeardArr = [1, 2, 3, 4, 5, 6, 7];
  
 $(document).ready(function(){
     
@@ -86,14 +86,14 @@ $(document).ready(function(){
     //nose menu
     
     $('.nextmouth').click(function(){
-       if( chMouth < 5 ){
+       if( chMouth < 6 ){
            chMouthCode="mouth_".concat(chMouth);
            $('.chmouth').toggleClass(chMouthCode);
            chMouth++;
            chMouthCode="mouth_".concat(chMouth);
            $('.chmouth').toggleClass(chMouthCode);
        }
-        if( chMouth == 5 ){
+        if( chMouth == 6 ){
            chMouthCode="mouth_".concat(chMouth);
            $('.chmouth').toggleClass(chMouthCode);
            chMouth=1;
@@ -111,7 +111,7 @@ $(document).ready(function(){
            $('.chmouth').toggleClass(chMouthCode);
        }
          if( chMouth == 1 ){
-             chMouth = 4;
+             chMouth = 5;
              $('.chmouth').toggleClass("mouth_1");
              chMouthCode="mouth_".concat(chMouth);
            $('.chmouth').toggleClass(chMouthCode);
@@ -121,14 +121,14 @@ $(document).ready(function(){
     //beard menu
     
     $('.nextbeard').click(function(){
-       if( chBeard < 6 ){
+       if( chBeard < 8 ){
            chBeardCode="beard_".concat(chBeard);
            $('.chbeard').toggleClass(chBeardCode);
            chBeard++;
            chBeardCode="beard_".concat(chBeard);
            $('.chbeard').toggleClass(chBeardCode);
        }
-        if( chBeard == 6 ){
+        if( chBeard == 8 ){
            chBeardCode="beard_".concat(chBeard);
            $('.chbeard').toggleClass(chBeardCode);
            chBeard=1;
@@ -146,7 +146,7 @@ $(document).ready(function(){
            $('.chbeard').toggleClass(chBeardCode);
        }
          if( chBeard == 1 ){
-             chBeard = 5;
+             chBeard = 7;
              $('.chbeard').toggleClass("beard_1");
              chBeardCode="beard_".concat(chBeard);
            $('.chbeard').toggleClass(chBeardCode);
@@ -157,14 +157,14 @@ $(document).ready(function(){
     //hair menu
     
     $('.nexthair').click(function(){
-       if( chHair < 10 ){
+       if( chHair < 12 ){
            chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);
            chHair++;
            chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);
        }
-        if( chHair == 10 ){
+        if( chHair == 12 ){
            chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);
            chHair=1;
@@ -182,7 +182,7 @@ $(document).ready(function(){
            $('.chhair').toggleClass(chHairCode);
        }
          if( chHair == 1 ){
-             chHair = 9;
+             chHair = 11;
              $('.chhair').toggleClass("hair_1");
              chHairCode="hair_".concat(chHair);
            $('.chhair').toggleClass(chHairCode);

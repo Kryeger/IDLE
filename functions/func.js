@@ -705,6 +705,7 @@ function drawMap(x, y){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
                 if(map[i][j].h <= 25){
+<<<<<<< HEAD
                     $(".mapTile.pos" + pos).css("background", "hsla(213,60%,55%,1)");
                 }else if(map[i][j].h > 25 && map[i][j].h <= 35){
                     $(".mapTile.pos" + pos).css("background", "hsla(199,60%,75%,1)");
@@ -718,6 +719,21 @@ function drawMap(x, y){
                     $(".mapTile.pos" + pos).css("background", "hsla(44, 83%, 18%,1)");
                 }else if(map[i][j].h > 95){
                     $(".mapTile.pos" + pos).css("background", "hsla(44, 21%, 63%,1)");
+=======
+                    $(".mapTile.pos" + pos).css("background", "hsl(213,60%,55%)"); // sea
+                }else if(map[i][j].h > 25 && map[i][j].h <= 35){
+                    $(".mapTile.pos" + pos).css("background", "hsl(199,60%,75%)"); // river
+                }else if(map[i][j].h > 35 && map[i][j].h <= 45){
+                    $(".mapTile.pos" + pos).css("background", "hsl(40,60%,75%)"); // sand
+                }else if(map[i][j].h > 45 && map[i][j].h <= 65){
+                    $(".mapTile.pos" + pos).css("background", "hsl(114,50%,50%)"); // grass
+                }else if(map[i][j].h > 65 && map[i][j].h <= 75){
+                    $(".mapTile.pos" + pos).css("background", "hsl(28, 36%, 48%)"); // hill
+                }else if(map[i][j].h > 75 && map[i][j].h <= 95){
+                    $(".mapTile.pos" + pos).css("background", "hsl(18, 7%, 37%)"); // mountain
+                }else if(map[i][j].h > 95){
+                    $(".mapTile.pos" + pos).css("background", "hsl(213, 52%, 87%)"); // snow
+>>>>>>> origin/master
                 }
 				//$(".mapTile.pos" + pos).text(map[i][j].h); //show height values
             pos++;

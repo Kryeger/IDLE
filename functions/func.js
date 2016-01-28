@@ -705,19 +705,19 @@ function drawMap(x, y){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
                 if(map[i][j].h <= 25){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_sea.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(213,60%,55%)"); // sea
                 }else if(map[i][j].h > 25 && map[i][j].h <= 35){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_river.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(199,60%,75%)"); // river
                 }else if(map[i][j].h > 35 && map[i][j].h <= 45){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_beach.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(40,60%,75%)"); // sand
                 }else if(map[i][j].h > 45 && map[i][j].h <= 65){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_grass.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(114,50%,50%)"); // grass
                 }else if(map[i][j].h > 65 && map[i][j].h <= 75){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_hill.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(28, 36%, 48%)"); // hill
                 }else if(map[i][j].h > 75 && map[i][j].h <= 95){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_mountain.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(18, 7%, 37%)"); // mountain
                 }else if(map[i][j].h > 95){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_snow.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsl(213, 52%, 87%)"); // snow
                 }
 				//$(".mapTile.pos" + pos).text(map[i][j].h); //show height values
             pos++;

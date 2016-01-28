@@ -706,12 +706,18 @@ function drawMap(x, y){
             for (j = y - 15; j <= y + 15; j++){
                 if(map[i][j].h <= 25){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_sea.png')");
-                }else if(map[i][j].h > 25 && map[i][j].h <= 45){
+                }else if(map[i][j].h > 25 && map[i][j].h <= 35){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_river.png')");
-                }else if(map[i][j].h > 45 && map[i][j].h <= 80){
+                }else if(map[i][j].h > 35 && map[i][j].h <= 45){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_beach.png')");
+                }else if(map[i][j].h > 45 && map[i][j].h <= 65){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_grass.png')");
-                }else if(map[i][j].h > 80){
+                }else if(map[i][j].h > 65 && map[i][j].h <= 75){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_hill.png')");
+                }else if(map[i][j].h > 75 && map[i][j].h <= 95){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_mountain.png')");
+                }else if(map[i][j].h > 95){
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_snow.png')");
                 }
 				//$(".mapTile.pos" + pos).text(map[i][j].h); //show height values
             pos++;

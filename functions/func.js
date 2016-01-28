@@ -649,7 +649,7 @@ function craftItem(){
     
 function constructMapWindow(size){
     for(i = 1; i <= size; i++){
-        $(".mapTilesWrap").append('<div class="mapTile pos' + i +'"></div>');
+        $(".mapTilesWrap").append('<div class="mapTile pos' + i + '"></div>');
     }
 }
     
@@ -695,7 +695,7 @@ function addContinentsToMap(){
     map[33][1].h = 10;
     map[33][33].h = 10;
     
-    disq(1, 1, 1, 33, 33, 1, 33, 33, 32, 5);
+    disq(1, 1, 1, 33, 33, 33, 33, 1, 64, 10);
 }    
     
     
@@ -704,16 +704,16 @@ function drawMap(x, y){
     while(pos <= 961){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
-                if(map[i][j].h >= 0 && map[i][j].h <= 250){
+                if(map[i][j].h <= 25){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_sea.png')");
-                }else if(map[i][j].h > 250 && map[i][j].h <= 500){
+                }else if(map[i][j].h > 25 && map[i][j].h <= 45){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_river.png')");
-                }else if(map[i][j].h > 500 && map[i][j].h <= 750){
+                }else if(map[i][j].h > 45 && map[i][j].h <= 80){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_grass.png')");
-                }else if(map[i][j].h > 750 && map[i][j].h <= 1000){
+                }else if(map[i][j].h > 80){
                     $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_mountain.png')");
                 }
-				$(".mapTile.pos" + pos).text(map[i][j].h);
+				//$(".mapTile.pos" + pos).text(map[i][j].h); //show height values
             pos++;
             }
         }

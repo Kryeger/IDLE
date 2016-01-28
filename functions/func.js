@@ -30,7 +30,7 @@
 
     var inventory = [];
     
-    var itemNameGen = ['Broken', 'Old', 'Tattered', 'Cheap', 'New', 'Well Made', 'Rare', 'Legendary']; //use index to decide quality
+    var itemNameGen = ['Broken', 'Broken', 'Broken', 'Broken', 'Broken', 'Broken', 'Broken', 'Broken', 'Broken', 'Old', 'Old', 'Old', 'Old', 'Old', 'Old', 'Old', 'Old', 'Tattered', 'Tattered', 'Tattered', 'Tattered', 'Tattered', 'Tattered', 'Tattered', 'Cheap', 'Cheap', 'Cheap', 'Cheap', 'Cheap', 'Cheap', 'New', 'New', 'New', 'New', 'New', 'Well Made', 'Well Made', 'Well Made', 'Rare', 'Rare', 'Legendary']; //use index to decide quality
     var types = ['Sword', 'Axe', 'Spear', 'Bow', 'Helmet', 'Boots', 'Pants', 'Armor'];
     var slots = ['headItem', 'lefthandItem', 'righthandItem', 'chestItem', 'legsItem', 'bootItem'];
     var cheapQ = ['Broken', 'Old', 'Tattered', 'Cheap'];
@@ -80,7 +80,7 @@
         //VARIABLES//MAP
     
     var map = [];
-    for (i = 0; i < 513; i ++) {
+    for (i = 0; i < 129; i ++) {
         map[i] = [];
     }
     var mapTiles = ['grass', 'mountain'];
@@ -112,8 +112,12 @@ function maybe() {
     
         //FUNCTIONS//MAIN
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}	
+	
 function refreshPrices(){
-    if(gold >= up2Price){
+    if(gold >= up1Price){
             $("#buyu1").text("Buy");
          }
         else{
@@ -148,7 +152,7 @@ function drawInvPage(x){
         for (j = (i - ((x * 36) - 1)) + 1; j < lastPos; j++){
             drawEmpty(j);
         }
-    } 
+    }
 }
     
 function selectType(TYPE_) {
@@ -211,10 +215,11 @@ function refreshEq(){
 }
     
 function refreshStats(){
-    $("#itemStatsName").text("");
-    $("#itemStatsGold").text("");
-    $("#itemStatsExp").text("");
-    $("#itemStatsLevel").text("");
+    $(".ws-name").text("");
+    $(".ws-gold").text("");
+    $(".ws-exp").text("");
+    $(".ws-level").text("");
+	$(".goldCoin").text(numberWithCommas(gold));
 }
     
 function equip(item){
@@ -301,10 +306,10 @@ function equip(item){
     
 function equipMan(x){
     
-    $("#itemStatsName").text(inventory[selectedItem].name);
-    $("#itemStatsGold").text(inventory[selectedItem].goldItem);
-    $("#itemStatsExp").text(inventory[selectedItem].expItem);
-    $("#itemStatsLevel").text(inventory[selectedItem].requiredLevel);
+    $(".ws-name").text(inventory[selectedItem].name);
+    $(".ws-gold").text(inventory[selectedItem].goldItem);
+    $(".ws-exp").text(inventory[selectedItem].expItem);
+    $(".ws-level").text(inventory[selectedItem].requiredLevel);
     
     if(inventory[selectedItem].slot == 1 || inventory[selectedItem].slot == 2){
                 $(".wsEqov").empty();
@@ -327,13 +332,10 @@ function equipMan(x){
                     drawInvPage(selectedPage);
                 });
 				$("#wsSell").click(function(){
-					console.log("hey");
 					sell(selectedItem);
+					refreshStats();
 					refreshInv();
 					drawInvPage(selectedPage);
-					refreshStats();
-					$("goldCoin").text(gold);
-					console.log("hey");
 				});
             }
             else{
@@ -343,10 +345,9 @@ function equipMan(x){
                 $(".wsEq").fadeIn(100); 
 				$("#wsSell").click(function(){
 					sell(selectedItem);
+					refreshStats();
 					refreshInv();
 					drawInvPage(selectedPage);
-					refreshStats();
-					$("goldCoin").text(gold);
 				});
                 $(".wsEq").click(function(){
                     equip(selectedItem);
@@ -630,7 +631,7 @@ function craftItem(){
             steel -= craftSteelPrice;
             jewels -= craftJewelsPrice;
             
-            $(".goldCoin").text(gold);
+            $(".goldCoin").text(numberWithCommas(gold));
             $(".woodNum").text(wood);
             $(".ironNum").text(iron);
             $(".steelNum").text(steel);
@@ -655,8 +656,8 @@ function constructMapWindow(size){
 function genMap(){
     constructMapWindow(961);
     
-    for(i = 0; i < 513; i++){
-        for(j = 0; j < 513; j++){
+    for(i = 0; i < 129; i++){
+        for(j = 0; j < 129; j++){
             map[i][j] = {
                 h : 0
             };
@@ -666,42 +667,35 @@ function genMap(){
     addContinentsToMap();
 }
     
-function diamondSquare(x1, y1, x2, y2, range, level) {
-    if (level < 1) return;
+function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, factor){
+    if(root <= 1){return;}
 
-    // diamonds
-    for (i = x1 + level; i < x2; i += level)
-        for (j = y1 + level; j < y2; j += level) {
-            var a = map[i - level][j - level].h;
-            var b = map[i][j - level].h;
-            var c = map[i - level][j]   .h;
-            var d = map[i][j].h;
-            var e = map[Math.floor(i - level / 2)][Math.floor(j - level / 2)].h = (a + b + c + d) / 4 + Math.random() * range;
-        }
+    var midPointX = Math.ceil((x1 + x2 + x3 + x4) / 4);
+    var midPointY = Math.ceil((y1 + y2 + y3 + y4) / 4);
 
-    // squares
-    for (i = x1 + 2 * level; i < x2; i += level)
-        for (j = y1 + 2 * level; j < y2; j += level) {
-            var a = map[i - level][j - level].h;
-            var b = map[i][j - level].h;
-            var c = map[i - level][j].h;
-            var d = map[i][j].h;
-            var e = map[Math.floor(i - level / 2)][Math.floor(j - level / 2)].h;
+    var median = Math.ceil((map[x1][y1].h + map[x2][y2].h + map[x3][y3].h + map[x4][y4].h) / 4 + getRandomInt(1, factor));
+    //cout << median;
 
-            var f = map[i - level][Math.floor(j - level / 2)].h = (a + c + e + map[Math.floor(i - 3 * level / 2)][Math.floor(j - level / 2)].h) / 4 + Math.random * range;
-            var g = map[Math.floor(i - level / 2)][j - level].h = (a + b + e + map[Math.floor(i - level / 2)][Math.floor(j - 3 * level / 2)].h) / 4 + Math.random() * range;
-        }
+    map[Math.ceil((x1 + x2)/2)][Math.ceil((y1 + y2)/2)].h = Math.floor((map[x1][y1].h + map[x2][y2].h)/2 + getRandomInt(0,factor));
+    map[Math.ceil((x2 + x3)/2)][Math.ceil((y2 + y3)/2)].h = Math.floor((map[x2][y2].h + map[x3][y3].h)/2 + getRandomInt(0,factor));
+    map[Math.ceil((x3 + x4)/2)][Math.ceil((y3 + y4)/2)].h = Math.floor((map[x3][y3].h + map[x4][y4].h)/2 + getRandomInt(0,factor));
+    map[Math.ceil((x4 + x1)/2)][Math.ceil((y4 + y1)/2)].h = Math.floor((map[x4][y4].h + map[x1][y1].h)/2 + getRandomInt(0,factor));
 
-    diamondSquare(x1, y1, x2, y2, range / 2, level / 2);
+    map[midPointX][midPointY].h = median;
+
+    disq (x1, y1, Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), midPointX, midPointY, Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), root/2, Math.floor(factor/1.1));
+    disq (Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), x2, y2, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), midPointX, midPointY, root/2, Math.floor(factor/1.1));
+    //disq (midPointX, midPointY, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), x3, y3, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), root/2, Math.floor(factor/1.1));
+    //disq (Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), midPointX, midPointY, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), x4, y4, root/2, Math.floor(factor/1.1));
 }
 
 function addContinentsToMap(){
-    map[1][1].h = 1000;
-    map[1][512].h = 1000;
-    map[512][1].h = 1000;
-    map[512][512].h = 1000;
+    map[1][1].h = 100;
+    map[1][128].h = 100;
+    map[128][1].h = 100;
+    map[128][128].h = 100;
     
-    diamondSquare(1, 1, 512, 512, 1000, 9);
+    disq(1, 1, 1, 128, 128, 1, 128, 128, 32, 130);
 }    
     
     
@@ -710,16 +704,16 @@ function drawMap(x, y){
     while(pos <= 961){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
-                console.log(map[i][j].h);
                 if(map[i][j].h >= 0 && map[i][j].h <= 250){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "sea"+ ".png')");
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_sea.png')");
                 }else if(map[i][j].h > 250 && map[i][j].h <= 500){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "river"+ ".png')");
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_river.png')");
                 }else if(map[i][j].h > 500 && map[i][j].h <= 750){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "grass"+ ".png')");
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_grass.png')");
                 }else if(map[i][j].h > 750 && map[i][j].h <= 1000){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_" + "mountain"+ ".png')");
+                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_mountain.png')");
                 }
+				$(".mapTile.pos" + pos).text(map[i][j].h);
             pos++;
             }
         }
@@ -727,6 +721,8 @@ function drawMap(x, y){
     
     lastMapPosX = x;
     lastMapPosY = y;
+	
+	console.log(map[1][2].h);
 }
 
     //JQUERY
@@ -743,7 +739,7 @@ function drawMap(x, y){
     $("button").click(function(){
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
 
-        $(".goldCoin").text(gold);
+        $(".goldCoin").text(numberWithCommas(gold));
         
         if(minerCount > 0){findRes();}
 
@@ -781,6 +777,8 @@ function drawMap(x, y){
             $(".notify").text(unseenItems);
             chance = 0;
         }
+		
+		chance = Math.floor((Math.random() * 100) + 1);
         
         $(".woodNum").text(wood);
         $(".ironNum").text(iron);
@@ -834,14 +832,14 @@ function drawMap(x, y){
                         addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, 1, 1, 1, 1, 1, 0);
             
                         gold -= up1Price;
-                        $(".goldCoin").text(gold);
+                        $(".goldCoin").text(numberWithCommas(gold));
                         upgrade1 ++;
                         up1PriceFactor *= 1.15;
                         up1Price += Math.floor(up1PriceFactor);
 
                         hero[selectedHero].expPerClick ++;
 
-                        $(".up1PriceGold").text(up1Price);
+                        $(".up1PriceGold").text(numberWithCommas(up1Price));
                         $(".plusOne").text(upgrade1);
                     }
                     $(".nameov").remove();
@@ -864,9 +862,9 @@ function drawMap(x, y){
          }
         if(gold >= up2Price){
             gold -= up2Price;
-            $(".goldCoin").text(gold);
+            $(".goldCoin").text(numberWithCommas(gold));
             up2Price = Math.floor(up2Price * 1.6);
-            $(".up2PriceGold").text(up2Price);
+            $(".up2PriceGold").text(numberWithCommas(up2Price));
             
             refreshPrices();
         }

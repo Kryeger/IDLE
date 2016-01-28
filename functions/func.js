@@ -683,10 +683,10 @@ function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, factor){
 
     map[midPointX][midPointY].h = median;
 
-    disq (x1, y1, Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), midPointX, midPointY, Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), root/2, Math.floor(factor/1.1));
-    disq (Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), x2, y2, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), midPointX, midPointY, root/2, Math.floor(factor/1.1));
-    disq (midPointX, midPointY, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), x3, y3, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), root/2, Math.floor(factor/1.1));
-    disq (Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), midPointX, midPointY, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), x4, y4, root/2, Math.floor(factor/1.1));
+    disq (x1, y1, Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), midPointX, midPointY, Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), root/2, Math.floor(factor/1.8));
+    disq (Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), x2, y2, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), midPointX, midPointY, root/2, Math.floor(factor/1.8));
+    disq (midPointX, midPointY, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), x3, y3, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), root/2, Math.floor(factor/1.8));
+    disq (Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), midPointX, midPointY, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), x4, y4, root/2, Math.floor(factor/1.8));
 }
 
 function addContinentsToMap(){
@@ -695,7 +695,7 @@ function addContinentsToMap(){
     map[33][1].h = 10;
     map[33][33].h = 10;
     
-    disq(1, 1, 1, 33, 33, 33, 33, 1, 64, 10);
+    disq(1, 1, 1, 33, 33, 33, 33, 1, 64, 50);
 }    
     
     
@@ -705,19 +705,19 @@ function drawMap(x, y){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
                 if(map[i][j].h <= 25){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_sea.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsla(213,60%,55%,1)");
                 }else if(map[i][j].h > 25 && map[i][j].h <= 35){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_river.png')");
-                }else if(map[i][j].h > 35 && map[i][j].h <= 45){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_beach.png')");
-                }else if(map[i][j].h > 45 && map[i][j].h <= 65){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_grass.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsla(199,60%,75%,1)");
+                }else if(map[i][j].h > 35 && map[i][j].h <= 52){
+                    $(".mapTile.pos" + pos).css("background", "hsla(40,60%,75%,1)");
+                }else if(map[i][j].h > 52 && map[i][j].h <= 65){
+                    $(".mapTile.pos" + pos).css("background", "hsla(114,50%,40%,1)");
                 }else if(map[i][j].h > 65 && map[i][j].h <= 75){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_hill.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsla(44, 79%, 34%,1)");
                 }else if(map[i][j].h > 75 && map[i][j].h <= 95){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_mountain.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsla(44, 83%, 18%,1)");
                 }else if(map[i][j].h > 95){
-                    $(".mapTile.pos" + pos).css("background", "url('../imgs/mapTiles/tile_snow.png')");
+                    $(".mapTile.pos" + pos).css("background", "hsla(44, 21%, 63%,1)");
                 }
 				//$(".mapTile.pos" + pos).text(map[i][j].h); //show height values
             pos++;

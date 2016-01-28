@@ -80,7 +80,7 @@
         //VARIABLES//MAP
     
     var map = [];
-    for (i = 0; i < 129; i ++) {
+    for (i = 0; i <= 33; i ++) {
         map[i] = [];
     }
     var mapTiles = ['grass', 'mountain'];
@@ -656,8 +656,8 @@ function constructMapWindow(size){
 function genMap(){
     constructMapWindow(961);
     
-    for(i = 0; i < 129; i++){
-        for(j = 0; j < 129; j++){
+    for(i = 0; i <= 33; i++){
+        for(j = 0; j <= 33; j++){
             map[i][j] = {
                 h : 0
             };
@@ -676,26 +676,26 @@ function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, factor){
     var median = Math.ceil((map[x1][y1].h + map[x2][y2].h + map[x3][y3].h + map[x4][y4].h) / 4 + getRandomInt(1, factor));
     //cout << median;
 
-    map[Math.ceil((x1 + x2)/2)][Math.ceil((y1 + y2)/2)].h = Math.floor((map[x1][y1].h + map[x2][y2].h)/2 + getRandomInt(0,factor));
-    map[Math.ceil((x2 + x3)/2)][Math.ceil((y2 + y3)/2)].h = Math.floor((map[x2][y2].h + map[x3][y3].h)/2 + getRandomInt(0,factor));
-    map[Math.ceil((x3 + x4)/2)][Math.ceil((y3 + y4)/2)].h = Math.floor((map[x3][y3].h + map[x4][y4].h)/2 + getRandomInt(0,factor));
-    map[Math.ceil((x4 + x1)/2)][Math.ceil((y4 + y1)/2)].h = Math.floor((map[x4][y4].h + map[x1][y1].h)/2 + getRandomInt(0,factor));
+    map[Math.ceil((x1 + x2)/2)][Math.ceil((y1 + y2)/2)].h = Math.floor((map[x1][y1].h + map[x2][y2].h)/2 + getRandomInt(1,factor));
+    map[Math.ceil((x2 + x3)/2)][Math.ceil((y2 + y3)/2)].h = Math.floor((map[x2][y2].h + map[x3][y3].h)/2 + getRandomInt(1,factor));
+    map[Math.ceil((x3 + x4)/2)][Math.ceil((y3 + y4)/2)].h = Math.floor((map[x3][y3].h + map[x4][y4].h)/2 + getRandomInt(1,factor));
+    map[Math.ceil((x4 + x1)/2)][Math.ceil((y4 + y1)/2)].h = Math.floor((map[x4][y4].h + map[x1][y1].h)/2 + getRandomInt(1,factor));
 
     map[midPointX][midPointY].h = median;
 
     disq (x1, y1, Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), midPointX, midPointY, Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), root/2, Math.floor(factor/1.1));
     disq (Math.ceil((x1 + x2)/2), Math.ceil((y1 + y2)/2), x2, y2, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), midPointX, midPointY, root/2, Math.floor(factor/1.1));
-    //disq (midPointX, midPointY, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), x3, y3, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), root/2, Math.floor(factor/1.1));
-    //disq (Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), midPointX, midPointY, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), x4, y4, root/2, Math.floor(factor/1.1));
+    disq (midPointX, midPointY, Math.ceil((x2 + x3)/2), Math.ceil((y2 + y3)/2), x3, y3, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), root/2, Math.floor(factor/1.1));
+    disq (Math.ceil((x1 + x4)/2), Math.ceil((y1 + y4)/2), midPointX, midPointY, Math.ceil((x3 + x4)/2), Math.ceil((y3 + y4)/2), x4, y4, root/2, Math.floor(factor/1.1));
 }
 
 function addContinentsToMap(){
-    map[1][1].h = 100;
-    map[1][128].h = 100;
-    map[128][1].h = 100;
-    map[128][128].h = 100;
+    map[1][1].h = 10;
+    map[1][33].h = 10;
+    map[33][1].h = 10;
+    map[33][33].h = 10;
     
-    disq(1, 1, 1, 128, 128, 1, 128, 128, 32, 130);
+    disq(1, 1, 1, 33, 33, 1, 33, 33, 32, 5);
 }    
     
     

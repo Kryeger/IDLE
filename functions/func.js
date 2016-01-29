@@ -24,6 +24,7 @@
 
     var unseenItems = 0;
     
+    
         //VARIABLES//INVENTORY
     
     var invCount = 0; //items in inv atm
@@ -80,7 +81,8 @@
         //VARIABLES//MAP
     
     var map = [];
-    for (i = 0; i <= 65; i ++) {
+	var mapSize = 64;
+    for (i = 0; i <= mapSize + 1; i ++) {
         map[i] = [];
     }
     var mapTiles = ['grass', 'mountain'];
@@ -88,6 +90,8 @@
     var lastMapPosX, lastMapPosY;
     
     var mapOpen = 0; //checks if the map is open
+       
+	var mapScrollSpeed = 5;
     
     //FUNCTIONS
     
@@ -656,8 +660,8 @@ function constructMapWindow(size){
 function genMap(){
     constructMapWindow(961);
     
-    for(i = 0; i <= 65; i++){
-        for(j = 0; j <= 65; j++){
+    for(i = 0; i <= mapSize + 1; i++){
+        for(j = 0; j <= mapSize + 1; j++){
             map[i][j] = {
                 h : 0
             };
@@ -674,11 +678,12 @@ function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, factor){
     var midPointY = Math.ceil((y1 + y2 + y3 + y4) / 4);
 
     var median = Math.ceil((map[x1][y1].h + map[x2][y2].h + map[x3][y3].h + map[x4][y4].h) / 4 + getRandomInt(1, factor));
-
-    map[Math.ceil((x1 + x2)/2)][Math.ceil((y1 + y2)/2)].h = Math.floor((map[x1][y1].h + map[x2][y2].h)/2 + getRandomInt(1,factor));
-    map[Math.ceil((x2 + x3)/2)][Math.ceil((y2 + y3)/2)].h = Math.floor((map[x2][y2].h + map[x3][y3].h)/2 + getRandomInt(1,factor));
-    map[Math.ceil((x3 + x4)/2)][Math.ceil((y3 + y4)/2)].h = Math.floor((map[x3][y3].h + map[x4][y4].h)/2 + getRandomInt(1,factor));
-    map[Math.ceil((x4 + x1)/2)][Math.ceil((y4 + y1)/2)].h = Math.floor((map[x4][y4].h + map[x1][y1].h)/2 + getRandomInt(1,factor));
+	map[midPointX][midPointY].h = median;
+	
+    map[Math.ceil((x1 + x2)/2)][Math.ceil((y1 + y2)/2)].h = Math.floor((map[x1][y1].h + map[x2][y2].h + median)/3 + getRandomInt(1,factor));
+    map[Math.ceil((x2 + x3)/2)][Math.ceil((y2 + y3)/2)].h = Math.floor((map[x2][y2].h + map[x3][y3].h + median)/3 + getRandomInt(1,factor));
+    map[Math.ceil((x3 + x4)/2)][Math.ceil((y3 + y4)/2)].h = Math.floor((map[x3][y3].h + map[x4][y4].h + median)/3 + getRandomInt(1,factor));
+    map[Math.ceil((x4 + x1)/2)][Math.ceil((y4 + y1)/2)].h = Math.floor((map[x4][y4].h + map[x1][y1].h + median)/3 + getRandomInt(1,factor));
 
     map[midPointX][midPointY].h = median;
 
@@ -690,11 +695,11 @@ function disq(x1, y1, x2, y2, x3, y3, x4, y4, root, factor){
 
 function addContinentsToMap(){
     map[1][1].h = 10;
-    map[1][65].h = 10;
-    map[65][1].h = 10;
-    map[65][65].h = 10;
+    map[1][mapSize].h = 10;
+    map[mapSize][1].h = 10;
+    map[mapSize][mapSize].h = 10;
     
-    disq(1, 1, 1, 65, 65, 65, 65, 1, 64, 60);
+    disq(1, 1, 1, mapSize, mapSize, mapSize, mapSize, 1, mapSize, 52);
 }    
     
     
@@ -703,9 +708,9 @@ function drawMap(x, y){
     while(pos <= 961){
         for (i = x - 15; i <= x + 15; i++){
             for (j = y - 15; j <= y + 15; j++){
-                if(map[i][j].h <= 25){
+                if(map[i][j].h <= 30){
                     $(".mapTile.pos" + pos).css("background", "hsl(213,60%,55%)"); // sea
-                }else if(map[i][j].h > 25 && map[i][j].h <= 35){
+                }else if(map[i][j].h > 30 && map[i][j].h <= 35){
                     $(".mapTile.pos" + pos).css("background", "hsl(199,60%,75%)"); // river
                 }else if(map[i][j].h > 35 && map[i][j].h <= 45){
                     $(".mapTile.pos" + pos).css("background", "hsl(40,60%,75%)"); // sand
@@ -1067,18 +1072,18 @@ function drawMap(x, y){
        });
        
         genMap(); drawMap(16, 16);
-       
+	   
        $(".mpu").click(function(){
-           if(lastMapPosX - 1 >= 16){drawMap(lastMapPosX - 1, lastMapPosY);}
+           if(lastMapPosX - 1 >= 16){drawMap(lastMapPosX - mapScrollSpeed, lastMapPosY);}
        });
        $(".mpd").click(function(){
-           if(lastMapPosX + 1 < 384){drawMap(lastMapPosX + 1, lastMapPosY);}
+           if(lastMapPosX + 1 < 384){drawMap(lastMapPosX + mapScrollSpeed, lastMapPosY);}
        });
        $(".mpl").click(function(){
-           if(lastMapPosY - 1 >= 16){drawMap(lastMapPosX, lastMapPosY - 1);}
+           if(lastMapPosY - 1 >= 16){drawMap(lastMapPosX, lastMapPosY - mapScrollSpeed);}
        });
        $(".mpr").click(function(){
-          if(lastMapPosY + 1 < 384){drawMap(lastMapPosX, lastMapPosY + 1);}
+          if(lastMapPosY + 1 < 384){drawMap(lastMapPosX, lastMapPosY + mapScrollSpeed);}
        });
        $(".mzIn").click(function(){
            $(".mapTilesWrap").addClass("zoomed");

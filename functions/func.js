@@ -743,26 +743,46 @@ function drawMap(x, y){
 	
 	//FUNCTIONS//COMBAT
 
-function createEnemy(name_, hp_, attack_, timer_){
-	enemy[enemyCount] = {
-		name = name_,
-		hp = hp_,
-		attack = attack_,
-		timer = timer_
-	};
+//function createEnemy(name_, hp_, attack_, timer_){
+//	enemy[enemyCount] = {
+//		name = name_,
+//		hp = hp_,
+//		attack = attack_,
+//		timer = timer_
+//	};
 	
-	enemyCount ++;
-}
+//	enemyCount ++;
+//}
 	
-function combatEvent(enemy){  //enemy id
+//function combatEvent(enemy){  //enemy id
 	//css popup //whatever else
 	
 	//logic
-}
+//}
 	
     //JQUERY
 
    $(document).ready(function(){
+ 
+       $(document).keydown(function(event){
+                    if(event.keyCode == 66) {
+                    event.preventDefault();
+                    $(".combat-ov").fadeIn(100);
+                        $(".combat-window").fadeIn(100);
+                        $(".combat-butts-info").fadeIn(100);
+                        $(".combat-instructions-box").fadeIn(100);
+                    return false;
+                }
+            if(event.keyCode == 78) {
+                    event.preventDefault();
+                    $(".combat-ov").fadeOut(100);
+                        $(".combat-window").fadeOut(100);
+                        $(".combat-butts-info").fadeOut(100);
+                        $(".combat-instructions-box").fadeOut(100);
+                    return false;
+                }
+            });
+       
        
        // KeyCode Check //
            //document.onkeydown = function(e){

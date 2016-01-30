@@ -1,49 +1,75 @@
-var chHair = 1; chHairCount = 11;// 11 types
+var chHair = 1; chHairCount = 13;// 13 types
 var chEyes = 1; chEyesCount = 11;//11 types
 var chNose = 1; chNoseCount = 4;//4 types
 var chMouth = 1; chMouthCount = 5;//5 types
-var chBeard = 1; chBeardCount = 7;//7 types
+var chBeard = 1; chBeardCount = 9;//9 types
 
-chHairArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+var gender = "/male";
+var skin = "/a";
+
+chHairArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 chEyesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 chNoseArr = [1, 2, 3, 4];
 chMouthArr = [1, 2, 3, 4, 5];
-chBeardArr = [1, 2, 3, 4, 5, 6, 7];
+chBeardArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
  
+function charRefresh(){
+    chHair = 1;
+    chEyes = 1;
+    chNose = 1;
+    chMouth = 1;
+    chBeard = 1;
+    $(".bodylayout").css("background-image", "url('../imgs/charcreate/character"+gender+skin+"/body_layout.png')");
+    $(".chhair").css("background-image", "url('../imgs/charcreate/character"+gender+skin+"/hair_"+chHair+".png')");
+    $(".cheyes").css("background-image", "url('../imgs/charcreate/character"+gender+skin+"/eyes_"+chEyes+".png')");
+    $(".chnose").css("background-image", "url('../imgs/charcreate/character"+gender+skin+"/nose_"+chNose+".png')");
+    $(".chmouth").css("background-image", "url('../imgs/charcreate/character"+gender+skin+"/mouth_"+chMouth+".png')");
+    $(".chbeard").css("background-image", "url('../imgs/charcreate/character"+gender+skin+"/beard_"+chBeard+".png')");
+}
+
 $(document).ready(function(){
+    //changes
+    
+    $(".charGender").click(function(){
+       $(".charGender").removeClass("tgld");
+        $(this).addClass("tgld");
+        gender = $(this).attr("data-gender");
+        switch (gender){
+            case '/male':
+                $(".beard-acc").text("Beard");
+                $("#beard-acc-prv").attr("class","charPrev prevbeard");
+                $("#beard-acc-nxt").attr("class","charNext nextbeard");
+                break;
+            case '/female':
+                $(".beard-acc").text("Accessories");
+                $("#beard-acc-prv").attr("class","charPrev prevaccess");
+                $("#beard-acc-nxt").attr("class","charNext nextaccess");
+                break;
+        }
+        charRefresh();
+    });
     
     //eyes menu
     
     $('.nexteye').click(function(){
        if( chEyes < 12 ){
-           chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
            chEyes++;
-           chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
+           $(".cheyes").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/eyes_"+ chEyes +".png')");
        }
         if( chEyes == 12 ){
-           chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
+           $(".cheyes").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/eyes_1.png')");
            chEyes=1;
-           chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
        }
     });
      $('.preveye').click(function(){
         
        if( chEyes > 1 ){
-           chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
            chEyes--;
-           chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
+           $(".cheyes").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/eyes_"+ chEyes +".png')");
        }
          if( chEyes == 1 ){
              chEyes = 11;
-             $('.cheyes').toggleClass("eyes_1");
-             chEyesCode="eyes_".concat(chEyes);
-           $('.cheyes').toggleClass(chEyesCode);
+             $(".cheyes").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/eyes_"+ chEyes +".png')");
          }
          
     });
@@ -51,34 +77,23 @@ $(document).ready(function(){
     
     $('.nextnose').click(function(){
        if( chNose < 5 ){
-           chNoseCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chNoseCode);
            chNose++;
-           chNoseCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chNoseCode);
+           $(".chnose").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/nose_"+ chNose +".png')");
        }
         if( chNose == 5 ){
-           chEyesCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chEyesCode);
+           $(".chnose").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/nose_1.png')");
            chNose=1;
-           chNoseCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chNoseCode);
        }
     });
      $('.prevnose').click(function(){
         
        if( chNose > 1 ){
-           chNoseCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chNoseCode);
            chNose--;
-           chNoseCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chNoseCode);
+           $(".chnose").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/nose_"+ chNose +".png')");
        }
          if( chNose == 1 ){
              chNose = 4;
-             $('.chnose').toggleClass("nose_1");
-             chNoseCode="nose_".concat(chNose);
-           $('.chnose').toggleClass(chNoseCode);
+             $(".chnose").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/nose_"+ chEyes +".png')");
          }
          
     });
@@ -87,69 +102,47 @@ $(document).ready(function(){
     
     $('.nextmouth').click(function(){
        if( chMouth < 6 ){
-           chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
            chMouth++;
-           chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
+           $(".chmouth").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/mouth_"+ chMouth +".png')");
        }
         if( chMouth == 6 ){
-           chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
+           $(".chmouth").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/mouth_1.png')");
            chMouth=1;
-           chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
        }
     });
      $('.prevmouth').click(function(){
         
        if( chMouth > 1 ){
-           chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
            chMouth--;
-           chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
+           $(".chmouth").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/mouth_"+ chMouth +".png')");
        }
          if( chMouth == 1 ){
              chMouth = 5;
-             $('.chmouth').toggleClass("mouth_1");
-             chMouthCode="mouth_".concat(chMouth);
-           $('.chmouth').toggleClass(chMouthCode);
+             $(".chmouth").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/mouth_"+ chMouth +".png')");
          }
          
     });
     //beard menu
     
     $('.nextbeard').click(function(){
-       if( chBeard < 8 ){
-           chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
+       if( chBeard < 10 ){
            chBeard++;
-           chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
+           $(".chbeard").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/beard_"+ chBeard +".png')");
        }
-        if( chBeard == 8 ){
-           chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
+        if( chBeard == 10 ){
+           $(".chbeard").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/beard_1.png')");
            chBeard=1;
-           chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
        }
     });
      $('.prevbeard').click(function(){
         
        if( chBeard > 1 ){
-           chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
            chBeard--;
-           chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
+           $(".chbeard").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/beard_"+ chBeard +".png')");
        }
          if( chBeard == 1 ){
-             chBeard = 7;
-             $('.chbeard').toggleClass("beard_1");
-             chBeardCode="beard_".concat(chBeard);
-           $('.chbeard').toggleClass(chBeardCode);
+             chMouth = 9;
+             $(".chbeard").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/beard_"+ chBeard +".png')");
          }
          
     });
@@ -157,35 +150,25 @@ $(document).ready(function(){
     //hair menu
     
     $('.nexthair').click(function(){
-       if( chHair < 12 ){
-           chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
+       if( chHair < 14 ){
            chHair++;
-           chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
+           $(".chhair").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/hair_"+ chHair +".png')");
        }
-        if( chHair == 12 ){
-           chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
+        if( chHair == 14 ){
+           $(".chhair").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/hair_1.png')");
            chHair=1;
-           chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
        }
     });
      $('.prevhair').click(function(){
-        
-       if( chHair > 1 ){
-           chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
+       if( chHair >= 2 ){
            chHair--;
-           chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
+           $(".chhair").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/hair_"+ chHair +".png')");
        }
+
          if( chHair == 1 ){
-             chHair = 11;
-             $('.chhair').toggleClass("hair_1");
-             chHairCode="hair_".concat(chHair);
-           $('.chhair').toggleClass(chHairCode);
+             chHair = 13;
+             $(".chhair").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/hair_"+ chHair +".png')");
+
          }
          
     });

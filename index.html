@@ -20,6 +20,76 @@
     </head>
     <body id="bodyc">
         
+        <div class="combat-ov"></div>
+        <div class="combat-window">
+            <div class="combat-window-top placeholder-img">
+                <div class="combat-window-top-menu">
+                    <div class="combat-window-top-menu-container">
+                        <div class="combat-versus"> VS </div>
+                        <div class="combat-window-you">
+                            <div class="combat-you-title-level">
+                                <div class="combat-you-title"> YOU </div>
+                                <div class="combat-you-level"> Level <span id="your-level"> 1</span></div>
+                            </div>
+                            <div class="combat-you-race"> HUMAN </div>
+                            <div class="combat-you-health">
+                                <div class="combat-you-hp-cont">
+                                    <div class="combat-you-hp"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="combat-window-enemy">
+                            <div class="combat-enemy-title-level">
+                                <div class="combat-enemy-title"> ENEMY_NAME </div>
+                                <div class="combat-enemy-level"> Level <span id="enemy-level"> 1</span></div>
+                            </div>
+                            <div class="combat-enemy-race"> ENEMY_RACE </div>
+                            <div class="combat-enemy-health">
+                                <div class="combat-enemy-hp-cont">
+                                    <div class="combat-enemy-hp"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="combat-window-timer">
+                <div class="combat-window-timer-container">
+                    <div class="combat-timer-mess"> Time to <span class="attack-block attack"> Attack </span><i class="fa fa-clock-o combat-timer-clock"></i></div>
+                    <div class="combat-timer-bar-cont">
+                        <div class="combat-timer-bar-off">
+                            <div class="combat-timer-bar-on"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="combat-window-attacks">
+                
+                    <div class="combat-attacks">
+                        <div id="attack1" class="combat-attack attack"></div>
+                        <div id="attack2" class="combat-attack block"></div>
+                        <div id="attack3" class="combat-attack"></div>
+                        <div id="attack4" class="combat-attack"></div>
+                    </div>
+                
+            </div>
+        </div>
+        <div class="combat-butts-info">
+            <div class="combat-butt-ex"><div class="comb-butt-prop"> Q </div> <span id="attck1">Attack 1</span></div>
+            <div class="combat-butt-ex"><div class="comb-butt-prop"> W </div> <span id="attck1">Attack 2</span></div>
+            <div class="combat-butt-ex"><div class="comb-butt-prop"> E </div> <span id="attck1">Attack 3</span></div>
+            <div class="combat-butt-ex"><div class="comb-butt-prop"> R </div> <span id="attck1">Attack 4</span></div>
+        </div>
+        <div class="combat-instructions-box">
+            <div class="combat-instr-container">
+                <div class="combat-instr">
+                    Text cu instructiuni <br>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ipsum odio, imperdiet vitae nunc et, finibus accumsan quam. Suspendisse a tortor facilisis, ultrices lectus sit amet, iaculis purus. Proin pretium venenatis nunc, in fermentum sem viverra commodo. 
+                </div>
+                <div class="combat-close"> Got it! </div>
+            </div>
+        </div>
         <!--<div class='nameov'></div><div class='nameBox'><div class='nameboxtitle'> Hero Name </div><div class='nameboxcontainer'><div class='nameboxdet'>Please enter your new hero's name below. Hit <b>Done</b> when you're ready or <b>Back</b> if you've changed your mind.</div><form class='nameForm' name='addName'><input class='nameName' type='text' name='hname' placeholder='Type here your hero's name'><input class='nameSubmit' type='submit' value='Done'></form><div class='nameBack'> Back </div></div></div>-->
             <div id="chtlg" class="changetrigger"><i class="fa fa-arrow-circle-left"></i></div>
                 <div class="changes">
@@ -220,13 +290,14 @@
         <div class="charCreateOv" style="display:none;"></div>
             <div class="charCreate">
                 <div class="charCreateTitle"> Character Creator <font> <i id="closecc" class="fa fa-times"></i> </font></div>
+                <div class="charCreateTop">
                     <div class="charRoom">
                         <div class="bodylayout">
-                            <div class="cheyes eyes_1">
-                                <div class="chnose nose_1">
-                                    <div class="chmouth mouth_1">
-                                        <div class="chhair hair_1">
-                                            <div class="chbeard beard_1">
+                            <div class="cheyes">
+                                <div class="chnose">
+                                    <div class="chmouth">
+                                        <div class="chhair">
+                                            <div class="chbeard">
                                             </div>
                                         </div>
                                     </div>
@@ -234,12 +305,19 @@
                             </div>
                         </div>
                 </div>
+                </div>
+                <div class="charCreateRight">
                 <div class="charOption cHair"><span> Hair </span> <font class="changer"> <font class="charPrev prevhair"><i class="fa fa-arrow-left"></i></font><font class="charNext nexthair"><i class="fa fa-arrow-right"></i></font></font></div>
                 <div class="charOption cEyes"><span> Eyes </span><font class="changer"> <font class="charPrev preveye"><i class="fa fa-arrow-left"></i></font><font class="charNext nexteye"><i class="fa fa-arrow-right"></i></font></font></div>
                 <div class="charOption cNose"><span> Nose </span><font class="changer"> <font class="charPrev prevnose"><i class="fa fa-arrow-left"></i></font><font class="charNext nextnose"><i class="fa fa-arrow-right"></i></font></font></div>
                 <div class="charOption cMouth"><span> Mouth </span><font class="changer"> <font class="charPrev prevmouth"><i class="fa fa-arrow-left"></i></font><font class="charNext nextmouth"><i class="fa fa-arrow-right"></i></font></font></div>
-                <div class="charOption cBeard"><span> Beard </span><font class="changer"> <font class="charPrev prevbeard"><i class="fa fa-arrow-left"></i></font><font class="charNext nextbeard"><i class="fa fa-arrow-right"></i></font></font></div><div class = "item_id"></div>
-  
+                <div class="charOption cBeard"><span class="beard-acc"> Beard </span><font class="changer"> <font id="beard-acc-prv" class="charPrev prevbeard"><i class="fa fa-arrow-left"></i></font><font id="beard-acc-nxt" class="charNext nextbeard"><i class="fa fa-arrow-right"></i></font></font></div><div class = "item_id"></div>
+            </div>
+            
+                <div class="charCreateLeft">
+                    <div class="charOption"><span>Gender</span><div class="charCreateLeft-Right"><i data-gender="/male" class="fa fa-mars charGender tgld"></i><i data-gender="/female" class="fa fa-venus charGender"></i></div></div> 
+                    <div class="charOption"><span>Skin</span><div class="charCreateLeft-Right"><div class="skin-color color-a tgld"></div><div class="skin-color color-b"></div><div class="skin-color color-c"></div></div></div> 
+                </div>
             </div>
         
         <!-- Craft | Start -->

@@ -4,7 +4,7 @@
     height: 250px;
     left: calc(50% - 150px);
     position: absolute;
-    background: url('../imgs/charcreate/character/body_layout.png') no-repeat;
+    background: url('../imgs/charcreate/character/male/a/body_layout.png') no-repeat;
     background-size: 300px 250px;
 }
 
@@ -18,7 +18,8 @@
     width: 300px;
     height: 250px;
     position: absolute;
-    
+    background-size: 300px 250px;
+    background-image: url("../imgs/charcreate/character/male/a/eyes_1.png");
 }
 
 .chnose, .ch_pp_nose {
@@ -26,7 +27,8 @@
     width: 300px;
     height: 250px;
     position: absolute;
-    
+    background-size: 300px 250px;
+    background-image: url("../imgs/charcreate/character/male/a/nose_1.png");
 }
 
 .chmouth, .ch_pp_mouth {
@@ -34,117 +36,17 @@
     width: 300px;
     height: 250px;
     position: absolute;
-    
-}
-.cheyes.eyes_1{
-    background: url("../imgs/charcreate/character/eyes_1.png") no-repeat;
     background-size: 300px 250px;
+    background-image: url("../imgs/charcreate/character/male/a/mouth_1.png");
 }
-.cheyes.eyes_2{
-    background: url("../imgs/charcreate/character/eyes_2.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_3{
-    background: url("../imgs/charcreate/character/eyes_3.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_4{
-    background: url("../imgs/charcreate/character/eyes_4.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_5{
-    background: url("../imgs/charcreate/character/eyes_5.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_6{
-    background: url("../imgs/charcreate/character/eyes_6.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_7{
-    background: url("../imgs/charcreate/character/eyes_7.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_8{
-    background: url("../imgs/charcreate/character/eyes_8.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_9{
-    background: url("../imgs/charcreate/character/eyes_9.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_10{
-    background: url("../imgs/charcreate/character/eyes_10.png") no-repeat;
-    background-size: 300px 250px;
-}
-.cheyes.eyes_11{
-    background: url("../imgs/charcreate/character/eyes_11.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chnose.nose_1{
-    background: url("../imgs/charcreate/character/nose_1.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chnose.nose_2{
-    background: url("../imgs/charcreate/character/nose_2.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chnose.nose_3{
-    background: url("../imgs/charcreate/character/nose_3.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chnose.nose_4{
-    background: url("../imgs/charcreate/character/nose_4.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chmouth.mouth_1{
-    background: url("../imgs/charcreate/character/mouth_1.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chmouth.mouth_2{
-    background: url("../imgs/charcreate/character/mouth_2.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chmouth.mouth_3{
-    background: url("../imgs/charcreate/character/mouth_3.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chmouth.mouth_4{
-    background: url("../imgs/charcreate/character/mouth_4.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chmouth.mouth_5{
-    background: url("../imgs/charcreate/character/mouth_5.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chbeard.beard_2{
-    background: url("../imgs/charcreate/character/beard_2.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chbeard.beard_3{
-    background: url("../imgs/charcreate/character/beard_3.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chbeard.beard_4{
-    background: url("../imgs/charcreate/character/beard_4.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chbeard.beard_5{
-    background: url("../imgs/charcreate/character/beard_5.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chbeard.beard_6{
-    background: url("../imgs/charcreate/character/beard_6.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chbeard.beard_7{
-    background: url("../imgs/charcreate/character/beard_7.png") no-repeat;
-    background-size: 300px 250px;
-}
+
 .chbeard, .ch_pp_beard {
     z-index: 3;
     width: 300px;
     height: 250px;
     position: absolute;
+    background-size: 300px 250px;
+    background-image: url("../imgs/charcreate/character/male/a/beard_1.png");
 }
 
 .chhair, .ch_pp_hair {
@@ -153,187 +55,29 @@
     height: 250px;
     position: absolute;
 }
-.chhair.hair_2{
-    background: url("../imgs/charcreate/character/hair_2.png") no-repeat;
+.chhair{
     background-size: 300px 250px;
+    background-image: url("../imgs/charcreate/character/male/a/hair_1.png");
 }
-.chhair.hair_3{
-    background: url("../imgs/charcreate/character/hair_3.png") no-repeat;
-    background-size: 300px 250px;
+
+.combat-you-health {
+    position: absolute;
+    top: 50px;
 }
-.chhair.hair_4{
-    background: url("../imgs/charcreate/character/hair_4.png") no-repeat;
-    background-size: 300px 250px;
+
+
+
+.combat-window-timer {
+    height: 80px;
+    width: 100%;
+    background: #1f1f1f;
+    cursor: default;
 }
-.chhair.hair_5{
-    background: url("../imgs/charcreate/character/hair_5.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chhair.hair_6{
-    background: url("../imgs/charcreate/character/hair_6.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chhair.hair_7{
-    background: url("../imgs/charcreate/character/hair_7.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chhair.hair_8{
-    background: url("../imgs/charcreate/character/hair_8.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chhair.hair_9{
-    background: url("../imgs/charcreate/character/hair_9.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chhair.hair_10{
-    background: url("../imgs/charcreate/character/hair_10.png") no-repeat;
-    background-size: 300px 250px;
-}
-.chhair.hair_11{
-    background: url("../imgs/charcreate/character/hair_11.png") no-repeat;
-    background-size: 300px 250px;
-}
-.ch_pp_eyes.eyes_pp_1{
-    background: url("../imgs/charcreate/character/eyes_1.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_2{
-    background: url("../imgs/charcreate/character/eyes_2.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_3{
-    background: url("../imgs/charcreate/character/eyes_3.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_4{
-    background: url("../imgs/charcreate/character/eyes_4.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_5{
-    background: url("../imgs/charcreate/character/eyes_5.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_6{
-    background: url("../imgs/charcreate/character/eyes_6.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_7{
-    background: url("../imgs/charcreate/character/eyes_7.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_8{
-    background: url("../imgs/charcreate/character/eyes_8.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_9{
-    background: url("../imgs/charcreate/character/eyes_9.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_10{
-    background: url("../imgs/charcreate/character/eyes_10.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_eyes.eyes_pp_11{
-    background: url("../imgs/charcreate/character/eyes_11.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_nose.nose_pp_1{
-    background: url("../imgs/charcreate/character/nose_1.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_nose.nose_pp_2{
-    background: url("../imgs/charcreate/character/nose_2.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_nose.nose_pp_3{
-    background: url("../imgs/charcreate/character/nose_3.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_nose.nose_pp_4{
-    background: url("../imgs/charcreate/character/nose_4.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_mouth.mouth_pp_1{
-    background: url("../imgs/charcreate/character/mouth_1.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_mouth.mouth_pp_2{
-    background: url("../imgs/charcreate/character/mouth_2.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_mouth.mouth_pp_3{
-    background: url("../imgs/charcreate/character/mouth_3.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_mouth.mouth_pp_4{
-    background: url("../imgs/charcreate/character/mouth_4.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_mouth.mouth_pp_5{
-    background: url("../imgs/charcreate/character/mouth_5.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_beard.beard_pp_2{
-    background: url("../imgs/charcreate/character/beard_2.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_beard.beard_pp_3{
-    background: url("../imgs/charcreate/character/beard_3.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_beard.beard_pp_4{
-    background: url("../imgs/charcreate/character/beard_4.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_beard.beard_pp_5{
-    background: url("../imgs/charcreate/character/beard_5.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_beard.beard_pp_6{
-    background: url("../imgs/charcreate/character/beard_6.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_beard.beard_pp_7{
-    background: url("../imgs/charcreate/character/beard_7.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_2{
-    background: url("../imgs/charcreate/character/hair_2.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_3{
-    background: url("../imgs/charcreate/character/hair_3.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_4{
-    background: url("../imgs/charcreate/character/hair_4.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_5{
-    background: url("../imgs/charcreate/character/hair_5.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_6{
-    background: url("../imgs/charcreate/character/hair_6.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_7{
-    background: url("../imgs/charcreate/character/hair_7.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_8{
-    background: url("../imgs/charcreate/character/hair_8.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_9{
-    background: url("../imgs/charcreate/character/hair_9.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_10{
-    background: url("../imgs/charcreate/character/hair_10.png") no-repeat;
-    background-size: 120px 100px;
-}
-.ch_pp_hair.hair_pp_11{
-    background: url("../imgs/charcreate/character/hair_11.png") no-repeat;
-    background-size: 120px 100px;
+
+.combat-instr-container {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(255,255,255,0.9);
+    width: 95%;
+    margin: 5px auto;
 }

@@ -81,7 +81,7 @@
         //VARIABLES//MAP
     
     var map = [];
-	var mapSize = 64;
+	var mapSize = 1024;
     for (i = 0; i <= mapSize + 1; i ++) {
         map[i] = [];
     }
@@ -92,7 +92,12 @@
     var mapOpen = 0; //checks if the map is open
        
 	var mapScrollSpeed = 5;
+	
+		//VARIABLES//COMBAT
     
+	var enemy = [];
+	var enemyCount = 0;
+	
     //FUNCTIONS
     
 function getRandomInt(min, max) {
@@ -371,7 +376,7 @@ function sell(item){
     
         //FUNCTIONS//HEROSYS
 
-function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, active_){
+function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, baseHP_, attack_){
     hero[heroCount] = 
         {
         headItem : {
@@ -435,8 +440,6 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
             mouth : mouth_,
             beard : beard_
         },
-        
-        active : active_,
         level : level_,
         //active
         expBonus : 1,
@@ -452,7 +455,10 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
         expPer : 0, //exp percentage
         nextLevel : 10, //exp needed to next level
         exp : 1, // current exp, resets each level
-        expPerClick : 1
+        expPerClick : 1,
+		//combat
+		baseHP : baseHP_,
+		attack : attack_
     };
     
     heroNames[heroCount] = name_;
@@ -649,7 +655,7 @@ function craftItem(){
     $(".jewelCrafPrice").text(0);
 }
     
-        //FUNCTIONS//MAP
+		//FUNCTIONS//MAP
     
 function constructMapWindow(size){
     for(i = 1; i <= size; i++){
@@ -712,13 +718,13 @@ function drawMap(x, y){
                     $(".mapTile.pos" + pos).css("background", "hsl(213,60%,55%)"); // sea
                 }else if(map[i][j].h > 30 && map[i][j].h <= 35){
                     $(".mapTile.pos" + pos).css("background", "hsl(199,60%,75%)"); // river
-                }else if(map[i][j].h > 35 && map[i][j].h <= 45){
+                }else if(map[i][j].h > 35 && map[i][j].h <= 50){
                     $(".mapTile.pos" + pos).css("background", "hsl(40,60%,75%)"); // sand
-                }else if(map[i][j].h > 45 && map[i][j].h <= 65){
+                }else if(map[i][j].h > 50 && map[i][j].h <= 65){
                     $(".mapTile.pos" + pos).css("background", "hsl(114,50%,50%)"); // grass
-                }else if(map[i][j].h > 65 && map[i][j].h <= 75){
+                }else if(map[i][j].h > 65 && map[i][j].h <= 80){
                     $(".mapTile.pos" + pos).css("background", "hsl(28, 36%, 48%)"); // hill
-                }else if(map[i][j].h > 75 && map[i][j].h <= 95){
+                }else if(map[i][j].h > 80 && map[i][j].h <= 95){
                     $(".mapTile.pos" + pos).css("background", "hsl(18, 7%, 37%)"); // mountain
                 }else if(map[i][j].h > 95){
                     $(".mapTile.pos" + pos).css("background", "hsl(213, 52%, 87%)"); // snow
@@ -734,7 +740,26 @@ function drawMap(x, y){
 	
 	console.log(map[1][2].h);
 }
+	
+	//FUNCTIONS//COMBAT
 
+function createEnemy(name_, hp_, attack_, timer_){
+	enemy[enemyCount] = {
+		name = name_,
+		hp = hp_,
+		attack = attack_,
+		timer = timer_
+	};
+	
+	enemyCount ++;
+}
+	
+function combatEvent(enemy){  //enemy id
+	//css popup //whatever else
+	
+	//logic
+}
+	
     //JQUERY
 
    $(document).ready(function(){
@@ -769,6 +794,9 @@ function drawMap(x, y){
             hero[selectedHero].expBonus += (hero[selectedHero].expBonus)/2;
             hero[selectedHero].points += 5; //TO DO: ADD LEVEL UP WINDOW
 			hero[selectedHero].chanceABonus *= (2/100 * hero[selectedHero].chanceABonus);
+			
+			hero[selectedHero].hp *= 1.05;
+			
             $(".level").text(hero[selectedHero].level);
             $(".expperc").text(hero[selectedHero].exp);
             $(".herolvl.heroId" + selectedHero).text(hero[selectedHero].level);

@@ -16,20 +16,25 @@ body{
 
 .button {
     position: absolute;
-    top: calc(50% - 50px);
-    left: calc(50% - 50px);
+    top: 50%;
+    left: 50%;
     color:white;
     font-size: 40px;
-    background:#414141;
+    background-color:#414141;
     border:0px;
     width: 70px;
     height: 70px;
+    -webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);
+    background-image: url("../imgs/attackicon.png");
+    background-repeat: no-repeat;
+    background-size: 40px, 40px;
+    background-position: center, center;
     border-radius: 60px;
     cursor: pointer;
     transition: all 0.5s;
 }
 .button:hover{
-    background:#5c5c5c;
+    background-color:#5c5c5c;
     
 }
 .button:active{
@@ -2188,6 +2193,11 @@ transition: all 0.5s;
     height: 15px;
     width: 440px;
     overflow: hidden;
+}
+.combat-timer-bar-off.attack {
+    background: rgba(210,20,27,0.3);
+}
+.combat-timer-bar-off.block{
     background: rgba(0,129,255,0.3);
 }
 
@@ -2200,9 +2210,13 @@ transition: all 0.5s;
 
 .combat-timer-bar-on {
     height: 15px;
-    width: 90%;
+    /*transition: all 0.3s ease-in-out;*/
+}
+.combat-timer-bar-on.attack {
+     background: #d2141b;  
+}
+.combat-timer-bar-on.block{
     background: #0081ff;
-    transition: all 0.3s ease-in-out;
 }
 
 .combat-window-attacks {
@@ -2226,10 +2240,14 @@ transition: all 0.5s;
     float: left;
     cursor: pointer;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
-    transition: all 0.5s;
+    /*transition: all 0.2s;*/
 }
 .combat-attack.attack{
     background-color: #b4191f;
+    background-image: url('../imgs/attackicon.png');
+    background-size: 50px, 50px;
+    background-position: center, center;
+    background-repeat: no-repeat;
 }
 .combat-attack.block{
     background-color: #0081ff;
@@ -2278,6 +2296,27 @@ transition: all 0.5s;
     line-height: 20px;
     box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.9);
     border-radius: 3px;
+    transition: all 0.3s;
+}
+.comb-butt-prop.tgld{
+    position: relative;
+    background: rgba(255,255,255,0.9);
+    color: #1a1a1a;
+}
+.comb-butt-prop.tgld:after{
+    content: "";
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    -webkit-animation-name: push-ripple; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 0.3s; /* Chrome, Safari, Opera */
+    
+}
+@-webkit-keyframes push-ripple {
+    from {box-shadow: 0px 0px 0px 0px rgba(255,255,255,0.4);}
+    to {box-shadow: 0px 0px 0px 15px rgba(255,255,255,0.0);}
 }
 
 #attck1 {

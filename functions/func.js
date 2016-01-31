@@ -97,6 +97,11 @@
     
 	var enemy = [];
 	var enemyCount = 0;
+	var nextAtt, nextBlk;
+	var att_bl = 1; //atack
+	var inCombat = 0;
+	var succes = 2;
+	var attackTimer, blockTimer;
 	
     //FUNCTIONS
     
@@ -376,7 +381,7 @@ function sell(item){
     
         //FUNCTIONS//HEROSYS
 
-function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, baseHP_, attack_){
+function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, race_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, attack_){
     hero[heroCount] = 
         {
         headItem : {
@@ -447,6 +452,7 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
         chanceABonus : ((Math.random() * 100) + 1),
         //atts
         name : name_,
+		race : race_,
         growthFactor : ((Math.random() + 1)/6 + 1),
         rarity : 1,
         //statp
@@ -457,7 +463,8 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
         exp : 1, // current exp, resets each level
         expPerClick : 1,
 		//combat
-		baseHP : baseHP_,
+		hp : 50,
+		currentHp : 50,
 		attack : attack_
     };
     
@@ -738,28 +745,137 @@ function drawMap(x, y){
     lastMapPosX = x;
     lastMapPosY = y;
 	
-	console.log(map[1][2].h);
+	//console.log(map[1][2].h);
 }
 	
 	//FUNCTIONS//COMBAT
 
-//function createEnemy(name_, hp_, attack_, timer_){
-//	enemy[enemyCount] = {
-//		name = name_,
-//		hp = hp_,
-//		attack = attack_,
-//		timer = timer_
-//	};
+function addEnemy(name_, race_, level_, hp_, attack_, image_){
+	enemy[enemyCount] = {
+    	name : name_,
+		race : race_,
+		level : level_,
+		hp : hp_,
+		currentHp : hp_,
+		attack : attack_,
+		image : image_
+	};
 	
-//	enemyCount ++;
-//}
+	enemyCount ++;
+}
 	
-//function combatEvent(enemy){  //enemy id
-	//css popup //whatever else
+function attackblock(enemy__) {
+	var attButton = [81, 87, 69, 82];
 	
-	//logic
-//}
+	console.log("inCombat = " + inCombat);
 	
+	nextAtt = attButton[Math.floor(Math.random() * attButton.length)];
+	nextBlk = attButton[Math.floor(Math.random() * attButton.length)];
+	
+	succes = 0;
+	
+	$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
+	$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
+	
+		if (inCombat == 1) {
+		holdKeys();
+		if (hero[selectedHero].currentHp <= 0) {
+			alert("You lost!");
+			$(".combat-ov").fadeOut(100);
+			$(".combat-window").fadeOut(100);
+			$(".combat-butts-info").fadeOut(100);
+			$(".combat-instructions-box").fadeOut(100);
+			inCombat = 0;
+			return;
+		} else
+		if (enemy[enemy__].currentHp <= 0) {
+			alert("You won!");
+			$(".combat-ov").fadeOut(100);
+			$(".combat-window").fadeOut(100);
+			$(".combat-butts-info").fadeOut(100);
+			$(".combat-instructions-box").fadeOut(100);
+			inCombat = 0;
+			return;
+		} else if (inCombat) {
+			$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
+			$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
+			timerCombat();
+			console.log(hero[selectedHero].currentHp + " / " + hero[selectedHero].hp);
+                
+			$(".attack-block").text("Attack");
+			$(".attack-block").attr("class","attack-block attack");
+			$(".combat-timer-bar-off").attr("class","combat-timer-bar-off attack");
+			$(".combat-timer-bar-on").attr("class","combat-timer-bar-on attack");
+
+			$("#attack" + nextAtt).addClass("attack");
+			
+			clearTimeout(attackTimer);
+				attackTimer = setTimeout(function () {
+					console.log("attack failed");
+					$(".combat-attack").removeClass("attack");
+					//$("#attack" + nextBlk).addClass("block");
+					hero[selectedHero].currentHp --; succes = 0;
+					attackblock(enemy__); return;
+				}, 500);
+			
+			$(document).keydown(function (event) {
+				if (event.keyCode == nextAtt) {
+					clearTimeout(attackTimer);
+					console.log("attack succes");
+					$(".combat-attack").removeClass("attack");
+					//$("#attack" + nextBlk).addClass("block");
+					enemy[enemy__].currentHp --; succes = 1;
+					attackblock(enemy__);return;
+					} else {attackblock();}
+				});// ai 0.1s sa atingi Q (de exemplu) pt a face damage, altfel pierzi randul
+			}
+			$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
+			$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
+			}
+		}
+	
+function combatEvent(enemy_){  //enemy id
+	//css popup
+	
+	$(".combat-you-title").text(hero[selectedHero].name);
+	$(".your-level").text(hero[selectedHero].level);
+	$(".combat-you-race").text(hero[selectedHero].race);
+	
+	$(".combat-enemy-title").text(enemy[enemy_].name);
+	$(".enemy-level").text(enemy[enemy_].level);
+	$(".combat-enemy-race").text(enemy[enemy_].race);
+	$(".combat-window-top").css("background-image", "url('"+ enemy[enemy_].image +"')");
+	
+	var att_bl = 1; //atack
+	var attButton = [81, 87, 69, 82];
+	
+	//$("#attack" + attButton[Math.floor(Math.random() * attButton.length)]).addClass("attack");
+	
+	inCombat = 1;
+	
+	attackblock(enemy_); return;
+}
+	
+    function holdKeys(){
+        $(document).keydown(function(event){
+                   // if(event.keyCode == 66)
+                    $("#prop-butt-"+event.keyCode).addClass("tgld");
+            });
+        $(document).keyup(function(event){
+                    $("#prop-butt-"+event.keyCode).removeClass("tgld");
+            });
+    }
+    function timerCombat(){
+        var timerPerc = (440 * 50)/500;
+        var timerVal = 0;
+        var timerInterval = setInterval(function(){
+            timerVal+=timerPerc;
+           $(".combat-timer-bar-on").css("width",timerVal +"px"); 
+            if(timerVal >= 440){
+                clearInterval(timerInterval);
+            }
+        }, 50);
+    }
     //JQUERY
 
    $(document).ready(function(){
@@ -768,9 +884,10 @@ function drawMap(x, y){
                     if(event.keyCode == 66) {
                     event.preventDefault();
                     $(".combat-ov").fadeIn(100);
-                        $(".combat-window").fadeIn(100);
-                        $(".combat-butts-info").fadeIn(100);
-                        $(".combat-instructions-box").fadeIn(100);
+                    $(".combat-window").fadeIn(100);
+                    $(".combat-butts-info").fadeIn(100);
+                    $(".combat-instructions-box").fadeIn(100);
+					combatEvent(0);
                     return false;
                 }
             if(event.keyCode == 78) {
@@ -790,6 +907,7 @@ function drawMap(x, y){
            //}
 
         //JQUERY//MAIN
+
        
     $("button").click(function(){
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
@@ -886,7 +1004,7 @@ function drawMap(x, y){
                     if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
                     
                         //alert("Invalid Name");
-                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, 1, 1, 1, 1, 1, 0);
+                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, "Human", 1, 1, 1, 1, 0);
             
                         gold -= up1Price;
                         $(".goldCoin").text(numberWithCommas(gold));
@@ -1060,7 +1178,7 @@ function drawMap(x, y){
        
         //JQUERY//HEROSYS
     
-    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", 1, 1, 1, 1, 1, 1);
+    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", "Human", 1, 1, 1, 1, 1);
     
     $(".eqp").empty();
         selectHero(0);
@@ -1172,5 +1290,9 @@ function drawMap(x, y){
         
            
 };
+	   		//JQUERY//COMBAT
+	   
+	   addEnemy("ORC", "ORC", 1, 25, 2, "../imgs/enemies/enemy-orc.png");
+	   
    });
 })(window, window.jQuery);

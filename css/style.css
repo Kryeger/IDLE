@@ -1994,7 +1994,7 @@ transition: all 0.5s;
     bottom: 0;
     width: 100%;
     background: rgba(25,25,25,0.85);
-    height: 80px;
+    height: 100px;
 }
 
 .combat-window-top-menu-container {
@@ -2249,6 +2249,10 @@ transition: all 0.5s;
     background-position: center, center;
     background-repeat: no-repeat;
 }
+.combat-attack.attack.tgld{
+	-webkit-animation-name: push-ripple; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 0.3s; /* Chrome, Safari, Opera */
+}
 .combat-attack.block{
     background-color: #0081ff;
 }
@@ -2350,4 +2354,39 @@ transition: all 0.5s;
 .combat-close:hover{
     background: rgba(255,255,255,0.18);
     color: white;
+}
+
+.combat-you-energy {
+	position: absolute;
+    top: 64px;
+}
+
+.combat-you-en-cont {
+	position: relative;
+    height: 7px;
+    width: 150px;
+    background: rgba(227, 168, 86,0.3);
+    overflow: hidden;
+}
+
+.combat-you-en {
+	background: #E3A856;
+    width: 70%;
+    height: 7px;
+	box-shadow: 0px 0px 10px rgba(227, 168, 86,0.7);
+    transition: all 0.3s ease-in-out;
+}
+
+.combat-attack.attack-1, .combat-attack.attack-2, .combat-attack.attack-3 {
+	background-color: #b4191f;
+    background-image: url('../imgs/attackicon.png');
+    background-size: 50px, 50px;
+    background-position: center, center;
+    background-repeat: no-repeat;
+}
+.combat-attack.attack-3{
+	background-color: #E3A856;
+}
+.combat-attack.attack-2{
+	background-color: #E87420;
 }

@@ -81,7 +81,7 @@
         //VARIABLES//MAP
     
     var map = [];
-	var mapSize = 1024;
+	var mapSize = 64;
     for (i = 0; i <= mapSize + 1; i ++) {
         map[i] = [];
     }
@@ -97,11 +97,10 @@
     
 	var enemy = [];
 	var enemyCount = 0;
-	var nextAtt, nextBlk;
-	var att_bl = 1; //atack
-	var inCombat = 0;
-	var succes = 2;
-	var attackTimer, blockTimer;
+	var playerPwr = 0;
+	var enemyPwr = 0;
+	var enemyFat = 0;
+	var inCombat = 1;
 	
     //FUNCTIONS
     
@@ -381,7 +380,7 @@ function sell(item){
     
         //FUNCTIONS//HEROSYS
 
-function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, race_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, attack_){
+function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, race_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, attack_, fat_){
     hero[heroCount] = 
         {
         headItem : {
@@ -465,7 +464,12 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 		//combat
 		hp : 50,
 		currentHp : 50,
-		attack : attack_
+		attack : attack_,
+		fat : fat_,
+		currentFat : fat_,
+		lowAtt : Math.ceil(attack_ / 10),
+		medAtt : Math.ceil(attack_ / 5),
+		heavyAtt : Math.ceil(attack_ /2)
     };
     
     heroNames[heroCount] = name_;
@@ -758,26 +762,23 @@ function addEnemy(name_, race_, level_, hp_, attack_, image_){
 		hp : hp_,
 		currentHp : hp_,
 		attack : attack_,
-		image : image_
+		image : image_,
+		
+		lowAtt : Math.ceil(attack_ / 10),
+		medAtt : Math.ceil(attack_ / 5),
+		heavyAtt : Math.ceil(attack_ / 2)
 	};
 	
 	enemyCount ++;
 }
 	
 function attackblock(enemy__) {
-	var attButton = [81, 87, 69, 82];
-	
-	console.log("inCombat = " + inCombat);
-	
-	nextAtt = attButton[Math.floor(Math.random() * attButton.length)];
-	nextBlk = attButton[Math.floor(Math.random() * attButton.length)];
-	
-	succes = 0;
-	
+
 	$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
+	$(".combat-you-en").css("width", ((hero[selectedHero].currentFat * 100) / hero[selectedHero].fat) + "%");
 	$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
-	
-		if (inCombat == 1) {
+
+	if (inCombat == 1) {
 		holdKeys();
 		if (hero[selectedHero].currentHp <= 0) {
 			alert("You lost!");
@@ -801,81 +802,106 @@ function attackblock(enemy__) {
 			$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
 			timerCombat();
 			console.log(hero[selectedHero].currentHp + " / " + hero[selectedHero].hp);
-                
-			$(".attack-block").text("Attack");
-			$(".attack-block").attr("class","attack-block attack");
-			$(".combat-timer-bar-off").attr("class","combat-timer-bar-off attack");
-			$(".combat-timer-bar-on").attr("class","combat-timer-bar-on attack");
 
-			$("#attack" + nextAtt).addClass("attack");
-			
-			clearTimeout(attackTimer);
-				attackTimer = setTimeout(function () {
-					console.log("attack failed");
-					$(".combat-attack").removeClass("attack");
-					//$("#attack" + nextBlk).addClass("block");
-					hero[selectedHero].currentHp --; succes = 0;
-					attackblock(enemy__); return;
-				}, 500);
-			
-			$(document).keydown(function (event) {
-				if (event.keyCode == nextAtt) {
-					clearTimeout(attackTimer);
-					console.log("attack succes");
-					$(".combat-attack").removeClass("attack");
-					//$("#attack" + nextBlk).addClass("block");
-					enemy[enemy__].currentHp --; succes = 1;
-					attackblock(enemy__);return;
-					} else {attackblock();}
-				});// ai 0.1s sa atingi Q (de exemplu) pt a face damage, altfel pierzi randul
-			}
-			$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
-			$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
-			}
+			$(".attack-block").text("Attack");
+			$(".attack-block").attr("class", "attack-block attack");
+			$(".combat-timer-bar-off").attr("class", "combat-timer-bar-off attack");
+			$(".combat-timer-bar-on").attr("class", "combat-timer-bar-on attack");
+
+			$(document).one("keyup", function (event) {
+				switch(event.keyCode) {
+					case 81: playerPwr = 1;
+						enemyPwr = Math.Ceil(Math.random() * 4);
+						if(hero[selectedHero].fat >= weakAttFat){
+							hero[selectedHero].fat -= weakAttFat;
+							switch(enemyPwr){
+								case 1:break;
+								case 2:hero[selectedHero].currentHp -= enemy[enemy__].lowAtt; break;
+								case 3:hero[selectedHero].currentHp -= enemy[enemy__].medAtt; break;
+								case 4:break;
+								}
+							}
+						break;
+					case 87: playerPwr = 2;
+						enemyPwr = Math.Ceil(Math.random() * 4);
+						if(hero[selectedHero].fat >= medAttFat){
+							hero[selectedHero].fat -= medAttFat;
+							switch(enemyPwr){
+								case 1:enemy[enemy__].currentHp -= hero[selectedHero].lowAtt; break;
+								case 2:break;
+								case 3:hero[selectedHero].currentHp -= enemy[enemy__].lowAtt; break;
+								case 4:break;
+							}
+						}
+						break;
+					case 69: playerPwr = 3;
+						enemyPwr = Math.Ceil(Math.random() * 4);
+						if(hero[selectedHero].fat >= heavyAttFat){
+							hero[selectedHero].fat -= heavyAttFat;
+							switch(enemyPwr){
+								case 1:enemy[enemy__].currentHp -= hero[selectedHero].medAtt; break;
+								case 2:enemy[enemy__].currentHp -= hero[selectedHero].lowAtt; break;
+								case 3:break;
+								case 4:break;
+							}
+						}
+						break;
+					case 82: playerPwr = 4;
+						enemyPwr = Math.Ceil(Math.random() * 4);
+						hero[selectedHero].fat -= blkFat;
+						switch(enemyPwr){
+							case 1:break;
+							case 2:break;
+							case 3:break;
+							case 4:break;
+						}
+						break;
+				}
+				$(".combat-attack").removeClass("attack");
+			}); attackblock(0); // ai 0.1s sa atingi Q (de exemplu) pt a face damage, altfel pierzi randul
 		}
-	
-function combatEvent(enemy_){  //enemy id
+		$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
+		$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
+	}
+}
+
+function combatEvent(enemy_) { //enemy id
 	//css popup
-	
+
 	$(".combat-you-title").text(hero[selectedHero].name);
 	$(".your-level").text(hero[selectedHero].level);
 	$(".combat-you-race").text(hero[selectedHero].race);
-	
+
 	$(".combat-enemy-title").text(enemy[enemy_].name);
 	$(".enemy-level").text(enemy[enemy_].level);
 	$(".combat-enemy-race").text(enemy[enemy_].race);
-	$(".combat-window-top").css("background-image", "url('"+ enemy[enemy_].image +"')");
+	$(".combat-window-top").css("background-image", "url('" + enemy[enemy_].image + "')");
 	
-	var att_bl = 1; //atack
-	var attButton = [81, 87, 69, 82];
-	
+	attackblock(0);
 	//$("#attack" + attButton[Math.floor(Math.random() * attButton.length)]).addClass("attack");
-	
-	inCombat = 1;
-	
-	attackblock(enemy_); return;
 }
 	
-    function holdKeys(){
-        $(document).keydown(function(event){
-                   // if(event.keyCode == 66)
-                    $("#prop-butt-"+event.keyCode).addClass("tgld");
-            });
-        $(document).keyup(function(event){
-                    $("#prop-butt-"+event.keyCode).removeClass("tgld");
-            });
-    }
-    function timerCombat(){
-        var timerPerc = (440 * 50)/500;
-        var timerVal = 0;
-        var timerInterval = setInterval(function(){
-            timerVal+=timerPerc;
-           $(".combat-timer-bar-on").css("width",timerVal +"px"); 
-            if(timerVal >= 440){
-                clearInterval(timerInterval);
-            }
-        }, 50);
-    }
+function holdKeys() {
+	$(document).keydown(function (event) {
+		// if(event.keyCode == 66)
+		$("#prop-butt-" + event.keyCode).addClass("tgld");
+	});
+	$(document).keyup(function (event) {
+		$("#prop-butt-" + event.keyCode).removeClass("tgld");
+	});
+}
+
+function timerCombat() {
+	var timerPerc = (440 * 50) / 500;
+	var timerVal = 0;
+	var timerInterval = setInterval(function () {
+		timerVal += timerPerc;
+		$(".combat-timer-bar-on").css("width", timerVal + "px");
+		if (timerVal >= 440) {
+			clearInterval(timerInterval);
+		}
+	}, 50);
+}
     //JQUERY
 
    $(document).ready(function(){
@@ -887,6 +913,7 @@ function combatEvent(enemy_){  //enemy id
                     $(".combat-window").fadeIn(100);
                     $(".combat-butts-info").fadeIn(100);
                     $(".combat-instructions-box").fadeIn(100);
+					holdKeys();
 					combatEvent(0);
                     return false;
                 }
@@ -1004,7 +1031,7 @@ function combatEvent(enemy_){  //enemy id
                     if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
                     
                         //alert("Invalid Name");
-                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, "Human", 1, 1, 1, 1, 0);
+                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, "Human", 1, 1, 1, 1, 0, 10, 10);
             
                         gold -= up1Price;
                         $(".goldCoin").text(numberWithCommas(gold));
@@ -1178,7 +1205,7 @@ function combatEvent(enemy_){  //enemy id
        
         //JQUERY//HEROSYS
     
-    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", "Human", 1, 1, 1, 1, 1);
+    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", "Human", 1, 1, 1, 1, 1, 10, 10);
     
     $(".eqp").empty();
         selectHero(0);

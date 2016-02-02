@@ -141,7 +141,7 @@ $(document).ready(function(){
            $(".chbeard").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/beard_"+ chBeard +".png')");
        }
          if( chBeard == 1 ){
-             chMouth = 9;
+             chBeard = 9;
              $(".chbeard").css("background-image","url('../imgs/charcreate/character"+gender+skin+"/beard_"+ chBeard +".png')");
          }
          

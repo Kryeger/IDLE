@@ -2179,7 +2179,7 @@ transition: all 0.5s;
 .attack-block.attack {
     color: #d2141b;
 }
-.attack-block.block{
+.attack-block.block, .combat-log-center.block{
     color: #0081ff;
 }
 
@@ -2327,12 +2327,13 @@ transition: all 0.5s;
     vertical-align: middle;
 }
 
-.combat-instructions-box {
+.combat-log-box {
+    font-family: 'Open Sans', sans-serif;
     position: fixed;
     z-index: 9998;
     top: 60px;
     right: 20px;
-    width: 300px;
+    width: 200px;
     background: rgba(0,0,0,0.8);
 }
 
@@ -2365,28 +2366,103 @@ transition: all 0.5s;
 	position: relative;
     height: 7px;
     width: 150px;
-    background: rgba(227, 168, 86,0.3);
+    background: rgba(250, 187, 18,0.3);
     overflow: hidden;
 }
 
 .combat-you-en {
-	background: #E3A856;
+	background: #fabb12;
     width: 70%;
     height: 7px;
 	box-shadow: 0px 0px 10px rgba(227, 168, 86,0.7);
     transition: all 0.3s ease-in-out;
 }
 
-.combat-attack.attack-1, .combat-attack.attack-2, .combat-attack.attack-3 {
+.combat-attack.attack-heavy, .combat-attack.attack-medium, .combat-attack.attack-low {
 	background-color: #b4191f;
     background-image: url('../imgs/attackicon.png');
     background-size: 50px, 50px;
     background-position: center, center;
     background-repeat: no-repeat;
 }
-.combat-attack.attack-3{
-	background-color: #E3A856;
+.combat-attack.attack-low, .combat-log-center.attack-low{
+	background-color: #fabb12;
 }
-.combat-attack.attack-2{
+.combat-attack.attack-medium, .combat-log-center.attack-medium{
 	background-color: #E87420;
 }
+
+.combat-log-line {
+    position: relative;
+    font-size: 12px;
+    color: white;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 auto;
+    margin-bottom: 2px;
+    cursor: default;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.combat-log-left {
+    position: absolute;
+    left: 0px;
+    font-weight: bold;
+}
+
+.combat-log-center {
+    height: 12px;
+    width: 12px;
+    background-color: gray;
+    top: calc(50% - 6px);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);transform: translateX(-50%);
+}
+
+.combat-log-right {
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+}
+
+.friendly-side {
+    color: #0081ff;
+}
+
+.enemy-side {
+    color: #d2141b;
+}
+
+.combat-attack.attack-heavy, .combat-log-center.attack-heavy {
+    background-color: #d2141b;
+}
+.combat-you-health {
+    position: absolute;
+    top: 50px;
+}
+
+
+
+.combat-window-timer {
+    height: 80px;
+    width: 100%;
+    background: #1f1f1f;
+    cursor: default;
+}
+
+.combat-log-container {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(255,255,255,0.9);
+    width: 90%;
+    padding: 0px 2px;
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 300px;
+    margin: 5px auto;
+}
+.combat-instr-container::-webkit-scrollbar-thumb { height: 0px; background-color: rgba(0,0,0,0); border-radius: 0px;}
+.combat-instr-container::-webkit-scrollbar { width: 0px; height: 0px;}

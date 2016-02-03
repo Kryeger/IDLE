@@ -60,24 +60,6 @@
     background-image: url("../imgs/charcreate/character/male/a/hair_1.png");
 }
 
-.combat-you-health {
-    position: absolute;
-    top: 50px;
-}
 
 
 
-.combat-window-timer {
-    height: 80px;
-    width: 100%;
-    background: #1f1f1f;
-    cursor: default;
-}
-
-.combat-instr-container {
-    position: relative;
-    font-family: 'Open Sans', sans-serif;
-    color: rgba(255,255,255,0.9);
-    width: 95%;
-    margin: 5px auto;
-}

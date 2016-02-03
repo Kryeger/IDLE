@@ -881,7 +881,7 @@ function combatAttack(enemy__){
                     $(".combat-ov").fadeIn(100);
                     $(".combat-window").fadeIn(100);
                     $(".combat-butts-info").fadeIn(100);
-                    $(".combat-instructions-box").fadeIn(100);
+                    $(".combat-log-box").fadeIn(100);
                     
 					holdKeys();
 					combatEvent(0);
@@ -892,7 +892,7 @@ function combatAttack(enemy__){
                     $(".combat-ov").fadeOut(100);
                         $(".combat-window").fadeOut(100);
                         $(".combat-butts-info").fadeOut(100);
-                        $(".combat-instructions-box").fadeOut(100);
+                        $(".combat-log-box").fadeOut(100);
                     return false;
                 }
             });

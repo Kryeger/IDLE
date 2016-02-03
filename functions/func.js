@@ -101,7 +101,8 @@
 	var enemyPwr = 0;
 	var enemyFat = 0;
 	var inCombat = 1;
-	
+	var attackTurn;
+	var time_ = 100000;
     //FUNCTIONS
     
 function getRandomInt(min, max) {
@@ -469,7 +470,10 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 		currentFat : fat_,
 		lowAtt : Math.ceil(attack_ / 10),
 		medAtt : Math.ceil(attack_ / 5),
-		heavyAtt : Math.ceil(attack_ /2)
+		heavyAtt : Math.ceil(attack_ /2),
+		lowAttFat : Math.ceil(fat_/10),
+		medAttFat : Math.ceil(fat_/5),
+		heavyAttFat : Math.ceil(fat_/2)
     };
     
     heroNames[heroCount] = name_;
@@ -773,13 +777,11 @@ function addEnemy(name_, race_, level_, hp_, attack_, image_){
 }
 	
 function attackblock(enemy__) {
-
 	$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
 	$(".combat-you-en").css("width", ((hero[selectedHero].currentFat * 100) / hero[selectedHero].fat) + "%");
 	$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
 
 	if (inCombat == 1) {
-		holdKeys();
 		if (hero[selectedHero].currentHp <= 0) {
 			alert("You lost!");
 			$(".combat-ov").fadeOut(100);
@@ -809,11 +811,13 @@ function attackblock(enemy__) {
 			$(".combat-timer-bar-on").attr("class", "combat-timer-bar-on attack");
 
 			$(document).one("keyup", function (event) {
+			//$(document).keydown(function (event) {
+				clearTimeout(attackTurn);
 				switch(event.keyCode) {
 					case 81: playerPwr = 1;
 						enemyPwr = Math.Ceil(Math.random() * 4);
-						if(hero[selectedHero].fat >= weakAttFat){
-							hero[selectedHero].fat -= weakAttFat;
+						if(hero[selectedHero].fat >= hero[selectedHero].lowAttFat){
+							hero[selectedHero].fat -= hero[selectedHero].lowAttFat;
 							switch(enemyPwr){
 								case 1:break;
 								case 2:hero[selectedHero].currentHp -= enemy[enemy__].lowAtt; break;
@@ -824,8 +828,8 @@ function attackblock(enemy__) {
 						break;
 					case 87: playerPwr = 2;
 						enemyPwr = Math.Ceil(Math.random() * 4);
-						if(hero[selectedHero].fat >= medAttFat){
-							hero[selectedHero].fat -= medAttFat;
+						if(hero[selectedHero].fat >= hero[selectedHero].medAttFat){
+							hero[selectedHero].fat -= hero[selectedHero].medAttFat;
 							switch(enemyPwr){
 								case 1:enemy[enemy__].currentHp -= hero[selectedHero].lowAtt; break;
 								case 2:break;
@@ -836,8 +840,8 @@ function attackblock(enemy__) {
 						break;
 					case 69: playerPwr = 3;
 						enemyPwr = Math.Ceil(Math.random() * 4);
-						if(hero[selectedHero].fat >= heavyAttFat){
-							hero[selectedHero].fat -= heavyAttFat;
+						if(hero[selectedHero].fat >= hero[selectedHero].heavyAttFat){
+							hero[selectedHero].fat -= hero[selectedHero].heavyAttFat;
 							switch(enemyPwr){
 								case 1:enemy[enemy__].currentHp -= hero[selectedHero].medAtt; break;
 								case 2:enemy[enemy__].currentHp -= hero[selectedHero].lowAtt; break;
@@ -857,8 +861,11 @@ function attackblock(enemy__) {
 						}
 						break;
 				}
-				$(".combat-attack").removeClass("attack");
-			}); attackblock(0); // ai 0.1s sa atingi Q (de exemplu) pt a face damage, altfel pierzi randul
+			attackTurn = setTimeout(function() {
+					attackblock(enemy__); time_ *= 1000;
+									}, time_);
+				//$(".combat-attack").removeClass("attack");
+			}); // ai 0.1s sa atingi Q (de exemplu) pt a face damage, altfel pierzi randul
 		}
 		$(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
 		$(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
@@ -866,8 +873,8 @@ function attackblock(enemy__) {
 }
 
 function combatEvent(enemy_) { //enemy id
-	//css popup
-
+	holdKeys();
+	
 	$(".combat-you-title").text(hero[selectedHero].name);
 	$(".your-level").text(hero[selectedHero].level);
 	$(".combat-you-race").text(hero[selectedHero].race);

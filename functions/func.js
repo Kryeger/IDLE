@@ -473,7 +473,8 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 		heavyAtt : Math.ceil(attack_ /2),
 		lowAttFat : Math.ceil(fat_/10),
 		medAttFat : Math.ceil(fat_/5),
-		heavyAttFat : Math.ceil(fat_/2)
+		heavyAttFat : Math.ceil(fat_/2),
+		blkFat : Math.ceil(fat_/3)
     };
     
     heroNames[heroCount] = name_;
@@ -917,7 +918,7 @@ function combatAttack(enemy__){
             case 81: playerPwr = 1;
 						enemyPwr = Math.ceil(Math.random() * 4);
 						if(hero[selectedHero].fat >= hero[selectedHero].lowAttFat){
-							//hero[selectedHero].fat -= hero[selectedHero].lowAttFat;
+							hero[selectedHero].fat -= hero[selectedHero].lowAttFat;
 							switch(enemyPwr){
 								case 1:break;
 								case 2:hero[selectedHero].currentHp -= enemy[enemy__].lowAtt; break;
@@ -929,7 +930,7 @@ function combatAttack(enemy__){
 					case 87: playerPwr = 2;
 						enemyPwr = Math.ceil(Math.random() * 4);
 						if(hero[selectedHero].fat >= hero[selectedHero].medAttFat){
-							//hero[selectedHero].fat -= hero[selectedHero].medAttFat;
+							hero[selectedHero].fat -= hero[selectedHero].medAttFat;
 							switch(enemyPwr){
 								case 1:enemy[enemy__].currentHp -= hero[selectedHero].lowAtt; break;
 								case 2:break;
@@ -941,7 +942,7 @@ function combatAttack(enemy__){
 					case 69: playerPwr = 3;
 						enemyPwr = Math.ceil(Math.random() * 4);
 						if(hero[selectedHero].fat >= hero[selectedHero].heavyAttFat){
-							//hero[selectedHero].fat -= hero[selectedHero].heavyAttFat;
+							hero[selectedHero].fat -= hero[selectedHero].heavyAttFat;
 							switch(enemyPwr){
 								case 1:enemy[enemy__].currentHp -= hero[selectedHero].medAtt; break;
 								case 2:enemy[enemy__].currentHp -= hero[selectedHero].lowAtt; break;
@@ -952,7 +953,7 @@ function combatAttack(enemy__){
 						break;
 					case 82: playerPwr = 4;
 						enemyPwr = Math.ceil(Math.random() * 4);
-						//hero[selectedHero].fat -= blkFat;
+						hero[selectedHero].fat -= blkFat;
 						switch(enemyPwr){
 							case 1:break;
 							case 2:break;

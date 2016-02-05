@@ -2179,7 +2179,7 @@ transition: all 0.5s;
 .attack-block.attack {
     color: #d2141b;
 }
-.attack-block.block, .combat-log-center.block{
+.attack-block.attack-4,  .combat-log-dmg.attack-4{
     color: #0081ff;
 }
 
@@ -2378,17 +2378,17 @@ transition: all 0.5s;
     transition: all 0.3s ease-in-out;
 }
 
-.combat-attack.attack-heavy, .combat-attack.attack-medium, .combat-attack.attack-low {
+.combat-attack.attack-3, .combat-attack.attack-2, .combat-attack.attack-1 {
 	background-color: #b4191f;
     background-image: url('../imgs/attackicon.png');
     background-size: 50px, 50px;
     background-position: center, center;
     background-repeat: no-repeat;
 }
-.combat-attack.attack-low, .combat-log-center.attack-low{
+.combat-attack.attack-1, .combat-log-dmg.attack-1{
 	background-color: #fabb12;
 }
-.combat-attack.attack-medium, .combat-log-center.attack-medium{
+.combat-attack.attack-2, .combat-log-dmg.attack-2{
 	background-color: #E87420;
 }
 
@@ -2412,11 +2412,13 @@ transition: all 0.5s;
 }
 
 .combat-log-center {
-    height: 12px;
-    width: 12px;
     background-color: gray;
-    top: calc(50% - 6px);
-    border-radius: 50%;
+    border-radius: 2px;
+    color: #1a1a1a;
+    height: 16px;
+    line-height: 16px;
+    font-weight: bold;
+    padding: 0px 5px;
     position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);transform: translateX(-50%);
@@ -2436,7 +2438,7 @@ transition: all 0.5s;
     color: #d2141b;
 }
 
-.combat-attack.attack-heavy, .combat-log-center.attack-heavy {
+.combat-attack.attack-3, .combat-log-dmg.attack-3 {
     background-color: #d2141b;
 }
 .combat-you-health {
@@ -2466,3 +2468,47 @@ transition: all 0.5s;
 }
 .combat-instr-container::-webkit-scrollbar-thumb { height: 0px; background-color: rgba(0,0,0,0); border-radius: 0px;}
 .combat-instr-container::-webkit-scrollbar { width: 0px; height: 0px;}
+
+.combat-log-dmg {
+    display: inline-block;
+    color: #1a1a1a;
+    background-color: gray;
+    padding: 0px 5px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 2px;
+    margin: 0px 5px;
+}
+
+.combat-log-you {
+    display: inline-block;
+    float: left;
+}
+
+.combat-log-enemy {
+    display: inline-block;
+    float: right;
+}
+
+.combat-log-fat-right {
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    transition: all 0.5s;
+}
+
+.combat-log-fat-right:before{
+    content: "+";
+    color: #ffcd47;
+}
+
+.combat-log-fat-left {
+    position: absolute;
+    left: 0;
+    color: #ffcd47;
+    font-weight: bold;
+}
+
+

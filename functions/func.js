@@ -918,6 +918,7 @@ function load(){
 	if($.jStorage.get("_newUser") == 0){
 		//vars
 		gold = $.jStorage.get("_gold");
+			$(".goldCoin").text(numberWithCommas(gold));
 		up1Price = $.jStorage.get("_up1Price");
 		up2Price = $.jStorage.get("_up2Price");
 		invCount = $.jStorage.get("_invCount");
@@ -988,7 +989,7 @@ function load(){
 	   
 	   load();
 	   
-    $("button").click(function(){save();
+    $("button").click(function(){
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
 
         $(".goldCoin").text(numberWithCommas(gold));
@@ -1018,6 +1019,7 @@ function load(){
             $(".expperc").text(hero[selectedHero].exp);
             $(".herolvl.heroId" + selectedHero).text(hero[selectedHero].level);
             $(".mherolvl").text(hero[selectedHero].level);
+			save();
         }
         refreshPlayerInfo(selectedHero);
         //needs update

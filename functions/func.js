@@ -1167,7 +1167,18 @@ function load(){
         }
        );
     
-       
+        $(".fa.fa-bars.options").click(function(){
+          $(".options-overlay").fadeIn(100);
+          $(".options-window").fadeIn(100);                             
+       });
+       $(".options-overlay").click(function(){
+           $(".options-overlay").fadeOut(100);
+          $(".options-window").fadeOut(100);   
+       })
+       $(".auto-save-swticher").click(function(){
+          $(this).toggleClass("tgld");
+           $(".auto-save-input").toggleClass("tgld");
+       });
        //$(".infoWindow").mouseenter(function(){
        //    $(this).fadeIn(100);
        //});

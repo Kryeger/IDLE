@@ -1622,7 +1622,7 @@ body{
 .mapTile.player {
     position:relative;
 }
-.mapTile.player.after{
+.mapTile.player:after{
     content:"";
     background-image: url("http://i.imgur.com/UUQ95En.png");
     background-color: transparent;

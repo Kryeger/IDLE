@@ -1615,7 +1615,7 @@ body{
     color: white;
     text-align: center;
     display: inline-block;
-    background: url("../imgs/item/item_noitem.png");
+    /*background: url("../imgs/item/item_noitem.png");*/
     background-size: 20px 20px;
     background-repeat: no-repeat;
 }

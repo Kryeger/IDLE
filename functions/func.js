@@ -17,10 +17,6 @@
     var up2Price = 5;
     
     var i, j, k, x;
-    
-    //var intervalID = window.setInterval(myCallback, 2000);
-    
-    var balance = 0;
 
     var unseenItems = 0;
     
@@ -50,8 +46,6 @@
         //VARIABLES//HEROSYS
     
     var heroCount = 0; //first hero id = 0
-    
-    var line = [];
 
     var hero = [];
     
@@ -85,7 +79,6 @@
     for (i = 0; i <= mapSize + 1; i ++) {
         map[i] = [];
     }
-    var mapTiles = ['grass', 'mountain'];
     
     var lastMapPosX, lastMapPosY;
     
@@ -103,6 +96,9 @@
 	var inCombat = 1;
 	var attackTurn;
 	var time_ = 100000;
+	
+		//VARIABLES//SAVESYS
+	
     //FUNCTIONS
     
 function getRandomInt(min, max) {
@@ -864,17 +860,97 @@ function combatAttack(enemy__){
 							case 4:break;
 						}}
 						break;
+			default: break;
         }
 		 hero[selectedHero].currentFat = ((Math.random() * 50)/100) * hero[selectedHero].fat;
          $(".combat-you-hp").css("width", ((hero[selectedHero].currentHp * 100) / hero[selectedHero].hp) + "%");
          $(".combat-enemy-hp").css("width", ((enemy[enemy__].currentHp * 100) / enemy[enemy__].hp) + "%");
 		 $(".combat-you-en").css("width", ((hero[selectedHero].currentFat * 100) / hero[selectedHero].fat) + "%");
+		 
+		 $(".combat-log-container").prepend("<div class='combat-log-line'> <div class='combat-log-left friendly-side'> You </div> <div class='combat-log-center attack-low'></div> <div class='combat-log-right enemy-side'> enemy</div></div>");
     });
+}
+	
+		//FUNCTIONS//SAVESYS
+	
+function save(){
+	//vars
+	$.jStorage.set("_gold", gold);
+	$.jStorage.set("_up1Price", up1Price);
+	$.jStorage.set("_up2Price", up2Price);
+	$.jStorage.set("_invCount", invCount);
+	$.jStorage.set("_heroCount", heroCount);
+	$.jStorage.set("_iron", iron);
+	$.jStorage.set("_steel", steel);
+	$.jStorage.set("_jewels", jewels);
+	$.jStorage.set("_wood", wood);
+	$.jStorage.set("_minerCount", minerCount);
+	$.jStorage.set("_mapSize", mapSize);
+	//inventory
+	for(i = 0; i < invCount; i++){
+		$.jStorage.set("item" + i, inventory[i]);
+	}
+	console.log("inventory saved");
+	//herosys
+	for(i = 0; i < heroCount; i++){
+		$.jStorage.set("hero" + i, hero[i]);
+	}
+	for(i = 0; i < heroCount; i++){
+		$.jStorage.set("heroNames" + i, heroNames[i]);
+	}
+	console.log("heros saved");
+	//miners
+	for(i = 0; i < minerCount; i++){
+		$.jStorage.set("miner" + i, miner[i]);
+	}
+	console.log("inventory saved");
+	$.jStorage.set("_newUser", 0);
+	//map
+	/*for(i = 0; i < mapSize; i++){
+		for(j = 0; j < mapSize; j++){
+			$.jStorage.set("tilex" + i + "y" + j, map[i][j].h);
+		}
+	}
+	console.log("map saved");*/
+}
+	
+function load(){
+	if($.jStorage.get("_newUser") == 0){
+		//vars
+		gold = $.jStorage.get("_gold");
+		up1Price = $.jStorage.get("_up1Price");
+		up2Price = $.jStorage.get("_up2Price");
+		invCount = $.jStorage.get("_invCount");
+		heroCount = $.jStorage.get("_heroCount");
+		iron = $.jStorage.get("_iron");
+		steel = $.jStorage.get("_steel");
+		jewels = $.jStorage.get("_jewels");
+		wood = $.jStorage.get("_wood");
+		minerCount = $.jStorage.get("_minerCount");
+		mapSize = $.jStorage.get("_mapSize");
+		//inventory
+		for(i = 0; i < invCount; i++){
+			inventory[i] = $.jStorage.get("item" + i);
+		}
+		console.log("inventory loaded");
+		//herosys
+		for(i = 0; i < heroCount; i++){
+			hero[i] = $.jStorage.get("hero" + i);
+		}
+		for(i = 0; i < heroCount; i++){
+			heroNames[i] = $.jStorage.set("heroNames" + i);
+		}
+		console.log("heros loaded");
+		//miners
+		for(i = 0; i < minerCount; i++){
+			miner[i] = $.jStorage.get("miner" + i);
+		}
+		console.log("miners loaded");
+	}
 }
     //JQUERY
 
    $(document).ready(function(){
- 
        $(document).keydown(function(event){
                     if(event.keyCode == 66) {
                     event.preventDefault();
@@ -904,9 +980,9 @@ function combatAttack(enemy__){
            //}
 
         //JQUERY//MAIN
-
-       
-    $("button").click(function(){
+	   
+	   load();
+    $("button").click(function(){save();
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
 
         $(".goldCoin").text(numberWithCommas(gold));
@@ -1111,6 +1187,7 @@ function combatAttack(enemy__){
             equipMan(0);
         });
     $(".inventory").click(function(){
+		$.jStorage.flush();
         refreshInv();
         refreshEq();
 

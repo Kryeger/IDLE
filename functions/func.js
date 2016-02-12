@@ -481,11 +481,11 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 }
     
 function refreshFace(hero__){
-    $(".ch_pp_hair").attr("class","ch_pp_hair");
-    $(".ch_pp_eyes").attr("class","ch_pp_eyes");
-    $(".ch_pp_nose").attr("class","ch_pp_nose");
-    $(".ch_pp_mouth").attr("class","ch_pp_mouth");
-    $(".ch_pp_beard").attr("class","ch_pp_beard");
+    $(".ch_pp_hair").attr("class", "ch_pp_hair");
+    $(".ch_pp_eyes").attr("class", "ch_pp_eyes");
+    $(".ch_pp_nose").attr("class", "ch_pp_nose");
+    $(".ch_pp_mouth").attr("class", "ch_pp_mouth");
+    $(".ch_pp_beard").attr("class", "ch_pp_beard");
     
     $(".ch_pp_hair").toggleClass("hair_pp_" + hero[hero__].face.hair);
     $(".ch_pp_eyes").toggleClass("eyes_pp_" + hero[hero__].face.eyes);
@@ -516,7 +516,7 @@ function selectHero(hero_){
     $(".level").text(hero[hero_].level);
     $(".expperc").text(hero[hero_].exp);
     $(".nextLevel").text(hero[hero_].nextLevel);
-    $(".exp").width(hero[hero_].expPer+'%');
+    $(".exp").width(hero[hero_].expPer + '%');
     //set bonuses to active bonuses
     refreshPlayerInfo(hero_);
 }
@@ -903,7 +903,7 @@ function save(){
 	for(i = 0; i < minerCount; i++){
 		$.jStorage.set("miner" + i, miner[i]);
 	}
-	console.log("inventory saved");
+	console.log("miners saved");
 	$.jStorage.set("_newUser", 0);
 	//map
 	/*for(i = 0; i < mapSize; i++){
@@ -938,7 +938,7 @@ function load(){
 			hero[i] = $.jStorage.get("hero" + i);
 		}
 		for(i = 0; i < heroCount; i++){
-			heroNames[i] = $.jStorage.set("heroNames" + i);
+			heroNames[i] = $.jStorage.get("heroNames" + i);
 		}
 		console.log("heros loaded");
 		//miners
@@ -946,6 +946,10 @@ function load(){
 			miner[i] = $.jStorage.get("miner" + i);
 		}
 		console.log("miners loaded");
+		//herolines
+		for(i = 0; i < heroCount; i ++){
+			$('.otherherospace').append("<div class='heroline heroId" + i + "' id = '" + i + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + i + "' > " + hero[i].name + "</span> <span class='herolevel'> <strong class='herolvl heroId" + i + "'>" + hero[i].level + "</strong></span></div>"); 
+		}
 	}
 }
     //JQUERY
@@ -959,6 +963,7 @@ function load(){
                     $(".combat-butts-info").fadeIn(100);
                     $(".combat-log-box").fadeIn(100);
                     
+		$.jStorage.flush();
 					holdKeys();
 					combatEvent(0);
                     return false;
@@ -982,6 +987,7 @@ function load(){
         //JQUERY//MAIN
 	   
 	   load();
+	   
     $("button").click(function(){save();
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
 
@@ -1187,7 +1193,6 @@ function load(){
             equipMan(0);
         });
     $(".inventory").click(function(){
-		$.jStorage.flush();
         refreshInv();
         refreshEq();
 
@@ -1247,12 +1252,16 @@ function load(){
         }
     });
        
+	   if($.jStorage.get("_newUser") != 0){
        addItemToInv("SWAP", "Sword", "noitem", 1, 0, 1, 0);
        addItemToInv("NOITEM", "Sword", "noitem", 1, 0, 1, 0);
+	   }
        
         //JQUERY//HEROSYS
     
+	   if($.jStorage.get("_newUser") != 0){
     addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", "Human", 1, 1, 1, 1, 1, 10, 10);
+	   }
     
     $(".eqp").empty();
         selectHero(0);
@@ -1367,6 +1376,5 @@ function load(){
 	   		//JQUERY//COMBAT
 	   
 	   addEnemy("ORC", "ORC", 1, 25, 2, "../imgs/enemies/enemy-orc.png");
-	   
    });
 })(window, window.jQuery);

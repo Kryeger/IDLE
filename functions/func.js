@@ -1019,9 +1019,9 @@ function load(){
             $(".expperc").text(hero[selectedHero].exp);
             $(".herolvl.heroId" + selectedHero).text(hero[selectedHero].level);
             $(".mherolvl").text(hero[selectedHero].level);
-			save();
         }
         refreshPlayerInfo(selectedHero);
+		save();
         //needs update
 
         //ITEM CHANCES

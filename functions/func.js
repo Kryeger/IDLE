@@ -99,6 +99,8 @@
 	
 		//VARIABLES//SAVESYS
 	
+	var saveInterval = 15000;
+	
     //FUNCTIONS
     
 function getRandomInt(min, max) {
@@ -886,6 +888,7 @@ function save(){
 	$.jStorage.set("_wood", wood);
 	$.jStorage.set("_minerCount", minerCount);
 	$.jStorage.set("_mapSize", mapSize);
+	$.jStorage.set("_saveInterval", saveInterval);
 	//inventory
 	for(i = 0; i < invCount; i++){
 		$.jStorage.set("item" + i, inventory[i]);
@@ -933,6 +936,7 @@ function load(){
         	$(".jewelNum").text(numberWithCommas(jewels));
 		minerCount = $.jStorage.get("_minerCount");
 		mapSize = $.jStorage.get("_mapSize");
+		saveInterval = $.jStorage.get("_saveInterval");
 		//inventory
 		for(i = 0; i < invCount; i++){
 			inventory[i] = $.jStorage.get("item" + i);
@@ -992,10 +996,12 @@ function load(){
         //JQUERY//MAIN
 	   
 	   load();
+	   load();
 	   
 	   setInterval(function(){
-		   save();
-	   }, 1500);
+		   save();console.log(saveInterval);
+	   }, saveInterval);
+	   
     $("button").click(function(){
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
 
@@ -1395,5 +1401,16 @@ function load(){
 	   		//JQUERY//COMBAT
 	   
 	   addEnemy("ORC", "ORC", 1, 25, 2, "../imgs/enemies/enemy-orc.png");
+	   
+	   		//JQUERY//SAVESYS
+	   
+	   $(".options-button.save").click(function(){
+	   		var input = document.getElementById("auto-save-id").value;
+		   saveInterval = input;
+		   
+	   });
+	   $(".options-button.save-now").click(function(){
+		   save();
+	   });
    });
 })(window, window.jQuery);

@@ -927,6 +927,10 @@ function load(){
 		steel = $.jStorage.get("_steel");
 		jewels = $.jStorage.get("_jewels");
 		wood = $.jStorage.get("_wood");
+			$(".woodNum").text(numberWithCommas(wood));
+        	$(".ironNum").text(numberWithCommas(iron));
+        	$(".steelNum").text(numberWithCommas(steel));
+        	$(".jewelNum").text(numberWithCommas(jewels));
 		minerCount = $.jStorage.get("_minerCount");
 		mapSize = $.jStorage.get("_mapSize");
 		//inventory
@@ -989,6 +993,9 @@ function load(){
 	   
 	   load();
 	   
+	   setInterval(function(){
+		   save();
+	   }, 1500);
     $("button").click(function(){
         gold += Math.floor(1 + hero[selectedHero].headItem.goldItem + hero[selectedHero].lefthandItem.goldItem + hero[selectedHero].righthandItem.goldItem + hero[selectedHero].chestItem.goldItem + hero[selectedHero].legsItem.goldItem + hero[selectedHero].bootItem.goldItem);
 
@@ -1021,7 +1028,6 @@ function load(){
             $(".mherolvl").text(hero[selectedHero].level);
         }
         refreshPlayerInfo(selectedHero);
-		save();
         //needs update
 
         //ITEM CHANCES

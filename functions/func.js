@@ -956,6 +956,7 @@ function load(){
 		}
 		console.log("miners loaded");
 		//herolines
+		$('.otherherospace').empty();
 		for(i = 0; i < heroCount; i ++){
 			$('.otherherospace').append("<div class='heroline heroId" + i + "' id = '" + i + "'><span class='heroname heroId" + (heroCount - 1) + "' id = '" + i + "' > " + hero[i].name + "</span> <span class='herolevel'> <strong class='herolvl heroId" + i + "'>" + hero[i].level + "</strong></span></div>"); 
 		}
@@ -1024,7 +1025,7 @@ function load(){
             hero[selectedHero].level++;
             hero[selectedHero].expBonus += (hero[selectedHero].expBonus)/2;
             hero[selectedHero].points += 5; //TO DO: ADD LEVEL UP WINDOW
-			hero[selectedHero].chanceABonus *= (2/100 * hero[selectedHero].chanceABonus);
+			hero[selectedHero].chanceABonus += ((2 * hero[selectedHero].chanceABonus)/100);
 			
 			hero[selectedHero].hp *= 1.05;
 			
@@ -1038,9 +1039,9 @@ function load(){
 
         //ITEM CHANCES
 
-        var chance = Math.floor((Math.random() * 100) + 1);
-
-        if(chance < hero[selectedHero].chanceABonus / 2){
+        var chance = getRandomInt(1, 100);
+		var chancee = getRandomInt(1, 20);
+        if(chance < chancee){
             addRandomItemToInv(hero[selectedHero].rarity);
             unseenItems ++;
             $(".notify").addClass("visible");

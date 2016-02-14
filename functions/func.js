@@ -326,8 +326,8 @@ function equipMan(x){
     if(inventory[selectedItem].slot == 1 || inventory[selectedItem].slot == 2){
                 $(".wsEqov").empty();
                 $(".wsEqov").append('<div class="wsEqhands" style="display: none;"><div class="wsEqL"> Equip Left Hand</div><div class="wsEqR"> Equip Right Hand</div></div>');
-        $(".wsEqov").append('<div class="wsEq" id = "wsSell">SELL</div>');
-				//<div class="wsEq" id = "wsSell" style="display: none;">SELL</div> << NU MERE WTF
+				$(".wsEqov").append('<div class="wsEq" id = "wsSell">SELL FOR ' + inventory[selectedItem].goldItem * 10 + ' GOLD</div>');
+		
                 $(".wsEqhands").fadeIn(100);
                 $(".wsEqL").click(function(){
                     equipLeft = 1;
@@ -353,7 +353,7 @@ function equipMan(x){
             else{
                 $(".wsEqov").empty();
                 $(".wsEqov").append('<div class="wsEq" style="display: none;">EQUIP</div>');
-				$(".wsEqov").append('<div class="wsEq" id = "wsSell" style="display: none;">SELL</div>');
+				$(".wsEqov").append('<div class="wsEq" id = "wsSell">SELL FOR ' + inventory[selectedItem].goldItem * 10 + ' GOLD</div>');
                 $(".wsEq").fadeIn(100); 
 				$("#wsSell").click(function(){
 					sell(selectedItem);
@@ -453,7 +453,7 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 		race : race_,
         growthFactor : ((Math.random() + 1)/6 + 1),
         rarity : 1,
-        //statp
+        //stat
         points : 0,
         //prod
         expPer : 0, //exp percentage
@@ -516,8 +516,8 @@ function selectHero(hero_){
     $(".mherolvl").text(hero[hero_].level);
     selectedHero = hero_;
     $(".level").text(hero[hero_].level);
-    $(".expperc").text(hero[hero_].exp);
-    $(".nextLevel").text(hero[hero_].nextLevel);
+    $(".expperc").text(numberWithCommas(hero[hero_].exp));
+    $(".nextLevel").text(numberWithCommas(hero[hero_].nextLevel));
     $(".exp").width(hero[hero_].expPer + '%');
     //set bonuses to active bonuses
     refreshPlayerInfo(hero_);
@@ -576,7 +576,7 @@ function craftRenderPrice(){
     
 
         
-    var basePrice = Math.floor(((itemNameGen.indexOf(qualityName)+1)* (Math.random()+1) * (hero[selectedHero].level + hero[selectedHero].expBonus))/2);
+    var basePrice = Math.floor(((itemNameGen.indexOf(qualityName)+1) * (Math.random()+1) * (hero[selectedHero].level + hero[selectedHero].expBonus))/2);
         
     switch(craftType){
         case "Sword": craftGoldPrice = basePrice;
@@ -660,7 +660,7 @@ function craftItem(){
             $(".ironNum").text(numberWithCommas(iron));
             $(".steelNum").text(numberWithCommas(steel));
             $(".jewelNum").text(numberWithCommas(jewels));
-        }else{craftFailed = 1;}
+        } else {craftFailed = 1;}
     }
     $(".goldCrafPrice").text(0);
     $(".woodCrafPrice").text(0);   
@@ -988,7 +988,6 @@ function load(){
                 }
             });
        
-       
        // KeyCode Check //
            //document.onkeydown = function(e){
            //    console.log(e.keyCode);
@@ -1014,12 +1013,11 @@ function load(){
             hero[selectedHero].expPer = ((hero[selectedHero].exp*100)/hero[selectedHero].nextLevel).toFixed(2);
             hero[selectedHero].exp += hero[selectedHero].expPerClick + Math.floor(hero[selectedHero].expBonus) + hero[selectedHero].headItem.expItem + hero[selectedHero].lefthandItem.expItem + hero[selectedHero].righthandItem.expItem + hero[selectedHero].chestItem.expItem + hero[selectedHero].legsItem.expItem + hero[selectedHero].bootItem.expItem; //TEMP!
             $(".exp").width(hero[selectedHero].expPer+'%');
-            $(".expperc").text(hero[selectedHero].exp);
+            $(".expperc").text(numberWithCommas(hero[selectedHero].exp));
         }
         if(hero[selectedHero].exp >= hero[selectedHero].nextLevel){ //levelup
             hero[selectedHero].exp = 1;
             hero[selectedHero].nextLevel = Math.floor(Math.pow(hero[selectedHero].nextLevel, 2)/((30 * hero[selectedHero].nextLevel * hero[selectedHero].growthFactor) / 100)); 
-            $(".nextLevel").text(hero[selectedHero].nextLevel);
             hero[selectedHero].expPer = 0;
             $(".exp").width(hero[selectedHero].expPer+'%');
             hero[selectedHero].level++;
@@ -1030,7 +1028,8 @@ function load(){
 			hero[selectedHero].hp *= 1.05;
 			
             $(".level").text(hero[selectedHero].level);
-            $(".expperc").text(hero[selectedHero].exp);
+            $(".nextLevel").text(numberWithCommas(hero[selectedHero].nextLevel));
+            $(".expperc").text(numberWithCommas(hero[selectedHero].exp));
             $(".herolvl.heroId" + selectedHero).text(hero[selectedHero].level);
             $(".mherolvl").text(hero[selectedHero].level);
         }
@@ -1406,7 +1405,7 @@ function load(){
 	   		//JQUERY//SAVESYS
 	   
 	   $(".options-button.save").click(function(){
-	   		var input = document.getElementById("auto-save-id").value;
+	   	   var input = document.getElementById("auto-save-id").value;
 		   saveInterval = input;
 		   
 	   });

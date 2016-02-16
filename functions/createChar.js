@@ -6,12 +6,6 @@ var chBeard = 1; chBeardCount = 9;//9 types
 
 var gender = "/male";
 var skin = "/a";
-
-chHairArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-chEyesArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-chNoseArr = [1, 2, 3, 4];
-chMouthArr = [1, 2, 3, 4, 5];
-chBeardArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
  
 function charRefresh(){
     chHair = 1;

@@ -344,6 +344,7 @@ function equipMan(x){
                     drawInvPage(selectedPage);
                 });
 				$("#wsSell").click(function(){
+					$(this).fadeOut(100);
 					sell(selectedItem);
 					refreshStats();
 					refreshInv();
@@ -356,6 +357,7 @@ function equipMan(x){
 				$(".wsEqov").append('<div class="wsEq" id = "wsSell">SELL FOR ' + inventory[selectedItem].goldItem * 10 + ' GOLD</div>');
                 $(".wsEq").fadeIn(100); 
 				$("#wsSell").click(function(){
+					$(this).fadeOut(100);
 					sell(selectedItem);
 					refreshStats();
 					refreshInv();
@@ -379,7 +381,7 @@ function sell(item){
     
         //FUNCTIONS//HEROSYS
 
-function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, name_, race_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, attack_, fat_){
+function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, legsItem_, bootItem_, hair_, eyes_, nose_, mouth_, beard_, sex_, name_, race_, level_, goldBonus_, clickIBonus_, goldIBonus_, chanceIBonus_, attack_, fat_){
     hero[heroCount] = 
         {
         headItem : {
@@ -472,7 +474,8 @@ function addHeroWithAtt(headItem_, lefthandItem_, righthandItem_, chestItem_, le
 		lowAttFat : Math.ceil(fat_/10),
 		medAttFat : Math.ceil(fat_/5),
 		heavyAttFat : Math.ceil(fat_/2),
-		blkFat : Math.ceil(fat_/3)
+		blkFat : Math.ceil(fat_/3),
+		sex : sex_
     };
     
     heroNames[heroCount] = name_;
@@ -489,11 +492,12 @@ function refreshFace(hero__){
     $(".ch_pp_mouth").attr("class", "ch_pp_mouth");
     $(".ch_pp_beard").attr("class", "ch_pp_beard");
     
-    $(".ch_pp_hair").toggleClass("hair_pp_" + hero[hero__].face.hair);
-    $(".ch_pp_eyes").toggleClass("eyes_pp_" + hero[hero__].face.eyes);
-    $(".ch_pp_nose").toggleClass("nose_pp_" + hero[hero__].face.nose);
-    $(".ch_pp_mouth").toggleClass("mouth_pp_" + hero[hero__].face.mouth);
-    $(".ch_pp_beard").toggleClass("beard_pp_" + hero[hero__].face.beard);
+	$(".bodylayout_s").css("background-image", "url('../imgs/charcreate/character/male/a/body_layout.png')");
+    $(".ch_pp_hair").css("background-image", "url('../imgs/charcreate/character/male/a/hair_" + hero[hero__].face.hair +".png')");
+    $(".ch_pp_eyes").css("background-image", "url('../imgs/charcreate/character/male/a/eyes_" + hero[hero__].face.eyes+".png')");
+    $(".ch_pp_nose").css("background-image", "url('../imgs/charcreate/character/male/a/nose_" + hero[hero__].face.nose+".png')");
+    $(".ch_pp_mouth").css("background-image", "url('../imgs/charcreate/character/male/a/mouth_" + hero[hero__].face.mouth+".png')");
+    $(".ch_pp_beard").css("background-image", "url('../imgs/charcreate/character/male/a/beard_" + hero[hero__].face.beard+".png')");
 }   
 function refreshPlayerInfo(hero_){
     $("#player_info_name").text(hero[hero_].name);
@@ -1097,7 +1101,7 @@ function load(){
                     if($('.nameName').val() !== "" && $('.nameName').val() !== null && $('.nameName').val() !== undefined && $('.nameName').val().charAt(0) !== " " && alreadyUsed){
                     
                         //alert("Invalid Name");
-                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], chHairArr[Math.floor(Math.random() * chHairArr.length)], chEyesArr[Math.floor(Math.random() * chEyesArr.length)], chNoseArr[Math.floor(Math.random() * chNoseArr.length)], chMouthArr[Math.floor(Math.random() * chMouthArr.length)], chBeardArr[Math.floor(Math.random() * chBeardArr.length)], newHeroName, "Human", 1, 1, 1, 1, 0, 10, 10);
+                        addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], getRandomInt(1, chHairCount), getRandomInt(1, chEyesCount), getRandomInt(1, chNoseCount), getRandomInt(1, chMouthCount), getRandomInt(1, chBeardCount), newHeroSex, newHeroName, "Human", 1, 1, 1, 1, 0, 10, 10);
             
                         gold -= up1Price;
                         $(".goldCoin").text(numberWithCommas(gold));
@@ -1285,7 +1289,7 @@ function load(){
         //JQUERY//HEROSYS
     
 	   if($.jStorage.get("_newUser") != 0){
-    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, "Ragnarok", "Human", 1, 1, 1, 1, 1, 10, 10);
+    addHeroWithAtt(inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], inventory[1], 7, 2, 3, 1, 4, 1, "Ragnarok", "Human", 1, 1, 1, 1, 1, 10, 10);
 	   }
     
     $(".eqp").empty();
